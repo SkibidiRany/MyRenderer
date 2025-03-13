@@ -41,10 +41,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pCmdLine, 
     Point Middle = {400,300};
     Point points[4] =
     {
-        { Middle.x +100, Middle.y +100 },
-        { Middle.x - 100, Middle.y + 100 },
-        { Middle.x - 100, Middle.y - 100 },
-        { Middle.x + 100, Middle.y - 100 }
+        { Middle.x -100, Middle.y -100 },
+        { Middle.x + 100, Middle.y - 100 },
+        { Middle.x + 100, Middle.y + 100 },
+        { Middle.x - 100, Middle.y + 100 }
     };
 
 
@@ -56,16 +56,17 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pCmdLine, 
             DispatchMessage(&message);
         }
 
-        // Drawing a bold point at (400, 300) with a boldness of 5
         HDC hdc = GetDC(window_handle);
 
         
-
         for (int i = 0; i < 4; i++) {
             DrawBoldPoint(hdc, points[i].x, points[i].y, PointBoldness);
         }
     
         DrawLine(hdc, points[0], points[1], LineBoldness);
+        DrawLine(hdc, points[1], points[2], LineBoldness);
+        DrawLine(hdc, points[2], points[3], LineBoldness);
+        DrawLine(hdc, points[3], points[0], LineBoldness);
 
         //DrawBoldPoint(hdc, 400, 300, 10); // 5 is the boldness
         ReleaseDC(window_handle, hdc);

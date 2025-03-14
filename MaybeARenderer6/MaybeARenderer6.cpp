@@ -1,21 +1,23 @@
 #include <windows.h>
 #include <stdbool.h>
-
+#include <math.h>
 
 bool quit = false;
 int PointBoldness = 10;
 int LineBoldness = 1;
+double angle = 0;
 
 struct Point {
-    int x=0;
-    int y=0;
+    int x = 0;
+    int y = 0;
+    int z = 0;
 };
-
-
 
 LRESULT CALLBACK WindowProcessMessage(HWND, UINT, WPARAM, LPARAM);
 void DrawBoldPoint(HDC hdc, int x, int y, int boldness);
 void DrawLine(HDC hdc, Point p1, Point p2, int boldness);
+Point MultiplyMatrixByPoint(double matrix[3][3], Point p);
+Point RotatePointAround(Point p, Point pivot, double matrix[3][3]);
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pCmdLine, int nCmdShow) {
     WNDCLASS window_class = { 0 };
@@ -37,16 +39,14 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pCmdLine, 
     ShowWindow(window_handle, nCmdShow);
     UpdateWindow(window_handle);
 
-
-    Point Middle = {400,300};
+    Point Middle = { 400, 300 };
     Point points[4] =
     {
-        { Middle.x -100, Middle.y -100 },
+        { Middle.x - 100, Middle.y - 100 },
         { Middle.x + 100, Middle.y - 100 },
         { Middle.x + 100, Middle.y + 100 },
         { Middle.x - 100, Middle.y + 100 }
     };
-
 
     // Main loop
     MSG message;
@@ -58,18 +58,53 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pCmdLine, 
 
         HDC hdc = GetDC(window_handle);
 
-        
-        for (int i = 0; i < 4; i++) {
-            DrawBoldPoint(hdc, points[i].x, points[i].y, PointBoldness);
-        }
-    
-        DrawLine(hdc, points[0], points[1], LineBoldness);
-        DrawLine(hdc, points[1], points[2], LineBoldness);
-        DrawLine(hdc, points[2], points[3], LineBoldness);
-        DrawLine(hdc, points[3], points[0], LineBoldness);
+        // Create a compatible memory device context and bitmap for double buffering
+        HDC memDC = CreateCompatibleDC(hdc);
+        HBITMAP memBitmap = CreateCompatibleBitmap(hdc, 800, 600);
+        SelectObject(memDC, memBitmap);
 
-        //DrawBoldPoint(hdc, 400, 300, 10); // 5 is the boldness
+        // Fill the background with black color
+        HBRUSH blackBrush = CreateSolidBrush(RGB(0, 0, 0));
+        RECT rect = { 0, 0, 800, 600 };
+        FillRect(memDC, &rect, blackBrush);
+        DeleteObject(blackBrush);
+
+        // Rotation matrices
+        double RotateX[3][3] = {
+            {1, 0, 0},
+            {0, cos(angle), -sin(angle)},
+            {0, sin(angle), cos(angle)}
+        };
+
+        double RotateY[3][3] = {
+            {cos(angle), 0, sin(angle)},
+            {0, 1, 0},
+            {-sin(angle), 0, cos(angle)}
+        };
+
+        double RotateZ[3][3] = {
+            {cos(angle), -sin(angle), 0},
+            {sin(angle), cos(angle), 0},
+            {0, 0, 1}
+        };
+
+        for (int i = 0; i < 4; i++) {
+            Point rotatedPoint = RotatePointAround(points[i], Middle, RotateZ);
+
+            DrawBoldPoint(memDC, rotatedPoint.x, rotatedPoint.y, PointBoldness);
+            DrawLine(memDC, rotatedPoint, RotatePointAround(points[(i + 1) % 4], Middle, RotateZ), LineBoldness);
+        }
+
+        // Copy the off-screen buffer to the screen
+        BitBlt(hdc, 0, 0, 800, 600, memDC, 0, 0, SRCCOPY);
+
+        // Clean up
+        DeleteObject(memBitmap);
+        DeleteDC(memDC);
         ReleaseDC(window_handle, hdc);
+
+        angle += 0.05;
+        Sleep(2);
     }
 
     return 0;
@@ -131,4 +166,34 @@ void DrawLine(HDC hdc, Point p1, Point p2, int boldness) {
             p1.y += sy;
         }
     }
+}
+
+// Function to multiply a 3x3 matrix by a Point
+Point MultiplyMatrixByPoint(double matrix[3][3], Point p) {
+    Point result;
+    result.x = (int)(matrix[0][0] * p.x + matrix[0][1] * p.y + matrix[0][2] * 1);
+    result.y = (int)(matrix[1][0] * p.x + matrix[1][1] * p.y + matrix[1][2] * 1);
+    result.z = (int)(matrix[2][0] * p.x + matrix[2][1] * p.y + matrix[2][2] * 1);
+    return result;
+}
+
+Point RotatePointAround(Point p, Point pivot, double matrix[3][3]) {
+    Point result;
+
+    // Translate point to origin
+    int x = p.x - pivot.x;
+    int y = p.y - pivot.y;
+    int z = p.z - pivot.z; // Assuming 2D rotation, Z remains the same
+
+    // Apply rotation matrix
+    result.x = (int)(matrix[0][0] * x + matrix[0][1] * y + matrix[0][2] * z);
+    result.y = (int)(matrix[1][0] * x + matrix[1][1] * y + matrix[1][2] * z);
+    result.z = (int)(matrix[2][0] * x + matrix[2][1] * y + matrix[2][2] * z);
+
+    // Translate point back
+    result.x += pivot.x;
+    result.y += pivot.y;
+    result.z += pivot.z;
+
+    return result;
 }

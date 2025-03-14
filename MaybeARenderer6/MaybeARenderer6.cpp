@@ -6,6 +6,14 @@ bool quit = false;
 int PointBoldness = 10;
 int LineBoldness = 1;
 double angle = 0;
+double angleChangeSpeed = 0.01;
+
+struct Rect3D{
+    int width;
+	int height;
+	int depth;
+};
+
 
 struct Point {
     int x = 0;
@@ -40,12 +48,18 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pCmdLine, 
     UpdateWindow(window_handle);
 
     Point Middle = { 400, 300 };
-    Point points[4] =
+
+	Rect3D myRect = { 200, 200, 200 };
+    Point points[8] =
     {
-        { Middle.x - 100, Middle.y - 100 },
-        { Middle.x + 100, Middle.y - 100 },
-        { Middle.x + 100, Middle.y + 100 },
-        { Middle.x - 100, Middle.y + 100 }
+        { Middle.x - myRect.width / 2, Middle.y - myRect.height / 2, Middle.z + myRect.depth / 2 },
+        { Middle.x + myRect.width / 2, Middle.y - myRect.height / 2, Middle.z + myRect.depth / 2 },
+        { Middle.x + myRect.width / 2, Middle.y + myRect.height / 2, Middle.z + myRect.depth / 2 },
+        { Middle.x - myRect.width / 2, Middle.y + myRect.height / 2, Middle.z + myRect.depth / 2 },
+        { Middle.x - myRect.width / 2, Middle.y - myRect.height / 2, Middle.z - myRect.depth / 2 },
+        { Middle.x + myRect.width / 2, Middle.y - myRect.height / 2, Middle.z - myRect.depth / 2  },
+        { Middle.x + myRect.width / 2, Middle.y + myRect.height / 2, Middle.z - myRect.depth / 2  },
+        { Middle.x - myRect.width / 2, Middle.y + myRect.height / 2, Middle.z - myRect.depth / 2  }
     };
 
     // Main loop
@@ -88,12 +102,36 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pCmdLine, 
             {0, 0, 1}
         };
 
-        for (int i = 0; i < 4; i++) {
-            Point rotatedPoint = RotatePointAround(points[i], Middle, RotateZ);
-
-            DrawBoldPoint(memDC, rotatedPoint.x, rotatedPoint.y, PointBoldness);
-            DrawLine(memDC, rotatedPoint, RotatePointAround(points[(i + 1) % 4], Middle, RotateZ), LineBoldness);
+        // Rotate all points
+        Point rotatedPoints[8];
+        for (int i = 0; i < 8; i++) {
+            rotatedPoints[i] = RotatePointAround(points[i], Middle, RotateY);
+            rotatedPoints[i] = RotatePointAround(rotatedPoints[i], Middle, RotateX);
+            rotatedPoints[i] = RotatePointAround(rotatedPoints[i], Middle, RotateZ);
         }
+
+        // Draw bold points
+        for (int i = 0; i < 8; i++) {
+            DrawBoldPoint(memDC, rotatedPoints[i].x, rotatedPoints[i].y, PointBoldness);
+        }
+
+        // Draw lines for the top face
+        DrawLine(memDC, rotatedPoints[0], rotatedPoints[1], LineBoldness);
+        DrawLine(memDC, rotatedPoints[1], rotatedPoints[2], LineBoldness);
+        DrawLine(memDC, rotatedPoints[2], rotatedPoints[3], LineBoldness);
+        DrawLine(memDC, rotatedPoints[3], rotatedPoints[0], LineBoldness);
+
+        // Draw lines for the bottom face
+        DrawLine(memDC, rotatedPoints[4], rotatedPoints[5], LineBoldness);
+        DrawLine(memDC, rotatedPoints[5], rotatedPoints[6], LineBoldness);
+        DrawLine(memDC, rotatedPoints[6], rotatedPoints[7], LineBoldness);
+        DrawLine(memDC, rotatedPoints[7], rotatedPoints[4], LineBoldness);
+
+        // Draw vertical lines connecting top and bottom faces
+        DrawLine(memDC, rotatedPoints[0], rotatedPoints[4], LineBoldness);
+        DrawLine(memDC, rotatedPoints[1], rotatedPoints[5], LineBoldness);
+        DrawLine(memDC, rotatedPoints[2], rotatedPoints[6], LineBoldness);
+        DrawLine(memDC, rotatedPoints[3], rotatedPoints[7], LineBoldness);
 
         // Copy the off-screen buffer to the screen
         BitBlt(hdc, 0, 0, 800, 600, memDC, 0, 0, SRCCOPY);
@@ -103,8 +141,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pCmdLine, 
         DeleteDC(memDC);
         ReleaseDC(window_handle, hdc);
 
-        angle += 0.05;
-        Sleep(2);
+        angle += angleChangeSpeed;
+        //Sleep(2);
     }
 
     return 0;
@@ -133,11 +171,9 @@ LRESULT CALLBACK WindowProcessMessage(HWND window_handle, UINT message, WPARAM w
 }
 
 void DrawBoldPoint(HDC hdc, int x, int y, int boldness) {
-    // Loop to draw multiple points around (x, y) for the boldness effect
     for (int i = -boldness; i <= boldness; ++i) {
         for (int j = -boldness; j <= boldness; ++j) {
-            // Draw a point at (x + i, y + j)
-            SetPixel(hdc, x + i, y + j, RGB(255, 255, 255)); // White color for the point
+            SetPixel(hdc, x + i, y + j, RGB(255, 255, 255)); 
         }
     }
 }
@@ -151,7 +187,6 @@ void DrawLine(HDC hdc, Point p1, Point p2, int boldness) {
     int err = dx - dy;
 
     while (true) {
-        // Draw the main line pixel with boldness
         DrawBoldPoint(hdc, p1.x, p1.y, boldness);
 
         if (p1.x == p2.x && p1.y == p2.y) break;
@@ -183,7 +218,7 @@ Point RotatePointAround(Point p, Point pivot, double matrix[3][3]) {
     // Translate point to origin
     int x = p.x - pivot.x;
     int y = p.y - pivot.y;
-    int z = p.z - pivot.z; // Assuming 2D rotation, Z remains the same
+    int z = p.z - pivot.z;
 
     // Apply rotation matrix
     result.x = (int)(matrix[0][0] * x + matrix[0][1] * y + matrix[0][2] * z);

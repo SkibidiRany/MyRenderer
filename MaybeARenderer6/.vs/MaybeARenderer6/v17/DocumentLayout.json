@@ -14,17 +14,21 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{40ea2e6b-2121-4bb8-a43e-c83c04b51041}"
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "MaybeARenderer6.cpp",
               "DocumentMoniker": "C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\MaybeARenderer6.cpp",
               "RelativeDocumentMoniker": "MaybeARenderer6.cpp",
-              "ToolTip": "C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\MaybeARenderer6.cpp",
-              "RelativeToolTip": "MaybeARenderer6.cpp",
-              "ViewState": "AgIAAF0AAAAAAAAAAAAAADQAAAAVAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\MaybeARenderer6.cpp*",
+              "RelativeToolTip": "MaybeARenderer6.cpp*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-03-13T19:10:06.567Z",
               "EditorCaption": ""

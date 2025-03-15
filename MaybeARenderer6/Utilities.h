@@ -2,16 +2,19 @@
 #include <windows.h>
 
 
-
-
+COLORREF RED = RGB(255, 0, 0);
+COLORREF GREEN = RGB(0, 255, 0);
+COLORREF WHITE = RGB(255, 255, 255);
 enum Drawings {
     Rect,
-    Pyramid
+    Pyramid,
+	DoublePyramid
 };
 
 int screenWidth = 800;
 int screenHeight = 600;
 
+float PI = 3.14159265358979323846;
 bool quit = false;
 int PointBoldness = 10;
 int LineBoldness = 1;
@@ -19,9 +22,23 @@ double angle = 0;
 double angleChangeSpeed = 0.01;
 
 
-Drawings WantedDrawing = Pyramid;
+Drawings WantedDrawing = DoublePyramid;
 
 
+//Shape* GetWantedDrawing() {
+//	switch (WantedDrawing) {
+//	case Rect:
+//		return new Rect3D(200, 200, 200);
+//        break;
+//	case Pyramid:
+//		return new Pyramid3D(200);
+//        break;
+//	case DoublePyramid:
+//		break;
+//	default:
+//		return NULL;
+//	}
+//}
 
 struct Point {
     int x = 0;
@@ -37,10 +54,10 @@ Point pivot = { Middle.x, Middle.y, Middle.z };
 
 
 
-void DrawBoldPoint(HDC hdc, int x, int y, int boldness) {
+void DrawBoldPoint(HDC hdc, int x, int y, int boldness, COLORREF color = WHITE) {
     for (int i = -boldness; i <= boldness; ++i) {
         for (int j = -boldness; j <= boldness; ++j) {
-            SetPixel(hdc, x + i, y + j, RGB(255, 255, 255));
+            SetPixel(hdc, x + i, y + j, color);
         }
     }
 }

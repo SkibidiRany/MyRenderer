@@ -1,2 +1,5 @@
 ﻿  MaybeARenderer6.cpp
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\Utilities.h(17,10): warning C4305: 'initializing': truncation from 'double' to 'float'
+  (compiling source file 'MaybeARenderer6.cpp')
+  
   MaybeARenderer6.vcxproj -> C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\x64\Debug\MaybeARenderer6.exe

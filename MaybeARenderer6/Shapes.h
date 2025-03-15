@@ -24,7 +24,7 @@ public:
 
     virtual void DrawLines(HDC hdc) const = 0;
 
-    void DrawPoints(HDC hdc) const {
+    virtual void DrawPoints(HDC hdc) const {
         if (hdc == NULL) throw std::runtime_error("Device context not initialized");
         for (const Point& p : Points) {
             DrawBoldPoint(hdc, p.x, p.y, PointBoldness);
@@ -104,3 +104,67 @@ public:
 
     }
 };
+
+
+
+
+
+class DoublePyramid3D : public Shape {
+
+public:
+    DoublePyramid3D(int l) : Shape(
+        {
+            { Middle.x + l / 2, Middle.y - (int)(sqrt(3) / 6 * l), Middle.z}, // right down base vertex
+            { Middle.x - l / 2, Middle.y - (int)(sqrt(3) / 6 * l), Middle.z}, // left down base vertex
+			{ Middle.x, Middle.y + (int)(sqrt(3) / 3 * l), Middle.z }, // top base vertex
+	        { Middle.x, Middle.y, Middle.z - (int)(sqrt(6) / 3 * l) }, // behind head vertex
+			{ Middle.x, Middle.y, Middle.z + (int)(sqrt(6) / 3 * l)} // front head vertex
+        }
+    ) {  }
+
+
+
+	void DrawPoints(HDC hdc) const override {
+		if (hdc == NULL) throw std::runtime_error("Device context not initialized");
+        
+        for (int i = 0; i < 3; i++) 
+            DrawBoldPoint(hdc, Points[i].x, Points[i].y, PointBoldness, RED);
+		
+		for (int i = 3; i < 5; i++) 
+			DrawBoldPoint(hdc, Points[i].x, Points[i].y, PointBoldness, GREEN);
+	}
+
+
+	void DrawLines(HDC hdc) const override {
+		if (hdc == NULL) throw std::runtime_error("Device context not initialized");
+
+		// Draw lines for the base
+		DrawLine(hdc, Points[0], Points[1], LineBoldness);
+		DrawLine(hdc, Points[1], Points[2], LineBoldness);
+		DrawLine(hdc, Points[2], Points[0], LineBoldness);
+
+		// Draw Lines for behind head vertex
+		DrawLine(hdc, Points[3], Points[0], LineBoldness);
+		DrawLine(hdc, Points[3], Points[1], LineBoldness);
+		DrawLine(hdc, Points[3], Points[2], LineBoldness);
+
+		// Draw Lines for front head vertex
+        DrawLine(hdc, Points[4], Points[0], LineBoldness);
+		DrawLine(hdc, Points[4], Points[1], LineBoldness);
+		DrawLine(hdc, Points[4], Points[2], LineBoldness);
+	
+    
+    }
+
+
+
+};
+
+
+
+
+
+
+
+
+

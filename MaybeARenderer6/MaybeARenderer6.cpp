@@ -7,10 +7,7 @@
 using std::vector;
 
 LRESULT CALLBACK WindowProcessMessage(HWND, UINT, WPARAM, LPARAM);
-void DrawBoldPoint(HDC hdc, int x, int y, int boldness);
-void DrawLine(HDC hdc, Point p1, Point p2, int boldness);
-Point MultiplyMatrixByPoint(double matrix[3][3], Point p);
-Point RotatePointAround(Point p, Point pivot, double matrix[3][3]);
+
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pCmdLine, int nCmdShow) {
     WNDCLASS window_class = { 0 };
@@ -34,6 +31,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pCmdLine, 
 
     Rect3D myRect(200, 200, 200);
     Pyramid3D myPyr(200);
+	DoublePyramid3D myDoublePyr(200);
 
     Shape* myShape = NULL;
     switch (WantedDrawing) {
@@ -43,6 +41,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pCmdLine, 
     case Pyramid:
         myShape = &myPyr;
         break;
+    case DoublePyramid:
+        myShape = &myDoublePyr;
+		break;
     default:
         break;
     }

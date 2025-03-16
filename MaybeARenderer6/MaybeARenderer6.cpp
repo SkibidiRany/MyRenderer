@@ -32,6 +32,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pCmdLine, 
     Rect3D myRect(200, 200, 200);
     Pyramid3D myPyr(200);
 	DoublePyramid3D myDoublePyr(200);
+	PolygonWith2Heads3D myPoly2Heads(7,100,120);
 
     Shape* myShape = NULL;
     switch (WantedDrawing) {
@@ -44,6 +45,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pCmdLine, 
     case DoublePyramid:
         myShape = &myDoublePyr;
 		break;
+    case PolygonWith2Heads:
+        myShape = &myPoly2Heads;
+        break;
     default:
         break;
     }

@@ -165,6 +165,70 @@ public:
 
 
 
+class PolygonWith2Heads3D : public Shape {
+protected: 
+	COLORREF BASE_COLOR = RED;
+	COLORREF HEAD_COLOR = GREEN;
+    COLORREF LINE_COLOR = BLUE;
+private:
+    std::vector<Point> GeneratePolygonVertices(int n, double r, double h) {
+        std::vector<Point> vertices;
+        double angleStep = 2 * PI / n;
 
+        // Generate base vertices
+        for (int i = 0; i < n; ++i) {
+            double angle = i * angleStep;
+            int x = r * cos(angle);
+            int y = r * sin(angle);
+            vertices.push_back({ Middle.x + x, Middle.y + y, Middle.z });
+        }
+
+        // Add front and back vertices
+        vertices.push_back({ Middle.x, Middle.y, Middle.z + (int)(h) });  // Front vertex
+        vertices.push_back({ Middle.x, Middle.y, Middle.z + (int)(-h) }); // Back vertex
+
+        return vertices;
+    }
+
+public:
+    PolygonWith2Heads3D(int numOfVertices, int radius, int height)
+        : Shape(GeneratePolygonVertices(numOfVertices, radius, height)) { }
+
+    void DrawLines(HDC hdc) const override {
+        if (hdc == NULL) throw std::runtime_error("Device context not initialized");
+
+        int n = Points.size() - 2; // Number of base vertices
+
+        // Draw lines for the base
+        for (int i = 0; i < n; ++i) {
+            DrawLine(hdc, Points[i], Points[(i + 1) % n], LineBoldness, LINE_COLOR);
+        }
+
+        // Draw lines for the front vertex
+        for (int i = 0; i < n; ++i) {
+            DrawLine(hdc, Points[i], Points[n], LineBoldness, LINE_COLOR);
+        }
+
+        // Draw lines for the back vertex
+        for (int i = 0; i < n; ++i) {
+            DrawLine(hdc, Points[i], Points[n + 1], LineBoldness, LINE_COLOR);
+        }
+    }
+
+    void DrawPoints(HDC hdc) const override {
+        if (hdc == NULL) throw std::runtime_error("Device context not initialized");
+
+        int n = Points.size() - 2; // Number of base vertices
+
+        // Draw base vertices in the desired color
+        for (int i = 0; i < n; ++i) {
+            DrawBoldPoint(hdc, Points[i].x, Points[i].y, PointBoldness, BASE_COLOR);
+        }
+
+        // Draw front and back vertices in another color
+        DrawBoldPoint(hdc, Points[n].x, Points[n].y, PointBoldness, HEAD_COLOR);
+        DrawBoldPoint(hdc, Points[n + 1].x, Points[n + 1].y, PointBoldness, HEAD_COLOR);
+    }
+};
 
 

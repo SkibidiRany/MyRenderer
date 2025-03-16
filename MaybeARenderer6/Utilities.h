@@ -4,11 +4,14 @@
 
 COLORREF RED = RGB(255, 0, 0);
 COLORREF GREEN = RGB(0, 255, 0);
+COLORREF BLUE = RGB(0, 0, 255);
 COLORREF WHITE = RGB(255, 255, 255);
+
 enum Drawings {
     Rect,
     Pyramid,
-	DoublePyramid
+	DoublePyramid,
+	PolygonWith2Heads
 };
 
 int screenWidth = 800;
@@ -19,10 +22,10 @@ bool quit = false;
 int PointBoldness = 10;
 int LineBoldness = 1;
 double angle = 0;
-double angleChangeSpeed = 0.01;
+double angleChangeSpeed = 0.04;
 
 
-Drawings WantedDrawing = DoublePyramid;
+Drawings WantedDrawing = PolygonWith2Heads;
 
 
 //Shape* GetWantedDrawing() {
@@ -63,7 +66,7 @@ void DrawBoldPoint(HDC hdc, int x, int y, int boldness, COLORREF color = WHITE) 
 }
 
 // Function to draw a bold line using Bresenham's Line Algorithm
-void DrawLine(HDC hdc, Point p1, Point p2, int boldness) {
+void DrawLine(HDC hdc, Point p1, Point p2, int boldness, COLORREF color = WHITE) {
     int dx = abs(p2.x - p1.x);
     int dy = abs(p2.y - p1.y);
     int sx = (p1.x < p2.x) ? 1 : -1;
@@ -71,7 +74,7 @@ void DrawLine(HDC hdc, Point p1, Point p2, int boldness) {
     int err = dx - dy;
 
     while (true) {
-        DrawBoldPoint(hdc, p1.x, p1.y, boldness);
+        DrawBoldPoint(hdc, p1.x, p1.y, boldness, color);
 
         if (p1.x == p2.x && p1.y == p2.y) break;
 

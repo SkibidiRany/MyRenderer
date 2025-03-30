@@ -7,7 +7,24 @@
 using std::vector;
 
 LRESULT CALLBACK WindowProcessMessage(HWND, UINT, WPARAM, LPARAM);
-
+Shape* GetWantedDrawing() {
+	switch (WantedDrawing) {
+	case Rect:
+		return new Rect3D(200, 200, 200);
+		break;
+	case Pyramid:
+		return new Pyramid3D(200);
+		break;
+	case DoublePyramid:
+		return new DoublePyramid3D(200);
+		break;
+	case PolygonWith2Heads:
+		return new PolygonWith2Heads3D(2, 100, 120);
+		break;
+	default:
+		return NULL;
+	}
+}
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pCmdLine, int nCmdShow) {
     WNDCLASS window_class = { 0 };
@@ -29,28 +46,13 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pCmdLine, 
     ShowWindow(window_handle, nCmdShow);
     UpdateWindow(window_handle);
 
-    Rect3D myRect(200, 200, 200);
-    Pyramid3D myPyr(200);
-	DoublePyramid3D myDoublePyr(200);
-	PolygonWith2Heads3D myPoly2Heads(7,100,120);
+ //   Rect3D myRect(200, 200, 200);
+ //   Pyramid3D myPyr(200);
+	//DoublePyramid3D myDoublePyr(200);
+	//PolygonWith2Heads3D myPoly2Heads(7,100,120);
 
-    Shape* myShape = NULL;
-    switch (WantedDrawing) {
-    case Rect:
-        myShape = &myRect;
-        break;
-    case Pyramid:
-        myShape = &myPyr;
-        break;
-    case DoublePyramid:
-        myShape = &myDoublePyr;
-		break;
-    case PolygonWith2Heads:
-        myShape = &myPoly2Heads;
-        break;
-    default:
-        break;
-    }
+    Shape* myShape = GetWantedDrawing();
+    
 
     if (myShape == NULL) return -1;
 
@@ -93,10 +95,13 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pCmdLine, 
             {sin(angle), cos(angle), 0},
             {0, 0, 1}
         };
+        if (ToDrawShape) {
+            myShape->DrawPoints(memDC);
+            myShape->DrawLines(memDC);
+            myShape->RotatePoints(RotateX, RotateY, RotateZ);
+        }
 
-        myShape->DrawPoints(memDC);
-        myShape->DrawLines(memDC);
-        myShape->RotatePoints(RotateX, RotateY, RotateZ);
+        PointsToDraw.DrawPoints(memDC);
 
         // Copy the off-screen buffer to the screen
         BitBlt(hdc, 0, 0, screenWidth, screenHeight, memDC, 0, 0, SRCCOPY);
@@ -130,6 +135,9 @@ LRESULT CALLBACK WindowProcessMessage(HWND window_handle, UINT message, WPARAM w
         quit = true;
         PostQuitMessage(0);
         return 0;
+    case WM_LBUTTONDOWN:
+        OnLeftMouseClick();
+        break;
     default:
         return DefWindowProc(window_handle, message, wParam, lParam);
     }

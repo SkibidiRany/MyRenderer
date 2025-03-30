@@ -1,5 +1,5 @@
 ﻿  MaybeARenderer6.cpp
-C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\Utilities.h(20,10): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\Utilities.h(16,10): warning C4305: 'initializing': truncation from 'double' to 'float'
   (compiling source file 'MaybeARenderer6.cpp')
   
 C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\Shapes.h(181,19): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
@@ -14,4 +14,5 @@ C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\Shapes.h(200,
 C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\Shapes.h(221,15): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
   (compiling source file 'MaybeARenderer6.cpp')
   
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\MaybeARenderer6.cpp(144,1): warning C4715: 'WindowProcessMessage': not all control paths return a value
   MaybeARenderer6.vcxproj -> C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\x64\Debug\MaybeARenderer6.exe

@@ -1,18 +1,14 @@
 #pragma once
+#include <stdexcept>
 #include <windows.h>
-
+using std::vector;
 
 COLORREF RED = RGB(255, 0, 0);
 COLORREF GREEN = RGB(0, 255, 0);
 COLORREF BLUE = RGB(0, 0, 255);
 COLORREF WHITE = RGB(255, 255, 255);
 
-enum Drawings {
-    Rect,
-    Pyramid,
-	DoublePyramid,
-	PolygonWith2Heads
-};
+
 
 int screenWidth = 800;
 int screenHeight = 600;
@@ -22,26 +18,12 @@ bool quit = false;
 int PointBoldness = 10;
 int LineBoldness = 1;
 double angle = 0;
-double angleChangeSpeed = 0.04;
+double angleChangeSpeed = 0.01;
+bool ToDrawShape = false;
+
+int drawingCapacity = 20;
 
 
-Drawings WantedDrawing = PolygonWith2Heads;
-
-
-//Shape* GetWantedDrawing() {
-//	switch (WantedDrawing) {
-//	case Rect:
-//		return new Rect3D(200, 200, 200);
-//        break;
-//	case Pyramid:
-//		return new Pyramid3D(200);
-//        break;
-//	case DoublePyramid:
-//		break;
-//	default:
-//		return NULL;
-//	}
-//}
 
 struct Point {
     int x = 0;
@@ -49,9 +31,93 @@ struct Point {
     int z = 0;
 };
 
+enum Drawings {
+    Rect,
+    Pyramid,
+	DoublePyramid,
+	PolygonWith2Heads
+};
+
+
+void DrawBoldPoint(HDC hdc, int x, int y, int boldness, COLORREF color);
+void DrawLine(HDC hdc, Point p1, Point p2, int boldness, COLORREF color);
+Point MultiplyMatrixByPoint(double matrix[3][3], Point p);
+Point RotatePointAround(Point p, Point pivot, double matrix[3][3]);
+void OnLeftMouseClick();
+
+// PointNode structure
+struct PointNode {
+    Point data;
+    PointNode* next;
+    PointNode(Point value) : data(value), next(nullptr) {}
+};
+
+// Linked List class
+class PointLinkedList {
+private:
+    PointNode* head;
+    PointNode* tail;
+    int size;
+    int capacity;
+    COLORREF drawingColor = WHITE;
+
+public:
+    PointLinkedList(int n) : head(nullptr), tail(nullptr), size(0), capacity(n) {}
+
+    // Insert with fixed buffer size
+    void insert(Point value) {
+        PointNode* newNode = new PointNode(value);
+        if (!head) {
+            head = tail = newNode;
+        }
+        else {
+            tail->next = newNode;
+            tail = newNode;
+        }
+        size++;
+
+        if (size > capacity) {
+            PointNode* temp = head;
+            head = head->next;
+            delete temp;
+            size--;
+        }
+    }
+
+    void DrawPoints(HDC hdc) {
+        PointNode* node = head;
+        while (node != nullptr) {
+            DrawBoldPoint(hdc, node->data.x, node->data.y, PointBoldness, drawingColor);
+            node = node->next;
+        }
+    }
+
+    // Destructor to free memory
+    ~PointLinkedList() {
+        PointNode* temp;
+        while (head) {
+            temp = head;
+            head = head->next;
+            delete temp;
+        }
+    }
+};
+
+
+
+
+
+PointLinkedList PointsToDraw(drawingCapacity);
+
+
+Drawings WantedDrawing = PolygonWith2Heads;
+
+
+
+
 
 Point Middle = { screenWidth / 2, screenHeight / 2 };
-Point pivot = { Middle.x, Middle.y, Middle.z };
+Point pivot = { Middle.x , Middle.y, Middle.z };
 
 
 
@@ -117,4 +183,13 @@ Point RotatePointAround(Point p, Point pivot, double matrix[3][3]) {
 
     return result;
 }
+
+
+void OnLeftMouseClick() {
+    POINT cursPos;
+	if (!GetCursorPos(&cursPos)) throw std::runtime_error("Failed to get cursor position");
+	Point toAdd = { cursPos.x, cursPos.y };
+	PointsToDraw.insert(toAdd);
+}
+
 

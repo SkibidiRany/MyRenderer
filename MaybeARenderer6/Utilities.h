@@ -43,8 +43,8 @@ void DrawBoldPoint(HDC hdc, int x, int y, int boldness, COLORREF color);
 void DrawLine(HDC hdc, Point p1, Point p2, int boldness, COLORREF color);
 Point MultiplyMatrixByPoint(double matrix[3][3], Point p);
 Point RotatePointAround(Point p, Point pivot, double matrix[3][3]);
-void OnLeftMouseClick();
-
+void OnLeftMouseClick(HANDLE hConsoleOutput);
+Point GetConsoleCursorPosition(HANDLE hConsoleOutput);
 // PointNode structure
 struct PointNode {
     Point data;
@@ -185,9 +185,11 @@ Point RotatePointAround(Point p, Point pivot, double matrix[3][3]) {
 }
 
 
-void OnLeftMouseClick() {
+void OnLeftMouseClick(HWND hwnd) {
     POINT cursPos;
-	if (!GetCursorPos(&cursPos)) throw std::runtime_error("Failed to get cursor position");
+    GetCursorPos(&cursPos);           // Get cursor position in screen coordinates
+    ScreenToClient(hwnd, &cursPos);   // Convert to client-area coordinates (relative to the window)
+
 	Point toAdd = { cursPos.x, cursPos.y };
 	PointsToDraw.insert(toAdd);
 }

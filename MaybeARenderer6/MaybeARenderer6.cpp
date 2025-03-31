@@ -56,6 +56,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pCmdLine, 
 
     if (myShape == NULL) return -1;
 
+
     // Main loop
     MSG message;
     while (!quit) {
@@ -136,7 +137,7 @@ LRESULT CALLBACK WindowProcessMessage(HWND window_handle, UINT message, WPARAM w
         PostQuitMessage(0);
         return 0;
     case WM_LBUTTONDOWN:
-        OnLeftMouseClick();
+        OnLeftMouseClick(window_handle);
         break;
     default:
         return DefWindowProc(window_handle, message, wParam, lParam);

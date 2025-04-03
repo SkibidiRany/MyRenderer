@@ -6,6 +6,10 @@
 #include "Utilities.h"
 using std::vector;
 
+
+
+
+
 LRESULT CALLBACK WindowProcessMessage(HWND, UINT, WPARAM, LPARAM);
 Shape* GetWantedDrawing() {
 	switch (WantedDrawing) {
@@ -103,7 +107,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pCmdLine, 
         }
 
         PointsToDraw.DrawPoints(memDC);
-
+		LinesToDraw.DrawLines(memDC);
         // Copy the off-screen buffer to the screen
         BitBlt(hdc, 0, 0, screenWidth, screenHeight, memDC, 0, 0, SRCCOPY);
 

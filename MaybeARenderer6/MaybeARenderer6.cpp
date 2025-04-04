@@ -106,6 +106,13 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pCmdLine, 
             myShape->RotatePoints(RotateX, RotateY, RotateZ);
         }
 
+
+		if ((GetKeyState(VK_LBUTTON) & 0x100) != 0) {
+			OnLeftMouseHold(window_handle);
+		}
+        
+
+
         PointsToDraw.DrawPoints(memDC);
 		LinesToDraw.DrawLines(memDC);
         // Copy the off-screen buffer to the screen
@@ -141,8 +148,10 @@ LRESULT CALLBACK WindowProcessMessage(HWND window_handle, UINT message, WPARAM w
         PostQuitMessage(0);
         return 0;
     case WM_LBUTTONDOWN:
-        OnLeftMouseClick(window_handle);
+        OnLeftMouseDown(window_handle);
         break;
+    case WM_LBUTTONUP:
+		OnLeftMouseUp(window_handle);
     default:
         return DefWindowProc(window_handle, message, wParam, lParam);
     }

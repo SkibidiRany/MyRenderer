@@ -3,12 +3,14 @@
 #include <vector>
 #include <stdexcept>
 #include <unordered_set>
+#include <queue>
 using std::vector;
 
 COLORREF RED = RGB(255, 0, 0);
 COLORREF GREEN = RGB(0, 255, 0);
 COLORREF BLUE = RGB(0, 0, 255);
 COLORREF WHITE = RGB(255, 255, 255);
+
 
 
 const int screenWidth = 800;
@@ -46,13 +48,18 @@ struct Point {
     }
 };
 
+Point Middle = { screenWidth / 2, screenHeight / 2, 0 };
+Point pivot = { Middle.x , Middle.y, Middle.z };
+Point LastCursPos = { 0, 0, 0 };
 
 // Function Declarations
 void DrawBoldPoint(HDC hdc, int x, int y, int boldness, COLORREF color = WHITE);
 void DrawLine(HDC hdc, Point p1, Point p2, int boldness, COLORREF color = WHITE);
 Point MultiplyMatrixByPoint(double matrix[3][3], Point p);
 Point RotatePointAround(Point p, Point pivot, double matrix[3][3]);
-void OnLeftMouseClick(HWND hwnd);
+void OnLeftMouseDown(HWND hwnd);
+void OnLeftMouseHold(HWND hwnd);
+void OnLeftMouseUp(HWND hwnd);
 
 // Hash for Point
 struct PointHash {
@@ -83,28 +90,45 @@ struct LineHash {
 class PointManager {
 private:
     std::unordered_set<Point, PointHash> points;
+    std::queue<Point> insertionOrder; // Tracks the order of insertions
     int capacity;
 
 public:
+    Point LastDrawn = { 0, 0, 0 };
+
     PointManager(int cap) : capacity(cap) {}
+
     void insert(Point p) {
         if (points.size() >= capacity) {
-            points.erase(points.begin());
+            // Remove the oldest inserted point (front of queue)
+            Point oldest = insertionOrder.front();
+            insertionOrder.pop();
+            remove(oldest);
         }
         points.insert(p);
+        insertionOrder.push(p); // Track insertion order
+        LastDrawn = p;
     }
+
     void remove(Point p) {
         points.erase(p);
     }
-    bool checkIntersection(Point p) {
-        return points.find(p) != points.end();
+
+    Point CheckIntersection(Point p) {
+        auto it = points.find(p);
+        if (it != points.end()) {
+            return *it;
+        }
+        return p;
     }
-	void DrawPoints(HDC hdc) {
-		for (const auto& p : points) {
-			DrawBoldPoint(hdc, p.x, p.y, PointBoldness);
-		}
-	}
+
+    void DrawPoints(HDC hdc) {
+        for (const auto& p : points) {
+            DrawBoldPoint(hdc, p.x, p.y, PointBoldness);
+        }
+    }
 };
+
 
 // LineManager Class
 class LineManager {
@@ -114,8 +138,15 @@ private:
 
 public:
     LineManager(PointManager& pm) : pointManager(pm) {}
+
     void addLine(Point P, Point Q) {
-        if (!(pointManager.checkIntersection(P) && pointManager.checkIntersection(Q))) {
+        Point intersectingPointP = pointManager.CheckIntersection(P);
+        Point intersectingPointQ = pointManager.CheckIntersection(Q);
+
+        if (!(intersectingPointP == P && intersectingPointQ == Q)) {
+            lines.insert(Line(intersectingPointP, intersectingPointQ));
+        }
+        else {
             lines.insert(Line(P, Q));
         }
     }
@@ -138,6 +169,23 @@ public:
 		}
 	}
 };
+
+
+
+class LinesAndPoints : PointManager, LineManager{
+
+public:
+    void removePoint(Point p){
+		PointManager::remove(p);
+		LineManager::removeLinesWithPoint(p);
+    }
+    
+
+
+};
+
+
+
 
 
 PointManager PointsToDraw(drawingCapacity);
@@ -193,19 +241,38 @@ Point RotatePointAround(Point p, Point pivot, double matrix[3][3]) {
     return result;
 }
 
-void OnLeftMouseClick(HWND hwnd) {
+void OnLeftMouseDown(HWND hwnd) {
     POINT cursPos;
     GetCursorPos(&cursPos);
     ScreenToClient(hwnd, &cursPos);
     Point toAdd = { cursPos.x, cursPos.y };
 	PointsToDraw.insert(toAdd);
-    LinesToDraw.addLine(toAdd, { screenWidth / 2, screenHeight / 2 });
+    //LinesToDraw.addLine(toAdd, { screenWidth / 2, screenHeight / 2 });
 }
 
 
 
-Point Middle = { screenWidth / 2, screenHeight / 2 };
-Point pivot = { Middle.x , Middle.y, Middle.z };
 
+void OnLeftMouseHold(HWND hwnd) {
+	POINT cursPos;
+	GetCursorPos(&cursPos);
+	ScreenToClient(hwnd, &cursPos);
+	LastCursPos = { cursPos.x, cursPos.y };
+	DrawLine(GetDC(hwnd), LastCursPos, PointsToDraw.LastDrawn, LineBoldness, WHITE);
+
+}
+
+
+void OnLeftMouseUp(HWND hwnd) {
+	Point intersectionChecker = PointsToDraw.CheckIntersection(LastCursPos);
+    Point lastPointDrawn = PointsToDraw.LastDrawn;
+    LinesToDraw.addLine(lastPointDrawn, intersectionChecker);
+    PointsToDraw.insert(LastCursPos);
+}
+
+//
+//Middle = { screenWidth / 2, screenHeight / 2 };
+//Pivot = { Middle.x , Middle.y, Middle.z };
+//
 
 // TODO : FIX CODE STRUCTURE

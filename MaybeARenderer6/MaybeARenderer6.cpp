@@ -31,6 +31,9 @@ Shape* GetWantedDrawing() {
 }
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pCmdLine, int nCmdShow) {
+
+   
+
     WNDCLASS window_class = { 0 };
     const wchar_t window_class_name[] = L"MyWindowClass";
     window_class.lpszClassName = window_class_name;
@@ -54,6 +57,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pCmdLine, 
  //   Pyramid3D myPyr(200);
 	//DoublePyramid3D myDoublePyr(200);
 	//PolygonWith2Heads3D myPoly2Heads(7,100,120);
+
+    InitializeManagers();
 
     Shape* myShape = GetWantedDrawing();
     
@@ -113,8 +118,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pCmdLine, 
         
 
 
-        PointsToDraw.DrawPoints(memDC);
-		LinesToDraw.DrawLines(memDC);
+        PointsToDraw->DrawPoints(memDC);
+		LinesToDraw->DrawLines(memDC);
         // Copy the off-screen buffer to the screen
         BitBlt(hdc, 0, 0, screenWidth, screenHeight, memDC, 0, 0, SRCCOPY);
 

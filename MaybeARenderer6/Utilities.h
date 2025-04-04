@@ -3,8 +3,19 @@
 #include <vector>
 #include <stdexcept>
 #include <unordered_set>
+#include <unordered_map>    
 #include <queue>
 using std::vector;
+
+class PointManager;
+class LineManager;
+
+
+
+PointManager* PointsToDraw;
+LineManager* LinesToDraw;
+
+
 
 COLORREF RED = RGB(255, 0, 0);
 COLORREF GREEN = RGB(0, 255, 0);
@@ -24,8 +35,7 @@ double angle = 0;
 const double angleChangeSpeed = 0.01;
 const bool ToDrawShape = false;
 
-const int drawingCapacity = 20;
-
+const int drawingCapacity = 30;
 
 
 // Enum for Drawings
@@ -46,6 +56,10 @@ struct Point {
     bool operator==(const Point& other) const {
         return x == other.x && y == other.y && z == other.z;
     }
+
+	bool operator!=(const Point& other) const {
+		return !(*this == other);
+	}
 };
 
 Point Middle = { screenWidth / 2, screenHeight / 2, 0 };
@@ -54,9 +68,10 @@ Point LastCursPos = { 0, 0, 0 };
 
 // Function Declarations
 void DrawBoldPoint(HDC hdc, int x, int y, int boldness, COLORREF color = WHITE);
-void DrawLine(HDC hdc, Point p1, Point p2, int boldness, COLORREF color = WHITE);
+void DrawLine(HDC hdc, Point p1, Point p2, int boldness, COLORREF color = WHITE);   
 Point MultiplyMatrixByPoint(double matrix[3][3], Point p);
 Point RotatePointAround(Point p, Point pivot, double matrix[3][3]);
+void RemovePoint(Point p);
 void OnLeftMouseDown(HWND hwnd);
 void OnLeftMouseHold(HWND hwnd);
 void OnLeftMouseUp(HWND hwnd);
@@ -86,40 +101,78 @@ struct LineHash {
     }
 };
 
+
+
+
+
+
 // PointManager Class
 class PointManager {
 private:
+    std::unordered_map<Point, std::vector<Point>, PointHash> buckets;
     std::unordered_set<Point, PointHash> points;
-    std::queue<Point> insertionOrder; // Tracks the order of insertions
-    int capacity;
-
+    std::queue<Point> insertionOrder;
+    int _capacity;
+    int _c;
 public:
     Point LastDrawn = { 0, 0, 0 };
 
-    PointManager(int cap) : capacity(cap) {}
+    PointManager(int cap, int c) : _capacity(cap), _c(c) {}
 
-    void insert(Point p) {
-        if (points.size() >= capacity) {
-            // Remove the oldest inserted point (front of queue)
+    Point ToBucket(Point p) {
+        int bucketX = p.x / _c;
+        int bucketY = p.y / _c;
+        int bucketZ = p.z / _c;
+        return { bucketX, bucketY };
+    }
+
+    Point insert(Point p) {
+
+        Point checker = CheckIntersection(p);
+
+        LastDrawn = checker;
+
+        if (checker != p) return checker; // if we found a point checker intersecting with p, return it 
+
+        // if we didn't find such point, add p
+        if (points.size() >= _capacity) {
             Point oldest = insertionOrder.front();
             insertionOrder.pop();
-            remove(oldest);
+            RemovePoint(oldest);
         }
+
         points.insert(p);
-        insertionOrder.push(p); // Track insertion order
-        LastDrawn = p;
+        insertionOrder.push(p);
+        buckets[ToBucket(p)].push_back(p);
     }
 
     void remove(Point p) {
         points.erase(p);
+        Point key = ToBucket(p);
+        auto& vec = buckets[key];
+        vec.erase(std::remove(vec.begin(), vec.end(), p), vec.end());
     }
 
     Point CheckIntersection(Point p) {
-        auto it = points.find(p);
-        if (it != points.end()) {
-            return *it;
-        }
-        return p;
+        Point base = ToBucket(p);
+
+        for (int dx = -1; dx <= 1; ++dx)
+            for (int dy = -1; dy <= 1; ++dy)
+                for (int dz = -1; dz <= 1; ++dz) {
+                    Point neighbor = { base.x + dx, base.y + dy, base.z + dz };
+                    auto it = buckets.find(neighbor);
+                    if (it != buckets.end()) {
+                        for (const Point& q : it->second) {
+                            if (std::abs(q.x - p.x) <= _c &&
+                                std::abs(q.y - p.y) <= _c &&
+                                std::abs(q.z - p.z) <= _c) {
+                                return q;  // Found nearby match
+                            }
+                        }
+                    }
+                }
+
+        return p; // no match
     }
 
     void DrawPoints(HDC hdc) {
@@ -130,18 +183,21 @@ public:
 };
 
 
+
+
+
 // LineManager Class
 class LineManager {
 private:
     std::unordered_set<Line, LineHash> lines;
-    PointManager& pointManager;
+    PointManager* pointManager;
 
 public:
-    LineManager(PointManager& pm) : pointManager(pm) {}
+    LineManager(PointManager* pm) : pointManager(pm) {}
 
     void addLine(Point P, Point Q) {
-        Point intersectingPointP = pointManager.CheckIntersection(P);
-        Point intersectingPointQ = pointManager.CheckIntersection(Q);
+        Point intersectingPointP = pointManager->CheckIntersection(P);
+        Point intersectingPointQ = pointManager->CheckIntersection(Q);
 
         if (!(intersectingPointP == P && intersectingPointQ == Q)) {
             lines.insert(Line(intersectingPointP, intersectingPointQ));
@@ -163,33 +219,13 @@ public:
             }
         }
     }
-	void DrawLines(HDC hdc) {
-		for (const auto& line : lines) {
-			DrawLine(hdc, line.p1, line.p2, LineBoldness);
-		}
-	}
-};
-
-
-
-class LinesAndPoints : PointManager, LineManager{
-
-public:
-    void removePoint(Point p){
-		PointManager::remove(p);
-		LineManager::removeLinesWithPoint(p);
+    void DrawLines(HDC hdc) {
+        for (const auto& line : lines) {
+            DrawLine(hdc, line.p1, line.p2, LineBoldness);
+        }
     }
-    
-
-
 };
 
-
-
-
-
-PointManager PointsToDraw(drawingCapacity);
-LineManager LinesToDraw(PointsToDraw);
 
 // Function Definitions
 void DrawBoldPoint(HDC hdc, int x, int y, int boldness, COLORREF color) {
@@ -246,7 +282,7 @@ void OnLeftMouseDown(HWND hwnd) {
     GetCursorPos(&cursPos);
     ScreenToClient(hwnd, &cursPos);
     Point toAdd = { cursPos.x, cursPos.y };
-	PointsToDraw.insert(toAdd);
+	PointsToDraw->insert(toAdd);
     //LinesToDraw.addLine(toAdd, { screenWidth / 2, screenHeight / 2 });
 }
 
@@ -258,17 +294,29 @@ void OnLeftMouseHold(HWND hwnd) {
 	GetCursorPos(&cursPos);
 	ScreenToClient(hwnd, &cursPos);
 	LastCursPos = { cursPos.x, cursPos.y };
-	DrawLine(GetDC(hwnd), LastCursPos, PointsToDraw.LastDrawn, LineBoldness, WHITE);
+	DrawLine(GetDC(hwnd), LastCursPos, PointsToDraw->LastDrawn, LineBoldness, WHITE);
 
 }
 
 
 void OnLeftMouseUp(HWND hwnd) {
-	Point intersectionChecker = PointsToDraw.CheckIntersection(LastCursPos);
-    Point lastPointDrawn = PointsToDraw.LastDrawn;
-    LinesToDraw.addLine(lastPointDrawn, intersectionChecker);
-    PointsToDraw.insert(LastCursPos);
+	Point intersectionChecker = PointsToDraw->CheckIntersection(LastCursPos);
+    Point lastPointDrawn = PointsToDraw->LastDrawn;
+    LinesToDraw->addLine(lastPointDrawn, intersectionChecker);
+    PointsToDraw->insert(LastCursPos);
 }
+
+void RemovePoint(Point p) {
+    PointsToDraw->remove(p);
+	LinesToDraw->removeLinesWithPoint(p);
+}
+
+// Initialize the PointManager and LineManager objects
+void InitializeManagers() {
+    PointsToDraw = new PointManager(drawingCapacity, 2* PointBoldness);
+    LinesToDraw = new LineManager(PointsToDraw);
+}
+
 
 //
 //Middle = { screenWidth / 2, screenHeight / 2 };

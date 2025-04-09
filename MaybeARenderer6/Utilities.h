@@ -6,7 +6,6 @@
 #include <unordered_map>    
 #include <queue>
 using std::vector;
-
 class PointManager;
 class LineManager;
 
@@ -190,6 +189,7 @@ public:
 class LineManager {
 private:
     std::unordered_set<Line, LineHash> lines;
+
     PointManager* pointManager;
 
 public:
@@ -283,18 +283,17 @@ void OnLeftMouseDown(HWND hwnd) {
     ScreenToClient(hwnd, &cursPos);
     Point toAdd = { cursPos.x, cursPos.y };
 	PointsToDraw->insert(toAdd);
-    //LinesToDraw.addLine(toAdd, { screenWidth / 2, screenHeight / 2 });
 }
 
 
 
 
-void OnLeftMouseHold(HWND hwnd) {
+void OnLeftMouseHold(HWND hwnd, HDC hdc) {
 	POINT cursPos;
 	GetCursorPos(&cursPos);
 	ScreenToClient(hwnd, &cursPos);
 	LastCursPos = { cursPos.x, cursPos.y };
-	DrawLine(GetDC(hwnd), LastCursPos, PointsToDraw->LastDrawn, LineBoldness, WHITE);
+	DrawLine(hdc, LastCursPos, PointsToDraw->LastDrawn, LineBoldness, WHITE);
 
 }
 

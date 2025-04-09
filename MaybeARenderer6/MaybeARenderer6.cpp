@@ -113,7 +113,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pCmdLine, 
 
 
 		if ((GetKeyState(VK_LBUTTON) & 0x100) != 0) {
-			OnLeftMouseHold(window_handle);
+			OnLeftMouseHold(window_handle, memDC);
 		}
         
 

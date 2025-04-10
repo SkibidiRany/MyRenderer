@@ -26,7 +26,7 @@ COLORREF WHITE = RGB(255, 255, 255);
 const int screenWidth = 800;
 const int screenHeight = 600;
 
-const float PI = 3.14159265358979323846;
+const float PI = 3.14159265358979323846f;
 bool quit = false;
 const int PointBoldness = 10;
 const int LineBoldness = 1;
@@ -52,6 +52,7 @@ struct Point {
     int y = 0;
     int z = 0;
 
+	COLORREF color = WHITE;
     bool operator==(const Point& other) const {
         return x == other.x && y == other.y && z == other.z;
     }
@@ -70,9 +71,10 @@ void DrawBoldPoint(HDC hdc, int x, int y, int boldness, COLORREF color = WHITE);
 void DrawLine(HDC hdc, Point p1, Point p2, int boldness, COLORREF color = WHITE);   
 Point MultiplyMatrixByPoint(double matrix[3][3], Point p);
 Point RotatePointAround(Point p, Point pivot, double matrix[3][3]);
+bool PositionIsLegal(Point p);
 void RemovePoint(Point p);
 void OnLeftMouseDown(HWND hwnd);
-void OnLeftMouseHold(HWND hwnd);
+void OnLeftMouseHold(HWND hwnd, HDC hdc);
 void OnLeftMouseUp(HWND hwnd);
 
 // Hash for Point
@@ -143,6 +145,7 @@ public:
         points.insert(p);
         insertionOrder.push(p);
         buckets[ToBucket(p)].push_back(p);
+        return p;
     }
 
     void remove(Point p) {
@@ -176,7 +179,7 @@ public:
 
     void DrawPoints(HDC hdc) {
         for (const auto& p : points) {
-            DrawBoldPoint(hdc, p.x, p.y, PointBoldness);
+            DrawBoldPoint(hdc, p.x, p.y, PointBoldness, p.color);
         }
     }
 };
@@ -229,6 +232,8 @@ public:
 
 // Function Definitions
 void DrawBoldPoint(HDC hdc, int x, int y, int boldness, COLORREF color) {
+	if (!PositionIsLegal({ x, y })) return; // Check if the position is legal before drawing
+
     for (int i = -boldness; i <= boldness; ++i) {
         for (int j = -boldness; j <= boldness; ++j) {
             SetPixel(hdc, x + i, y + j, color);
@@ -244,7 +249,7 @@ void DrawLine(HDC hdc, Point p1, Point p2, int boldness, COLORREF color) {
     int err = dx - dy;
 
     while (true) {
-        DrawBoldPoint(hdc, p1.x, p1.y, boldness, color);
+        if(PositionIsLegal(p1)) DrawBoldPoint(hdc, p1.x, p1.y, boldness, color);
         if (p1.x == p2.x && p1.y == p2.y) break;
         int e2 = 2 * err;
         if (e2 > -dy) {
@@ -277,11 +282,17 @@ Point RotatePointAround(Point p, Point pivot, double matrix[3][3]) {
     return result;
 }
 
+
+bool PositionIsLegal(Point p) {
+	return (p.x >= 0 && p.x < screenWidth && p.y >= 0 && p.y < screenHeight);
+}
+
 void OnLeftMouseDown(HWND hwnd) {
     POINT cursPos;
     GetCursorPos(&cursPos);
     ScreenToClient(hwnd, &cursPos);
     Point toAdd = { cursPos.x, cursPos.y };
+    if(!PositionIsLegal(toAdd)) return;
 	PointsToDraw->insert(toAdd);
 }
 
@@ -293,14 +304,16 @@ void OnLeftMouseHold(HWND hwnd, HDC hdc) {
 	GetCursorPos(&cursPos);
 	ScreenToClient(hwnd, &cursPos);
 	LastCursPos = { cursPos.x, cursPos.y };
+	if (!PositionIsLegal(LastCursPos)) return;
 	DrawLine(hdc, LastCursPos, PointsToDraw->LastDrawn, LineBoldness, WHITE);
 
 }
 
-
+             
 void OnLeftMouseUp(HWND hwnd) {
 	Point intersectionChecker = PointsToDraw->CheckIntersection(LastCursPos);
     Point lastPointDrawn = PointsToDraw->LastDrawn;
+    if (!PositionIsLegal(intersectionChecker)) return;
     LinesToDraw->addLine(lastPointDrawn, intersectionChecker);
     PointsToDraw->insert(LastCursPos);
 }

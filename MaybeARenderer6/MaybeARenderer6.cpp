@@ -160,4 +160,5 @@ LRESULT CALLBACK WindowProcessMessage(HWND window_handle, UINT message, WPARAM w
     default:
         return DefWindowProc(window_handle, message, wParam, lParam);
     }
+	return 0;
 }

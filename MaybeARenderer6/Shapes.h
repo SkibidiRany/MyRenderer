@@ -232,3 +232,21 @@ public:
 };
 
 
+Shape* GetWantedDrawing(Drawings WantedDrawing) {
+    switch (WantedDrawing) {
+    case Rect:
+        return new Rect3D(200, 200, 200);
+        break;
+    case Pyramid:
+        return new Pyramid3D(200);
+        break;
+    case DoublePyramid:
+        return new DoublePyramid3D(200);
+        break;
+    case PolygonWith2Heads:
+        return new PolygonWith2Heads3D(2, 100, 120);
+        break;
+    default:
+        return NULL;
+    }
+}

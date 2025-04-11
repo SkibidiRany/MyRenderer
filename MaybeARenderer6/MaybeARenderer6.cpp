@@ -11,56 +11,24 @@ using std::vector;
 
 
 LRESULT CALLBACK WindowProcessMessage(HWND, UINT, WPARAM, LPARAM);
-Shape* GetWantedDrawing() {
-	switch (WantedDrawing) {
-	case Rect:
-		return new Rect3D(200, 200, 200);
-		break;
-	case Pyramid:
-		return new Pyramid3D(200);
-		break;
-	case DoublePyramid:
-		return new DoublePyramid3D(200);
-		break;
-	case PolygonWith2Heads:
-		return new PolygonWith2Heads3D(2, 100, 120);
-		break;
-	default:
-		return NULL;
-	}
-}
+LRESULT CALLBACK RGBWindowProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
+HWND InitMainWindow(HINSTANCE hInstance, int nCmdShow);
+HWND InitRGBControlWindow(HINSTANCE hInstance, int nCmdShow);
+
+
+
+
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pCmdLine, int nCmdShow) {
 
-   
+    window_handle = InitMainWindow(hInstance, nCmdShow);
+    
+	rgb_window_handle = InitRGBControlWindow(hInstance, nCmdShow);
 
-    WNDCLASS window_class = { 0 };
-    const wchar_t window_class_name[] = L"MyWindowClass";
-    window_class.lpszClassName = window_class_name;
-    window_class.lpfnWndProc = WindowProcessMessage;
-    window_class.hInstance = hInstance;
-    window_class.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1); // Set background color
-    window_class.style = CS_HREDRAW | CS_VREDRAW;
-
-    RegisterClass(&window_class);
-
-    HWND window_handle = CreateWindow(window_class_name, L"My Renderer", WS_OVERLAPPEDWINDOW,
-        CW_USEDEFAULT, CW_USEDEFAULT, screenWidth, screenHeight, NULL, NULL, hInstance, NULL);
-    if (window_handle == NULL) {
-        return -1;
-    }
-
-    ShowWindow(window_handle, nCmdShow);
-    UpdateWindow(window_handle);
-
- //   Rect3D myRect(200, 200, 200);
- //   Pyramid3D myPyr(200);
-	//DoublePyramid3D myDoublePyr(200);
-	//PolygonWith2Heads3D myPoly2Heads(7,100,120);
 
     InitializeManagers();
 
-    Shape* myShape = GetWantedDrawing();
+    Shape* myShape = GetWantedDrawing(WantedDrawing);
     
 
     if (myShape == NULL) return -1;
@@ -161,4 +129,75 @@ LRESULT CALLBACK WindowProcessMessage(HWND window_handle, UINT message, WPARAM w
         return DefWindowProc(window_handle, message, wParam, lParam);
     }
 	return 0;
+}
+
+LRESULT CALLBACK RGBWindowProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
+    switch (msg) {
+    case WM_DESTROY:
+        return 0;
+    }
+    return DefWindowProc(hwnd, msg, wParam, lParam);
+}
+
+HWND InitMainWindow(HINSTANCE hInstance, int nCmdShow)
+{
+
+    WNDCLASS window_class = { 0 };
+    const wchar_t window_class_name[] = L"MyWindowClass";
+    window_class.lpszClassName = window_class_name;
+    window_class.lpfnWndProc = WindowProcessMessage;
+    window_class.hInstance = hInstance;
+    window_class.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1); // Set background color
+    window_class.style = CS_HREDRAW | CS_VREDRAW;
+
+    RegisterClass(&window_class);
+
+    HWND window_handle = CreateWindow(window_class_name, L"My Renderer", WS_OVERLAPPEDWINDOW,
+        CW_USEDEFAULT, CW_USEDEFAULT, screenWidth, screenHeight, NULL, NULL, hInstance, NULL);
+    if (window_handle == NULL) {
+        exit(1);
+    }
+
+    ShowWindow(window_handle, nCmdShow);
+    UpdateWindow(window_handle);
+	return window_handle;
+}
+
+HWND InitRGBControlWindow(HINSTANCE hInstance, int nCmdShow)
+{
+    // Register RGB control window
+    WNDCLASS rgb_class = { 0 };
+    const wchar_t rgb_class_name[] = L"RGBControlClass";
+    rgb_class.lpszClassName = rgb_class_name;
+    rgb_class.lpfnWndProc = RGBWindowProc;
+    rgb_class.hInstance = hInstance;
+    rgb_class.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
+
+    RegisterClass(&rgb_class);
+
+    HWND rgb_window = CreateWindow(rgb_class_name, L"RGB Controls", WS_OVERLAPPEDWINDOW,
+        CW_USEDEFAULT, CW_USEDEFAULT, 250, 200, NULL, NULL, hInstance, NULL);
+    ShowWindow(rgb_window, nCmdShow);
+    UpdateWindow(rgb_window);
+
+    // RGB Labels and Input Fields
+    CreateWindowW(L"STATIC", L"Red:", WS_VISIBLE | WS_CHILD,
+        10, 10, 40, 20, rgb_window, NULL, NULL, NULL);
+    HWND editRed = CreateWindowW(L"EDIT", NULL, WS_VISIBLE | WS_CHILD | WS_BORDER | ES_NUMBER,
+        60, 10, 60, 20, rgb_window, (HMENU)RedInput.id, hInstance, NULL);
+    SetWindowTextW(editRed, RedInput.defaultVal);
+
+    CreateWindowW(L"STATIC", L"Green:", WS_VISIBLE | WS_CHILD,
+        10, 40, 40, 20, rgb_window, NULL, NULL, NULL);
+    HWND editGreen = CreateWindowW(L"EDIT", NULL, WS_VISIBLE | WS_CHILD | WS_BORDER | ES_NUMBER,
+        60, 40, 60, 20, rgb_window, (HMENU)GreenInput.id, hInstance, NULL);
+    SetWindowTextW(editGreen, GreenInput.defaultVal);
+
+    CreateWindowW(L"STATIC", L"Blue:", WS_VISIBLE | WS_CHILD,
+        10, 70, 40, 20, rgb_window, NULL, NULL, NULL);
+    HWND editBlue = CreateWindowW(L"EDIT", NULL, WS_VISIBLE | WS_CHILD | WS_BORDER | ES_NUMBER,
+        60, 70, 60, 20, rgb_window, (HMENU)BlueInput.id, hInstance, NULL);
+    SetWindowTextW(editBlue, BlueInput.defaultVal);
+
+    return rgb_window;
 }

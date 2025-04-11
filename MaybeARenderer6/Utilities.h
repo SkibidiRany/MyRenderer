@@ -21,7 +21,8 @@ COLORREF GREEN = RGB(0, 255, 0);
 COLORREF BLUE = RGB(0, 0, 255);
 COLORREF WHITE = RGB(255, 255, 255);
 
-
+HWND window_handle;
+HWND rgb_window_handle;
 
 const int screenWidth = 800;
 const int screenHeight = 600;
@@ -37,6 +38,17 @@ const bool ToDrawShape = false;
 const int drawingCapacity = 30;
 
 
+
+struct InputField {
+    const int id;
+    const wchar_t* defaultVal;  // Change to wide string
+    InputField(int id, const wchar_t* val) : id(id), defaultVal(val) {}
+} RedInput(101, L"255"),
+GreenInput(102, L"255"),
+BlueInput(103, L"255");
+
+
+
 // Enum for Drawings
 enum Drawings {
     Rect,
@@ -44,6 +56,28 @@ enum Drawings {
     DoublePyramid,
     PolygonWith2Heads
 }WantedDrawing;
+
+COLORREF GetColorFromInputs(HWND rgb_window = NULL) {
+	if (!rgb_window) {
+        return WHITE;
+	}
+    BOOL success;
+    int r = GetDlgItemInt(rgb_window, RedInput.id, &success, FALSE);
+    if (!success) r = 0;
+
+    int g = GetDlgItemInt(rgb_window, GreenInput.id, &success, FALSE);
+    if (!success) g = 0;
+
+    int b = GetDlgItemInt(rgb_window, BlueInput.id, &success, FALSE);
+    if (!success) b = 0;
+
+    // Clamp values between 0 and 255
+    r = max(0, min(255, r));
+    g = max(0, min(255, g));
+    b = max(0, min(255, b));
+
+    return RGB(r, g, b);
+}
 
 
 // Point Struct
@@ -141,6 +175,8 @@ public:
             insertionOrder.pop();
             RemovePoint(oldest);
         }
+
+		p.color = GetColorFromInputs(rgb_window_handle);
 
         points.insert(p);
         insertionOrder.push(p);
@@ -330,9 +366,3 @@ void InitializeManagers() {
 }
 
 
-//
-//Middle = { screenWidth / 2, screenHeight / 2 };
-//Pivot = { Middle.x , Middle.y, Middle.z };
-//
-
-// TODO : FIX CODE STRUCTURE

@@ -1,5 +1,6 @@
 #pragma once
 #include <windows.h>
+#include <algorithm>
 #include <vector>
 #include <stdexcept>
 #include <unordered_set>
@@ -9,7 +10,11 @@ using std::vector;
 class PointManager;
 class LineManager;
 
+#define X 0
+#define Y 1
+#define Z 2
 
+const bool ToRotate[] = { false, true, false };
 
 PointManager* PointsToDraw;
 LineManager* LinesToDraw;
@@ -31,9 +36,14 @@ const float PI = 3.14159265358979323846f;
 bool quit = false;
 const int PointBoldness = 10;
 const int LineBoldness = 1;
+
+
 double angle = 0;
-const double angleChangeSpeed = 0.01;
-const bool ToDrawShape = false;
+double angleChangeSpeed = 0.01;
+const bool AutoAngleChangeSpeed = false; // if false, the angle change speed will be set to the value in the input field
+
+const bool ToDrawShape = true;
+const bool AutoRotate = true;
 
 const int drawingCapacity = 30;
 
@@ -45,7 +55,9 @@ struct InputField {
     InputField(int id, const wchar_t* val) : id(id), defaultVal(val) {}
 } RedInput(101, L"255"),
 GreenInput(102, L"255"),
-BlueInput(103, L"255");
+BlueInput(103, L"255"),
+AngleInput(104, L"0"),
+AngleChangeSpeedInput(105, L"0");
 
 
 
@@ -54,8 +66,11 @@ enum Drawings {
     Rect,
     Pyramid,
     DoublePyramid,
-    PolygonWith2Heads
-}WantedDrawing;
+    PolygonWith2Heads,
+    Heart
+};
+
+Drawings WantedDrawing = Heart;
 
 COLORREF GetColorFromInputs(HWND rgb_window = NULL) {
 	if (!rgb_window) {
@@ -79,6 +94,38 @@ COLORREF GetColorFromInputs(HWND rgb_window = NULL) {
     return RGB(r, g, b);
 }
 
+int GetAngleFromInputs(HWND rgb_window = NULL) {
+	if (!rgb_window) {
+		return 0;
+	}
+	BOOL success;
+	int angle = GetDlgItemInt(rgb_window, AngleInput.id, &success, FALSE);
+	if (!success) angle = 0;
+
+	// Clamp values between 0 and 360
+	angle = max(0, min(360, angle));
+
+	return angle;
+}
+
+
+double GetAngleChangeSpeedFromInputs(HWND rgb_window = NULL) {
+    if (!rgb_window) {
+        return 0;
+    }
+    BOOL success;
+    double MaxChangeSpeed = 0.2;
+    int rawValue = GetDlgItemInt(rgb_window, AngleChangeSpeedInput.id, &success, FALSE);
+    if (!success) rawValue = 0;
+
+    double angleChangeSpeed = rawValue / 100.0; // Convert to percentage
+
+	// Clamp it between 0 and MaxChangeSpeed
+    angleChangeSpeed = max(0.0, min(MaxChangeSpeed, angleChangeSpeed));
+
+    return angleChangeSpeed;
+}
+
 
 // Point Struct
 struct Point {
@@ -87,6 +134,9 @@ struct Point {
     int z = 0;
 
 	COLORREF color = WHITE;
+
+	Point(int _x = 0, int _y = 0, int _z = 0, COLORREF col = WHITE) : x(_x), y(_y), z(_z), color(col) {}
+
     bool operator==(const Point& other) const {
         return x == other.x && y == other.y && z == other.z;
     }
@@ -300,6 +350,7 @@ void DrawLine(HDC hdc, Point p1, Point p2, int boldness, COLORREF color) {
 }
 
 Point MultiplyMatrixByPoint(double matrix[3][3], Point p) {
+	if (!matrix) return p; // if the matrix is null, return the point as is
     Point result;
     result.x = (int)(matrix[0][0] * p.x + matrix[0][1] * p.y + matrix[0][2] * p.z);
     result.y = (int)(matrix[1][0] * p.x + matrix[1][1] * p.y + matrix[1][2] * p.z);
@@ -315,6 +366,7 @@ Point RotatePointAround(Point p, Point pivot, double matrix[3][3]) {
     result.x += pivot.x;
     result.y += pivot.y;
     result.z += pivot.z;
+	result.color = p.color; // Preserve the color of the original point
     return result;
 }
 

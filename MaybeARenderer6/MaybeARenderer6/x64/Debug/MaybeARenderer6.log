@@ -1,17 +1,19 @@
 ﻿  MaybeARenderer6.cpp
-C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\Shapes.h(181,19): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\Shapes.h(231,19): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
   (compiling source file 'MaybeARenderer6.cpp')
   
-C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\Shapes.h(182,19): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\Shapes.h(232,19): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
   (compiling source file 'MaybeARenderer6.cpp')
   
-C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\Shapes.h(200,15): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\Shapes.h(250,15): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
   (compiling source file 'MaybeARenderer6.cpp')
   
-C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\Shapes.h(221,15): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\Shapes.h(271,15): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
   (compiling source file 'MaybeARenderer6.cpp')
   
-C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\MaybeARenderer6.cpp(186,20): warning C4312: 'type cast': conversion from 'const int' to 'HMENU' of greater size
-C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\MaybeARenderer6.cpp(192,22): warning C4312: 'type cast': conversion from 'const int' to 'HMENU' of greater size
-C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\MaybeARenderer6.cpp(198,21): warning C4312: 'type cast': conversion from 'const int' to 'HMENU' of greater size
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\MaybeARenderer6.cpp(188,20): warning C4312: 'type cast': conversion from 'const int' to 'HMENU' of greater size
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\MaybeARenderer6.cpp(194,22): warning C4312: 'type cast': conversion from 'const int' to 'HMENU' of greater size
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\MaybeARenderer6.cpp(200,21): warning C4312: 'type cast': conversion from 'const int' to 'HMENU' of greater size
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\MaybeARenderer6.cpp(207,22): warning C4312: 'type cast': conversion from 'const int' to 'HMENU' of greater size
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\MaybeARenderer6.cpp(214,33): warning C4312: 'type cast': conversion from 'const int' to 'HMENU' of greater size
   MaybeARenderer6.vcxproj -> C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\x64\Debug\MaybeARenderer6.exe

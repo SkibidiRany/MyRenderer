@@ -27,7 +27,7 @@ public:
     virtual void DrawPoints(HDC hdc) const {
         if (hdc == NULL) throw std::runtime_error("Device context not initialized");
         for (const Point& p : Points) {
-            DrawBoldPoint(hdc, p.x, p.y, PointBoldness);
+            DrawBoldPoint(hdc, p.x, p.y, PointBoldness, p.color);
         }
     }
 
@@ -105,6 +105,56 @@ public:
     }
 };
 
+
+class Heart3d : public Shape {
+protected:
+    int _width;
+    int _height;
+    int _depth;
+    
+    enum {
+		A, B, C, D, E, F, G, H
+    };
+public:
+    Heart3d(int width, int height, int depth)
+        : Shape({
+            {Middle.x, Middle.y, Middle.z - depth / 2},  // A 
+            {Middle.x, Middle.y, Middle.z + depth / 2},   // B
+            {Middle.x, Middle.y - height / 4, Middle.z, RED}, // C
+            {Middle.x + width / 4, Middle.y - height / 2, Middle.z, BLUE}, // D
+            {Middle.x + width / 2, Middle.y - height / 4, Middle.z}, // E
+            {Middle.x, Middle.y + height / 2, Middle.z},   // F
+            {Middle.x - width / 2, Middle.y - height / 4, Middle.z}, // G
+            {Middle.x - width / 4, Middle.y - height / 2, Middle.z}  // H
+            }), _width(width), _height(height), _depth(depth) {}
+
+    void DrawLines(HDC hdc) const override {
+        if (hdc == NULL) throw std::runtime_error("Device context not initialized");
+
+        // Draw lines from points 0 and 1 to points 2, 4, 5, 6
+        DrawLine(hdc, Points[A], Points[C], LineBoldness);
+		DrawLine(hdc, Points[A], Points[D], LineBoldness);
+        DrawLine(hdc, Points[A], Points[E], LineBoldness);
+        DrawLine(hdc, Points[A], Points[F], LineBoldness);
+        DrawLine(hdc, Points[A], Points[G], LineBoldness);
+		DrawLine(hdc, Points[A], Points[H], LineBoldness);
+
+        DrawLine(hdc, Points[B], Points[C], LineBoldness);
+		DrawLine(hdc, Points[B], Points[D], LineBoldness);
+        DrawLine(hdc, Points[B], Points[E], LineBoldness);
+        DrawLine(hdc, Points[B], Points[F], LineBoldness);
+        DrawLine(hdc, Points[B], Points[G], LineBoldness);
+		DrawLine(hdc, Points[B], Points[H], LineBoldness);
+
+        // Draw lines between the remaining specified points
+        DrawLine(hdc, Points[C], Points[D], LineBoldness);
+        DrawLine(hdc, Points[D], Points[E], LineBoldness);
+        DrawLine(hdc, Points[E], Points[F], LineBoldness);
+        DrawLine(hdc, Points[F], Points[G], LineBoldness);
+        DrawLine(hdc, Points[G], Points[H], LineBoldness);
+        DrawLine(hdc, Points[H], Points[C], LineBoldness);
+    }
+};
 
 
 
@@ -244,8 +294,10 @@ Shape* GetWantedDrawing(Drawings WantedDrawing) {
         return new DoublePyramid3D(200);
         break;
     case PolygonWith2Heads:
-        return new PolygonWith2Heads3D(2, 100, 120);
+        return new PolygonWith2Heads3D(8, 100, 120);
         break;
+    case Heart:
+		return new Heart3d(300, 300,200);
     default:
         return NULL;
     }

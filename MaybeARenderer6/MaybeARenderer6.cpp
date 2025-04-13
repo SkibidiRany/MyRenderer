@@ -76,7 +76,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pCmdLine, 
         if (ToDrawShape) {
             myShape->DrawPoints(memDC);
             myShape->DrawLines(memDC);
-            myShape->RotatePoints(RotateX, RotateY, RotateZ);
+            if (ToRotate) myShape->RotatePoints(ToRotate[X] ? RotateX : NULL, ToRotate[Y] ? RotateY : NULL, ToRotate[Z] ? RotateZ : NULL);
         }
 
 
@@ -96,8 +96,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pCmdLine, 
         DeleteDC(memDC);
         ReleaseDC(window_handle, hdc);
 
-        angle += angleChangeSpeed;
-        //Sleep(2);
+        if (AutoRotate) 
+			if (AutoAngleChangeSpeed) angle += angleChangeSpeed;
+			else angle += GetAngleChangeSpeedFromInputs(rgb_window_handle);
+        else angle = GetAngleFromInputs(rgb_window_handle);
     }
 
     return 0;
@@ -199,5 +201,27 @@ HWND InitRGBControlWindow(HINSTANCE hInstance, int nCmdShow)
         60, 70, 60, 20, rgb_window, (HMENU)BlueInput.id, hInstance, NULL);
     SetWindowTextW(editBlue, BlueInput.defaultVal);
 
+
+    CreateWindowW(L"STATIC", L"Angle:", WS_VISIBLE | WS_CHILD,
+        10, 100, 40, 20, rgb_window, NULL, NULL, NULL);
+    HWND editAngle = CreateWindowW(L"EDIT", NULL, WS_VISIBLE | WS_CHILD | WS_BORDER | ES_NUMBER,
+        60, 100, 60, 20, rgb_window, (HMENU)AngleInput.id, hInstance, NULL);
+    SetWindowTextW(editAngle, AngleInput.defaultVal);
+    
+    
+    CreateWindowW(L"STATIC", L"Angle Change Speed(%):", WS_VISIBLE | WS_CHILD,
+        10, 130, 40, 20, rgb_window, NULL, NULL, NULL);
+    HWND editAngleChangeSpeed = CreateWindowW(L"EDIT", NULL, WS_VISIBLE | WS_CHILD | WS_BORDER | ES_NUMBER,
+        60, 130, 60, 20, rgb_window, (HMENU)AngleChangeSpeedInput.id, hInstance, NULL);
+    SetWindowTextW(editAngleChangeSpeed, AngleChangeSpeedInput.defaultVal);
+
     return rgb_window;
 }
+
+
+
+
+// TODO :      line color
+// TODO :      point +=, -= operator for points
+// TODO :      point +=, -= operator for numbers
+

@@ -133,17 +133,39 @@ struct Point {
     int y = 0;
     int z = 0;
 
-	COLORREF color = WHITE;
+    COLORREF color = WHITE;
 
-	Point(int _x = 0, int _y = 0, int _z = 0, COLORREF col = WHITE) : x(_x), y(_y), z(_z), color(col) {}
+	Point() : x(0), y(0), z(0), color(WHITE) {} // Default constructor
+    // A constructor for implicit conversions
+    Point(int _d) : x(_d), y(_d), z(_d), color(WHITE) {} 
+
+	// default / custom constructor
+    Point(int _x, int _y, int _z = 0, COLORREF col = WHITE)
+        : x(_x), y(_y), z(_z), color(col) {}
 
     bool operator==(const Point& other) const {
         return x == other.x && y == other.y && z == other.z;
     }
 
-	bool operator!=(const Point& other) const {
-		return !(*this == other);
-	}
+    bool operator!=(const Point& other) const {
+        return !(*this == other);
+    }
+
+    // += operator: adds x/y/z only (keeps first color)
+    Point& operator+=(const Point& other) {
+        x += other.x;
+        y += other.y;
+        z += other.z;
+        return *this;
+    }
+
+    // -= operator: subtracts x/y/z only (keeps first color)
+    Point& operator-=(const Point& other) {
+        x -= other.x;
+        y -= other.y;
+        z -= other.z;
+        return *this;
+    }
 };
 
 Point Middle = { screenWidth / 2, screenHeight / 2, 0 };
@@ -173,7 +195,10 @@ struct PointHash {
 // Line Struct
 struct Line {
     Point p1, p2;
-    Line(Point a, Point b) : p1(a), p2(b) {}
+    COLORREF color;
+    Line(Point a, Point b, COLORREF col = WHITE) : p1(a), p2(b), color(col) {}
+
+
     bool operator==(const Line& other) const {
         return (p1 == other.p1 && p2 == other.p2) || (p1 == other.p2 && p2 == other.p1);
     }
@@ -288,12 +313,12 @@ public:
         Point intersectingPointP = pointManager->CheckIntersection(P);
         Point intersectingPointQ = pointManager->CheckIntersection(Q);
 
-        if (!(intersectingPointP == P && intersectingPointQ == Q)) {
-            lines.insert(Line(intersectingPointP, intersectingPointQ));
-        }
-        else {
-            lines.insert(Line(P, Q));
-        }
+		if (intersectingPointP == intersectingPointQ) { // if they are the same point, we don't need to add a line
+			return;
+		}
+
+        
+        lines.insert(Line(intersectingPointP, intersectingPointQ, GetColorFromInputs(rgb_window_handle))); // else add needed line with wanted color        
     }
     void removeLine(Point P, Point Q) {
         lines.erase(Line(P, Q));
@@ -310,7 +335,7 @@ public:
     }
     void DrawLines(HDC hdc) {
         for (const auto& line : lines) {
-            DrawLine(hdc, line.p1, line.p2, LineBoldness);
+            DrawLine(hdc, line.p1, line.p2, LineBoldness, line.color);
         }
     }
 };
@@ -355,18 +380,14 @@ Point MultiplyMatrixByPoint(double matrix[3][3], Point p) {
     result.x = (int)(matrix[0][0] * p.x + matrix[0][1] * p.y + matrix[0][2] * p.z);
     result.y = (int)(matrix[1][0] * p.x + matrix[1][1] * p.y + matrix[1][2] * p.z);
     result.z = (int)(matrix[2][0] * p.x + matrix[2][1] * p.y + matrix[2][2] * p.z);
+	result.color = p.color; // Keep the color of the original point
     return result;
 }
 
 Point RotatePointAround(Point p, Point pivot, double matrix[3][3]) {
-    p.x -= pivot.x;
-    p.y -= pivot.y;
-    p.z -= pivot.z;
+	p -= pivot; // Translate point to origin
     Point result = MultiplyMatrixByPoint(matrix, p);
-    result.x += pivot.x;
-    result.y += pivot.y;
-    result.z += pivot.z;
-	result.color = p.color; // Preserve the color of the original point
+	result += pivot; // Translate point back
     return result;
 }
 
@@ -375,6 +396,9 @@ bool PositionIsLegal(Point p) {
 	return (p.x >= 0 && p.x < screenWidth && p.y >= 0 && p.y < screenHeight);
 }
 
+
+
+COLORREF lastColorFromInputs = WHITE;
 void OnLeftMouseDown(HWND hwnd) {
     POINT cursPos;
     GetCursorPos(&cursPos);
@@ -382,6 +406,7 @@ void OnLeftMouseDown(HWND hwnd) {
     Point toAdd = { cursPos.x, cursPos.y };
     if(!PositionIsLegal(toAdd)) return;
 	PointsToDraw->insert(toAdd);
+	lastColorFromInputs = GetColorFromInputs(rgb_window_handle);
 }
 
 
@@ -393,7 +418,7 @@ void OnLeftMouseHold(HWND hwnd, HDC hdc) {
 	ScreenToClient(hwnd, &cursPos);
 	LastCursPos = { cursPos.x, cursPos.y };
 	if (!PositionIsLegal(LastCursPos)) return;
-	DrawLine(hdc, LastCursPos, PointsToDraw->LastDrawn, LineBoldness, WHITE);
+	DrawLine(hdc, LastCursPos, PointsToDraw->LastDrawn, LineBoldness, lastColorFromInputs);
 
 }
 

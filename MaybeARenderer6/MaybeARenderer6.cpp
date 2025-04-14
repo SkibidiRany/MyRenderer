@@ -33,7 +33,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pCmdLine, 
 
     if (myShape == NULL) return -1;
 
-
     // Main loop
     MSG message;
     while (!quit) {
@@ -239,7 +238,7 @@ HWND InitRGBControlWindow(HINSTANCE hInstance, int nCmdShow)
 
 
 
-// TODO :      line color
-// TODO :      point +=, -= operator for points
-// TODO :      point +=, -= operator for numbers
+// TODO :      line color                           DONE
+// TODO :      point +=, -= operator for points     DONE
+// TODO :      point +=, -= operator for numbers    DONE
 

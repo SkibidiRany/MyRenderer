@@ -11,9 +11,9 @@ C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\Shapes.h(250,
 C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\Shapes.h(271,15): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
   (compiling source file 'MaybeARenderer6.cpp')
   
-C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\MaybeARenderer6.cpp(201,20): warning C4312: 'type cast': conversion from 'const int' to 'HMENU' of greater size
-C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\MaybeARenderer6.cpp(209,22): warning C4312: 'type cast': conversion from 'const int' to 'HMENU' of greater size
-C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\MaybeARenderer6.cpp(216,21): warning C4312: 'type cast': conversion from 'const int' to 'HMENU' of greater size
-C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\MaybeARenderer6.cpp(224,22): warning C4312: 'type cast': conversion from 'const int' to 'HMENU' of greater size
-C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\MaybeARenderer6.cpp(232,33): warning C4312: 'type cast': conversion from 'const int' to 'HMENU' of greater size
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\MaybeARenderer6.cpp(200,20): warning C4312: 'type cast': conversion from 'const int' to 'HMENU' of greater size
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\MaybeARenderer6.cpp(208,22): warning C4312: 'type cast': conversion from 'const int' to 'HMENU' of greater size
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\MaybeARenderer6.cpp(215,21): warning C4312: 'type cast': conversion from 'const int' to 'HMENU' of greater size
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\MaybeARenderer6.cpp(223,22): warning C4312: 'type cast': conversion from 'const int' to 'HMENU' of greater size
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\MaybeARenderer6.cpp(231,33): warning C4312: 'type cast': conversion from 'const int' to 'HMENU' of greater size
   MaybeARenderer6.vcxproj -> C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\x64\Debug\MaybeARenderer6.exe

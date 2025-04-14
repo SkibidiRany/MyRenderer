@@ -297,7 +297,7 @@ Shape* GetWantedDrawing(Drawings WantedDrawing) {
         return new PolygonWith2Heads3D(8, 100, 120);
         break;
     case Heart:
-		return new Heart3d(300, 300,200);
+		return new Heart3d(300, 300, 120);
     default:
         return NULL;
     }

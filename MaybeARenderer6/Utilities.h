@@ -6,6 +6,8 @@
 #include <unordered_set>
 #include <unordered_map>    
 #include <queue>
+#include "InputFields.h"
+
 using std::vector;
 class PointManager;
 class LineManager;
@@ -49,16 +51,6 @@ const int drawingCapacity = 30;
 
 
 
-struct InputField {
-    const int id;
-    const wchar_t* defaultVal;  // Change to wide string
-    InputField(int id, const wchar_t* val) : id(id), defaultVal(val) {}
-} RedInput(101, L"255"),
-GreenInput(102, L"255"),
-BlueInput(103, L"255"),
-AngleInput(104, L"0"),
-AngleChangeSpeedInput(105, L"0");
-
 
 
 // Enum for Drawings
@@ -72,59 +64,6 @@ enum Drawings {
 
 Drawings WantedDrawing = Heart;
 
-COLORREF GetColorFromInputs(HWND rgb_window = NULL) {
-	if (!rgb_window) {
-        return WHITE;
-	}
-    BOOL success;
-    int r = GetDlgItemInt(rgb_window, RedInput.id, &success, FALSE);
-    if (!success) r = 0;
-
-    int g = GetDlgItemInt(rgb_window, GreenInput.id, &success, FALSE);
-    if (!success) g = 0;
-
-    int b = GetDlgItemInt(rgb_window, BlueInput.id, &success, FALSE);
-    if (!success) b = 0;
-
-    // Clamp values between 0 and 255
-    r = max(0, min(255, r));
-    g = max(0, min(255, g));
-    b = max(0, min(255, b));
-
-    return RGB(r, g, b);
-}
-
-int GetAngleFromInputs(HWND rgb_window = NULL) {
-	if (!rgb_window) {
-		return 0;
-	}
-	BOOL success;
-	int angle = GetDlgItemInt(rgb_window, AngleInput.id, &success, FALSE);
-	if (!success) angle = 0;
-
-	// Clamp values between 0 and 360
-	angle = max(0, min(360, angle));
-
-	return angle;
-}
-
-
-double GetAngleChangeSpeedFromInputs(HWND rgb_window = NULL) {
-    if (!rgb_window) {
-        return 0;
-    }
-    BOOL success;
-    double MaxChangeSpeed = 0.2;
-    int rawValue = GetDlgItemInt(rgb_window, AngleChangeSpeedInput.id, &success, FALSE);
-    if (!success) rawValue = 0;
-
-    double angleChangeSpeed = rawValue / 100.0; // Convert to percentage
-
-	// Clamp it between 0 and MaxChangeSpeed
-    angleChangeSpeed = max(0.0, min(MaxChangeSpeed, angleChangeSpeed));
-
-    return angleChangeSpeed;
-}
 
 
 // Point Struct

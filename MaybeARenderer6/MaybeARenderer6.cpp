@@ -4,6 +4,7 @@
 #include <vector>
 #include "Shapes.h"
 #include "Utilities.h"
+#include "InputFields.h"
 using std::vector;
 
 
@@ -181,64 +182,10 @@ HWND InitRGBControlWindow(HINSTANCE hInstance, int nCmdShow)
     ShowWindow(rgb_window, nCmdShow);
     UpdateWindow(rgb_window);
 
-
-    int InputTextWidth = 150;
-	int InputTextHeight = 45;
-    int InputTextX = 10;
-    int InputHeightOffset = 10;
-	int InputWidthOffset = 10;
-
-	int InputFieldX = InputTextX + InputTextWidth + InputWidthOffset;
-	int InputFieldWidth = 60;
-	int InputFieldHeight = InputTextHeight;
+	InputFieldsManager::initializeInputFields(rgb_window);
     
-	int currentY = InputHeightOffset;
-
-    // RGB Labels and Input Fields
-    CreateWindowW(L"STATIC", L"Red:", WS_VISIBLE | WS_CHILD,
-        InputTextX, currentY, InputTextWidth, InputTextHeight, rgb_window, NULL, NULL, NULL);
-    HWND editRed = CreateWindowW(L"EDIT", NULL, WS_VISIBLE | WS_CHILD | WS_BORDER | ES_NUMBER,
-        InputFieldX, currentY, InputFieldWidth, InputFieldHeight, rgb_window, (HMENU)RedInput.id, hInstance, NULL);
-    SetWindowTextW(editRed, RedInput.defaultVal);
-
-	currentY += InputTextHeight + InputHeightOffset;
-
-    CreateWindowW(L"STATIC", L"Green:", WS_VISIBLE | WS_CHILD,
-        InputTextX, currentY, InputTextWidth, InputTextHeight, rgb_window, NULL, NULL, NULL);
-    HWND editGreen = CreateWindowW(L"EDIT", NULL, WS_VISIBLE | WS_CHILD | WS_BORDER | ES_NUMBER,
-        InputFieldX, currentY, InputFieldWidth, InputFieldHeight, rgb_window, (HMENU)GreenInput.id, hInstance, NULL);
-    SetWindowTextW(editGreen, GreenInput.defaultVal);
-
-	currentY += InputTextHeight + InputHeightOffset;
-    CreateWindowW(L"STATIC", L"Blue:", WS_VISIBLE | WS_CHILD,
-        InputTextX, currentY, InputTextWidth, InputTextHeight, rgb_window, NULL, NULL, NULL);
-    HWND editBlue = CreateWindowW(L"EDIT", NULL, WS_VISIBLE | WS_CHILD | WS_BORDER | ES_NUMBER,
-        InputFieldX, currentY, InputFieldWidth, InputFieldHeight, rgb_window, (HMENU)BlueInput.id, hInstance, NULL);
-    SetWindowTextW(editBlue, BlueInput.defaultVal);
-
-	currentY += InputTextHeight + InputHeightOffset;
-
-    CreateWindowW(L"STATIC", L"Angle:", WS_VISIBLE | WS_CHILD,
-        InputTextX, currentY, InputTextWidth, InputTextHeight, rgb_window, NULL, NULL, NULL);
-    HWND editAngle = CreateWindowW(L"EDIT", NULL, WS_VISIBLE | WS_CHILD | WS_BORDER | ES_NUMBER,
-        InputFieldX, currentY, InputFieldWidth, InputFieldHeight, rgb_window, (HMENU)AngleInput.id, hInstance, NULL);
-    SetWindowTextW(editAngle, AngleInput.defaultVal);
-    
-	currentY += InputTextHeight + InputHeightOffset;
-    
-    CreateWindowW(L"STATIC", L"Angle Change Speed(%):", WS_VISIBLE | WS_CHILD,
-        InputTextX, currentY, InputTextWidth, InputTextHeight, rgb_window, NULL, NULL, NULL);
-    HWND editAngleChangeSpeed = CreateWindowW(L"EDIT", NULL, WS_VISIBLE | WS_CHILD | WS_BORDER | ES_NUMBER,
-        InputFieldX, currentY, InputFieldWidth, InputFieldHeight, rgb_window, (HMENU)AngleChangeSpeedInput.id, hInstance, NULL);
-    SetWindowTextW(editAngleChangeSpeed, AngleChangeSpeedInput.defaultVal);
-
     return rgb_window;
 }
 
 
-
-
-// TODO :      line color                           DONE
-// TODO :      point +=, -= operator for points     DONE
-// TODO :      point +=, -= operator for numbers    DONE
 

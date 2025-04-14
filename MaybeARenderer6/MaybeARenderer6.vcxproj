@@ -128,6 +128,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="framework.h" />
+    <ClInclude Include="InputFields.h" />
     <ClInclude Include="MaybeARenderer6.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Shapes.h" />
@@ -135,6 +136,7 @@
     <ClInclude Include="Utilities.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="InputFields.cpp" />
     <ClCompile Include="MaybeARenderer6.cpp" />
   </ItemGroup>
   <ItemGroup>

@@ -96,10 +96,20 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pCmdLine, 
         DeleteDC(memDC);
         ReleaseDC(window_handle, hdc);
 
+
         if (AutoRotate) 
 			if (AutoAngleChangeSpeed) angle += angleChangeSpeed;
-			else angle += GetAngleChangeSpeedFromInputs(rgb_window_handle);
-        else angle = GetAngleFromInputs(rgb_window_handle);
+            else {
+                if (InputFieldsManager::g_angleSpeedChanged) {
+                    angleChangeSpeed = GetAngleChangeSpeedFromInputs(rgb_window_handle);
+                    InputFieldsManager::g_angleSpeedChanged = false;
+                }
+                angle += GetAngleChangeSpeedFromInputs(rgb_window_handle);
+            }
+        else if (InputFieldsManager::g_angleChanged) {
+			angle = GetAngleFromInputs(rgb_window_handle);
+			InputFieldsManager::g_angleChanged = false;
+        }
     }
 
     return 0;
@@ -137,6 +147,52 @@ LRESULT CALLBACK RGBWindowProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam
     switch (msg) {
     case WM_DESTROY:
         return 0;
+    case WM_DRAWITEM:
+    {
+        LPDRAWITEMSTRUCT pDIS = (LPDRAWITEMSTRUCT)lParam;
+
+        // Check if this is our color preview box
+        if (pDIS->hwndItem == InputFieldsManager::g_colorPreviewBox) {
+            // Get the current RGB using your existing function
+            COLORREF color = GetColorFromInputs(rgb_window_handle); // Use your function here
+
+            // Create a brush with the RGB color
+            HBRUSH hBrush = CreateSolidBrush(color);
+
+            // Fill the rectangle with the brush
+            FillRect(pDIS->hDC, &pDIS->rcItem, hBrush);
+
+            // Draw a border around the color box
+            FrameRect(pDIS->hDC, &pDIS->rcItem, (HBRUSH)GetStockObject(BLACK_BRUSH));
+
+            // Delete the brush (important to avoid memory leaks)
+            DeleteObject(hBrush);
+
+            return TRUE;
+        }
+        break;
+    }
+    case WM_COMMAND:
+    {
+        int ctrlID = LOWORD(wParam);    // The control that generated the command
+        int notifCode = HIWORD(wParam);  // The notification code (e.g., EN_CHANGE)
+
+        if (notifCode == EN_CHANGE) {  // EN_CHANGE is sent when the content of a control changes
+            if (ctrlID == AngleInput.id) {
+                InputFieldsManager::g_angleChanged = true;  // Set the dirty flag for angle input
+            }
+            else if (ctrlID == AngleChangeSpeedInput.id) {
+                InputFieldsManager::g_angleSpeedChanged = true;  // Set the dirty flag for angle change speed input
+            }
+            else if (ctrlID == PointColorInput.fields[REDi].id ||
+                ctrlID == PointColorInput.fields[GREENi].id ||
+                ctrlID == PointColorInput.fields[BLUEi].id) {
+                // Invalidate the color preview box when any of the color fields change
+                InvalidateRect(InputFieldsManager::g_colorPreviewBox, NULL, TRUE);
+            }
+        }
+        break;
+    }
     }
     return DefWindowProc(hwnd, msg, wParam, lParam);
 }
@@ -176,9 +232,12 @@ HWND InitRGBControlWindow(HINSTANCE hInstance, int nCmdShow)
     rgb_class.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
 
     RegisterClass(&rgb_class);
+    
+    int windowX = 800;
+    int windowY = 200;
 
     HWND rgb_window = CreateWindow(rgb_class_name, L"RGB Controls", WS_OVERLAPPEDWINDOW,
-        CW_USEDEFAULT, CW_USEDEFAULT, 500, 500, NULL, NULL, hInstance, NULL);
+        windowX, windowY, 500, 500, NULL, NULL, hInstance, NULL);
     ShowWindow(rgb_window, nCmdShow);
     UpdateWindow(rgb_window);
 

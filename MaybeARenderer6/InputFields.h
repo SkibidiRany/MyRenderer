@@ -1,4 +1,5 @@
 #pragma once
+#define NOMINMAX  // Prevents windows.h from defining min and max macros (we use std::min and std::max)
 #include <windows.h>
 #include <algorithm>
 #include <vector>
@@ -15,7 +16,6 @@ constexpr int BLUEi = 2;
 
 
 
-
 struct InputField {
     const int id;
     const wchar_t* defaultVal; 
@@ -25,16 +25,30 @@ struct InputField {
 
 
 struct ColorInputField {
-	const InputField fields[3];
-	const wchar_t* defaultVal; // Default value for the color input field
-	const wchar_t* prefix; // Prefix for the color input field
+    const InputField fields[3];
+    const wchar_t* defaultVal; // Default value for the color input field
+    const wchar_t* prefix; // Prefix for the color input field
 
-	ColorInputField(int id, const wchar_t* val, const wchar_t* pre) : fields{
-		InputField(id, val, L"Red:"),
-		InputField(id + 1, val, L"Green"),
-		InputField(id + 2, val, L"Blue:")
-	}, defaultVal(val), prefix(pre) {}
+    ColorInputField(int id, const wchar_t* val, const wchar_t* pre) : fields{
+        InputField(id, val, L"Red:"),
+        InputField(id + 1, val, L"Green"),
+        InputField(id + 2, val, L"Blue:")
+
+    }, defaultVal(val), prefix(pre) {}
 };
+
+
+
+
+// Declare these for global use
+extern InputField AngleInput;
+extern InputField AngleChangeSpeedInput;
+
+extern ColorInputField PointColorInput;
+
+
+
+
 
 COLORREF GetColorFromInputs(HWND rgb_window = NULL);
 
@@ -62,7 +76,13 @@ private:
 
     static int currentY;
 
+    
 public:
+    static bool g_angleChanged;
+    static bool g_angleSpeedChanged;
+
+    static HWND g_colorPreviewBox;
+
     InputFieldsManager() = default;
 
     void AddInputField(InputField field);

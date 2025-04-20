@@ -5,6 +5,8 @@
 #include "Shapes.h"
 #include "Utilities.h"
 #include "InputFields.h"
+#include <string>
+#include <iostream>
 using std::vector;
 
 
@@ -54,6 +56,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pCmdLine, 
         RECT rect = { 0, 0, screenWidth, screenHeight };
         FillRect(memDC, &rect, blackBrush);
         DeleteObject(blackBrush);
+
+
 
         // Rotation matrices
         double RotateX[3][3] = {

@@ -58,22 +58,23 @@ public:
     void DrawLines(HDC hdc) const override {
         if (hdc == NULL) throw std::runtime_error("Device context not initialized");
         // Draw lines for the top face
-        DrawLine(hdc, Points[0], Points[1], LineBoldness);
-        DrawLine(hdc, Points[1], Points[2], LineBoldness);
-        DrawLine(hdc, Points[2], Points[3], LineBoldness);
-        DrawLine(hdc, Points[3], Points[0], LineBoldness);
+        DrawLine(hdc, Line(Points[0], Points[1]), LineBoldness);
+        DrawLine(hdc, Line(Points[1], Points[2]), LineBoldness);
+        DrawLine(hdc, Line(Points[2], Points[3]), LineBoldness);
+        DrawLine(hdc, Line(Points[3], Points[0]), LineBoldness);
 
         // Draw lines for the bottom face
-        DrawLine(hdc, Points[4], Points[5], LineBoldness);
-        DrawLine(hdc, Points[5], Points[6], LineBoldness);
-        DrawLine(hdc, Points[6], Points[7], LineBoldness);
-        DrawLine(hdc, Points[7], Points[4], LineBoldness);
+        DrawLine(hdc, Line(Points[4], Points[5]), LineBoldness);
+        DrawLine(hdc, Line(Points[5], Points[6]), LineBoldness);
+        DrawLine(hdc, Line(Points[6], Points[7]), LineBoldness);
+        DrawLine(hdc, Line(Points[7], Points[4]), LineBoldness);
 
         // Draw vertical lines connecting top and bottom faces
-        DrawLine(hdc, Points[0], Points[4], LineBoldness);
-        DrawLine(hdc, Points[1], Points[5], LineBoldness);
-        DrawLine(hdc, Points[2], Points[6], LineBoldness);
-        DrawLine(hdc, Points[3], Points[7], LineBoldness);
+        DrawLine(hdc, Line(Points[0], Points[4]), LineBoldness);
+        DrawLine(hdc, Line(Points[1], Points[5]), LineBoldness);
+        DrawLine(hdc, Line(Points[2], Points[6]), LineBoldness);
+        DrawLine(hdc, Line(Points[3], Points[7]), LineBoldness);
+
     }
 };
 
@@ -93,14 +94,15 @@ public:
         if (hdc == NULL) throw std::runtime_error("Device context not initialized");
         
         // Draw lines for the base
-        DrawLine(hdc, Points[1], Points[2], LineBoldness);
-        DrawLine(hdc, Points[2], Points[3], LineBoldness);
-        DrawLine(hdc, Points[3], Points[1], LineBoldness);
-        
-        // Draw Lines for head vertex
-		DrawLine(hdc, Points[0], Points[1], LineBoldness);
-		DrawLine(hdc, Points[0], Points[2], LineBoldness);
-		DrawLine(hdc, Points[0], Points[3], LineBoldness);
+        DrawLine(hdc, Line(Points[1], Points[2]), LineBoldness);
+        DrawLine(hdc, Line(Points[2], Points[3]), LineBoldness);
+        DrawLine(hdc, Line(Points[3], Points[1]), LineBoldness);
+
+        // Draw lines for head vertex
+        DrawLine(hdc, Line(Points[0], Points[1]), LineBoldness);
+        DrawLine(hdc, Line(Points[0], Points[2]), LineBoldness);
+        DrawLine(hdc, Line(Points[0], Points[3]), LineBoldness);
+
 
     }
 };
@@ -131,28 +133,29 @@ public:
     void DrawLines(HDC hdc) const override {
         if (hdc == NULL) throw std::runtime_error("Device context not initialized");
 
-        // Draw lines from points 0 and 1 to points 2, 4, 5, 6
-        DrawLine(hdc, Points[A], Points[C], LineBoldness);
-		DrawLine(hdc, Points[A], Points[D], LineBoldness);
-        DrawLine(hdc, Points[A], Points[E], LineBoldness);
-        DrawLine(hdc, Points[A], Points[F], LineBoldness);
-        DrawLine(hdc, Points[A], Points[G], LineBoldness);
-		DrawLine(hdc, Points[A], Points[H], LineBoldness);
+        // Draw lines from points A and B to points C, D, E, F, G, H
+        DrawLine(hdc, Line(Points[A], Points[C]), LineBoldness);
+        DrawLine(hdc, Line(Points[A], Points[D]), LineBoldness);
+        DrawLine(hdc, Line(Points[A], Points[E]), LineBoldness);
+        DrawLine(hdc, Line(Points[A], Points[F]), LineBoldness);
+        DrawLine(hdc, Line(Points[A], Points[G]), LineBoldness);
+        DrawLine(hdc, Line(Points[A], Points[H]), LineBoldness);
 
-        DrawLine(hdc, Points[B], Points[C], LineBoldness);
-		DrawLine(hdc, Points[B], Points[D], LineBoldness);
-        DrawLine(hdc, Points[B], Points[E], LineBoldness);
-        DrawLine(hdc, Points[B], Points[F], LineBoldness);
-        DrawLine(hdc, Points[B], Points[G], LineBoldness);
-		DrawLine(hdc, Points[B], Points[H], LineBoldness);
+        DrawLine(hdc, Line(Points[B], Points[C]), LineBoldness);
+        DrawLine(hdc, Line(Points[B], Points[D]), LineBoldness);
+        DrawLine(hdc, Line(Points[B], Points[E]), LineBoldness);
+        DrawLine(hdc, Line(Points[B], Points[F]), LineBoldness);
+        DrawLine(hdc, Line(Points[B], Points[G]), LineBoldness);
+        DrawLine(hdc, Line(Points[B], Points[H]), LineBoldness);
 
         // Draw lines between the remaining specified points
-        DrawLine(hdc, Points[C], Points[D], LineBoldness);
-        DrawLine(hdc, Points[D], Points[E], LineBoldness);
-        DrawLine(hdc, Points[E], Points[F], LineBoldness);
-        DrawLine(hdc, Points[F], Points[G], LineBoldness);
-        DrawLine(hdc, Points[G], Points[H], LineBoldness);
-        DrawLine(hdc, Points[H], Points[C], LineBoldness);
+        DrawLine(hdc, Line(Points[C], Points[D]), LineBoldness);
+        DrawLine(hdc, Line(Points[D], Points[E]), LineBoldness);
+        DrawLine(hdc, Line(Points[E], Points[F]), LineBoldness);
+        DrawLine(hdc, Line(Points[F], Points[G]), LineBoldness);
+        DrawLine(hdc, Line(Points[G], Points[H]), LineBoldness);
+        DrawLine(hdc, Line(Points[H], Points[C]), LineBoldness);
+
     }
 };
 
@@ -188,22 +191,21 @@ public:
 	void DrawLines(HDC hdc) const override {
 		if (hdc == NULL) throw std::runtime_error("Device context not initialized");
 
-		// Draw lines for the base
-		DrawLine(hdc, Points[0], Points[1], LineBoldness);
-		DrawLine(hdc, Points[1], Points[2], LineBoldness);
-		DrawLine(hdc, Points[2], Points[0], LineBoldness);
+        // Draw lines for the base
+        DrawLine(hdc, Line(Points[0], Points[1]), LineBoldness);
+        DrawLine(hdc, Line(Points[1], Points[2]), LineBoldness);
+        DrawLine(hdc, Line(Points[2], Points[0]), LineBoldness);
 
-		// Draw Lines for behind head vertex
-		DrawLine(hdc, Points[3], Points[0], LineBoldness);
-		DrawLine(hdc, Points[3], Points[1], LineBoldness);
-		DrawLine(hdc, Points[3], Points[2], LineBoldness);
+        // Draw lines for behind head vertex
+        DrawLine(hdc, Line(Points[3], Points[0]), LineBoldness);
+        DrawLine(hdc, Line(Points[3], Points[1]), LineBoldness);
+        DrawLine(hdc, Line(Points[3], Points[2]), LineBoldness);
 
-		// Draw Lines for front head vertex
-        DrawLine(hdc, Points[4], Points[0], LineBoldness);
-		DrawLine(hdc, Points[4], Points[1], LineBoldness);
-		DrawLine(hdc, Points[4], Points[2], LineBoldness);
-	
-    
+        // Draw lines for front head vertex
+        DrawLine(hdc, Line(Points[4], Points[0]), LineBoldness);
+        DrawLine(hdc, Line(Points[4], Points[1]), LineBoldness);
+        DrawLine(hdc, Line(Points[4], Points[2]), LineBoldness);
+
     }
 
 
@@ -251,18 +253,19 @@ public:
 
         // Draw lines for the base
         for (int i = 0; i < n; ++i) {
-            DrawLine(hdc, Points[i], Points[(i + 1) % n], LineBoldness, LINE_COLOR);
+            DrawLine(hdc, Line(Points[i], Points[(i + 1) % n]), LineBoldness, LINE_COLOR);
         }
 
         // Draw lines for the front vertex
         for (int i = 0; i < n; ++i) {
-            DrawLine(hdc, Points[i], Points[n], LineBoldness, LINE_COLOR);
+            DrawLine(hdc, Line(Points[i], Points[n]), LineBoldness, LINE_COLOR);
         }
 
         // Draw lines for the back vertex
         for (int i = 0; i < n; ++i) {
-            DrawLine(hdc, Points[i], Points[n + 1], LineBoldness, LINE_COLOR);
+            DrawLine(hdc, Line(Points[i], Points[n + 1]), LineBoldness, LINE_COLOR);
         }
+
     }
 
     void DrawPoints(HDC hdc) const override {

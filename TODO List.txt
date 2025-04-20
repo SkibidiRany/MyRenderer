@@ -1,3 +1,9 @@
 TODO : 
 Add Input Field inheritance.   I don't want to add this
-ADD THREADS TO DRAWING LOGIC TO BOOST PERFORMANCE	
+ADD THREADS TO DRAWING LOGIC TO BOOST PERFORMANCE.  	DONE
+
+
+Add text on midpoint functionality:
+	add:   DONE
+	FIX DRAWING RECTANGLE INSTEAD OF TEXT BUG.
+	

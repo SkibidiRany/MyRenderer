@@ -12,6 +12,7 @@
 #include <condition_variable>
 #include <locale>
 #include <memory>
+#include <format>
 
 using std::vector;
 class PointManager;
@@ -71,6 +72,7 @@ Drawings WantedDrawing = Heart;
 
 
 
+
 // Point Struct
 struct Point {
     int x = 0;
@@ -112,21 +114,6 @@ struct Point {
     }
 };
 
-Point Middle = { screenWidth / 2, screenHeight / 2, 0 };
-Point pivot = { Middle.x , Middle.y, Middle.z };
-Point LastCursPos = { 0, 0, 0 };
-
-// Function Declarations
-void DrawBoldPoint(HDC hdc, int x, int y, int boldness, COLORREF color = WHITE);
-void DrawLine(HDC hdc, Point p1, Point p2, int boldness, COLORREF color = WHITE);   
-Point MultiplyMatrixByPoint(double matrix[3][3], Point p);
-Point RotatePointAround(Point p, Point pivot, double matrix[3][3]);
-bool PositionIsLegal(Point p);
-void RemovePoint(Point p);
-void OnLeftMouseDown(HWND hwnd);
-void OnLeftMouseHold(HWND hwnd, HDC hdc);
-void OnLeftMouseUp(HWND hwnd);
-
 // Hash for Point
 struct PointHash {
     size_t operator()(const Point& p) const {
@@ -135,12 +122,34 @@ struct PointHash {
 };
 
 
+double GetDistance(const Point& p1, const Point& p2) {
+    double dx = std::abs(p1.x - p2.x);
+    double dy = std::abs(p1.y - p2.y);
+    double dz = std::abs(p1.z - p2.z);
+
+    // Manual sort of dx, dy, dz to find max, mid, min
+    double maxD = dx, midD = dy, minD = dz;
+
+    if (maxD < midD) std::swap(maxD, midD);
+    if (midD < minD) std::swap(midD, minD);
+    if (maxD < midD) std::swap(maxD, midD);
+
+    return 0.939 * maxD + 0.389 * midD + 0.298 * minD;
+}
+
+
+
 
 // Line Struct
 struct Line {
-    Point p1, p2;
-    COLORREF color;
-    Line(Point a, Point b, COLORREF col = WHITE) : p1(a), p2(b), color(col) {}
+    Point p1 = {}, p2 = {}, Middle = {};
+    const char* text = "";
+    COLORREF color = WHITE;
+    Line(const Point& a, const Point& b, COLORREF col = WHITE, const char* t = "") : p1(a), p2(b), color(col),
+        Middle({ (p1.x + p2.x) / 2 ,
+                 (p1.y + p2.y) / 2 ,
+                 (p1.z + p2.z) / 2 , col }),
+        text(""/*(GetDistance(a, b))*/) {}
 
 
     bool operator==(const Line& other) const {
@@ -154,6 +163,22 @@ struct LineHash {
         return PointHash{}(line.p1) ^ PointHash {}(line.p2);
     }
 };
+
+Point Middle = { screenWidth / 2, screenHeight / 2, 0 };
+Point pivot = { Middle.x , Middle.y, Middle.z };
+Point LastCursPos = { 0, 0, 0 };
+
+// Function Declarations
+void DrawBoldPoint(HDC hdc, int x, int y, int boldness, COLORREF color = WHITE);
+void DrawLine(HDC& hdc, const Line& line, const int boldness, const COLORREF& color = WHITE);
+Point MultiplyMatrixByPoint(const double matrix[3][3], const Point& p);
+Point RotatePointAround(Point p, Point pivot, double matrix[3][3]);
+bool PositionIsLegal(Point p);
+void RemovePoint(Point p);
+void OnLeftMouseDown(HWND hwnd);
+void OnLeftMouseHold(HWND hwnd, HDC hdc);
+void OnLeftMouseUp(HWND hwnd);
+
 
 
 
@@ -597,7 +622,7 @@ public:
     }
     void DrawLines(HDC hdc) {
         for (const auto& line : lines) {
-            DrawLine(hdc, line.p1, line.p2, LineBoldness, line.color);
+            DrawLine(hdc, line, LineBoldness, line.color);
         }
     }
 };
@@ -614,7 +639,27 @@ void DrawBoldPoint(HDC hdc, int x, int y, int boldness, COLORREF color) {
     }
 }
 
-void DrawLine(HDC hdc, Point p1, Point p2, int boldness, COLORREF color) {
+void DrawTextAtMiddle(HDC hdc, Line line, const char* text, COLORREF color) {
+
+    // Set the text color
+    SetTextColor(hdc, color);
+
+    // Get the size of the text to center it
+    SIZE textSize;
+    GetTextExtentPoint32A(hdc, text, strlen(text), &textSize);
+
+    // Adjust the Y-coordinate to be above the line
+    int textY = line.Middle.y - textSize.cy - 5; // 5 pixels above the midpoint
+
+    // Draw the text centered over the midpoint
+    int textX = line.Middle.x - (textSize.cx / 2);
+    TextOutA(hdc, textX, textY, text, strlen(text));
+}
+
+void DrawLine(HDC& hdc, const Line& line, const int boldness, const COLORREF& color) {
+	Point p1 = line.p1;
+	Point p2 = line.p2;
+
     int dx = abs(p2.x - p1.x);
     int dy = abs(p2.y - p1.y);
     int sx = (p1.x < p2.x) ? 1 : -1;
@@ -622,7 +667,9 @@ void DrawLine(HDC hdc, Point p1, Point p2, int boldness, COLORREF color) {
     int err = dx - dy;
 
     while (true) {
-        if(PositionIsLegal(p1)) DrawBoldPoint(hdc, p1.x, p1.y, boldness, color);
+        if (PositionIsLegal(p1)) {
+            DrawBoldPoint(hdc, p1.x, p1.y, boldness, color);
+        }
         if (p1.x == p2.x && p1.y == p2.y) break;
         int e2 = 2 * err;
         if (e2 > -dy) {
@@ -634,9 +681,12 @@ void DrawLine(HDC hdc, Point p1, Point p2, int boldness, COLORREF color) {
             p1.y += sy;
         }
     }
+
+    // Draw text above the line at the midpoint
+    DrawTextAtMiddle(hdc, line, line.text, color);
 }
 
-Point MultiplyMatrixByPoint(double matrix[3][3], Point p) {
+Point MultiplyMatrixByPoint(const double matrix[3][3], const Point& p) {
 	if (!matrix) return p; // if the matrix is null, return the point as is
     Point result;
     result.x = (int)(matrix[0][0] * p.x + matrix[0][1] * p.y + matrix[0][2] * p.z);
@@ -680,7 +730,7 @@ void OnLeftMouseHold(HWND hwnd, HDC hdc) {
 	ScreenToClient(hwnd, &cursPos);
 	LastCursPos = { cursPos.x, cursPos.y };
 	if (!PositionIsLegal(LastCursPos)) return;
-	DrawLine(hdc, LastCursPos, PointsToDraw->LastDrawn, LineBoldness, lastColorFromInputs);
+    DrawLine(hdc, Line({ LastCursPos, PointsToDraw->LastDrawn }), LineBoldness, lastColorFromInputs);
 
 }
 

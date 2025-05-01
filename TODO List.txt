@@ -1,9 +1,10 @@
 TODO : 
-Add Input Field inheritance.   I don't want to add this
-ADD THREADS TO DRAWING LOGIC TO BOOST PERFORMANCE.  	DONE
+- Add Input Field inheritance.   I don't want to add this
+- ADD THREADS TO DRAWING LOGIC TO BOOST PERFORMANCE.  	FAILED - no can do
 
 
-Add text on midpoint functionality:
+- Add text on midpoint functionality:
 	add:   DONE
 	FIX DRAWING RECTANGLE INSTEAD OF TEXT BUG.
 	
+- Add rotating using right mouse button.

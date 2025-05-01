@@ -41,11 +41,13 @@ struct ColorInputField {
 
 
 // Declare these for global use
-extern InputField AngleInput;
-extern InputField AngleChangeSpeedInput;
+extern InputField AngleInputField;
+extern InputField AngleChangeSpeedInputField;
 
-extern ColorInputField PointColorInput;
+extern ColorInputField PointColorInputField;
 
+extern COLORREF lastColorFromInputs;
+;
 
 
 

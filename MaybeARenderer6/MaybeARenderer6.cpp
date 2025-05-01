@@ -90,8 +90,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pCmdLine, 
         
 
 
-        PointsToDraw->DrawPoints(memDC);
-		LinesToDraw->DrawLines(memDC);
+        PointsToDraw->EachFrame(memDC);
+		LinesToDraw->EachFrame(memDC);
+
+
         // Copy the off-screen buffer to the screen
         BitBlt(hdc, 0, 0, screenWidth, screenHeight, memDC, 0, 0, SRCCOPY);
 
@@ -182,15 +184,15 @@ LRESULT CALLBACK RGBWindowProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam
         int notifCode = HIWORD(wParam);  // The notification code (e.g., EN_CHANGE)
 
         if (notifCode == EN_CHANGE) {  // EN_CHANGE is sent when the content of a control changes
-            if (ctrlID == AngleInput.id) {
+            if (ctrlID == AngleInputField.id) {
                 InputFieldsManager::g_angleChanged = true;  // Set the dirty flag for angle input
             }
-            else if (ctrlID == AngleChangeSpeedInput.id) {
+            else if (ctrlID == AngleChangeSpeedInputField.id) {
                 InputFieldsManager::g_angleSpeedChanged = true;  // Set the dirty flag for angle change speed input
             }
-            else if (ctrlID == PointColorInput.fields[REDi].id ||
-                ctrlID == PointColorInput.fields[GREENi].id ||
-                ctrlID == PointColorInput.fields[BLUEi].id) {
+            else if (ctrlID == PointColorInputField.fields[REDi].id ||
+                ctrlID == PointColorInputField.fields[GREENi].id ||
+                ctrlID == PointColorInputField.fields[BLUEi].id) {
                 // Invalidate the color preview box when any of the color fields change
                 InvalidateRect(InputFieldsManager::g_colorPreviewBox, NULL, TRUE);
             }

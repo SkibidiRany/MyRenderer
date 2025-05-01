@@ -53,7 +53,7 @@ const bool AutoAngleChangeSpeed = false; // if false, the angle change speed wil
 const bool ToDrawShape = true;
 const bool AutoRotate = true;
 
-const int drawingCapacity = 30;
+const int drawingCapacity = 60;
 
 
 
@@ -169,7 +169,8 @@ Point pivot = { Middle.x , Middle.y, Middle.z };
 Point LastCursPos = { 0, 0, 0 };
 
 // Function Declarations
-void DrawBoldPoint(HDC hdc, int x, int y, int boldness, COLORREF color = WHITE);
+void LogMessage(const char* message);
+void DrawBoldPoint(HDC& hdc, int x, int y, int boldness, COLORREF color = WHITE);
 void DrawLine(HDC& hdc, const Line& line, const int boldness, const COLORREF& color = WHITE);
 Point MultiplyMatrixByPoint(const double matrix[3][3], const Point& p);
 Point RotatePointAround(Point p, Point pivot, double matrix[3][3]);
@@ -182,11 +183,13 @@ void OnLeftMouseUp(HWND hwnd);
 
 
 
+interface IDrawEachFrame {
+    virtual void EachFrame(HDC& targethdc) = 0;
+};
 
 
-
-// PointManager Class with stable multithreaded drawing
-class PointManager {
+// PointManager Class
+class PointManager : public IDrawEachFrame {
 private:
     std::unordered_map<Point, std::vector<Point>, PointHash> buckets;
     std::unordered_set<Point, PointHash> points;
@@ -194,210 +197,12 @@ private:
     int _capacity;
     int _c;
 
-    // Thread pool and resources
-    int numThreads;
-    std::vector<std::thread> workerThreads;
-    std::vector<HDC> threadHDCs;
-    std::vector<HBITMAP> threadBitmaps;
-    std::vector<HBITMAP> oldBitmaps;
-    bool threadsInitialized = false;
-
-    // Synchronization - using raw pointers to avoid copy issues with atomics
-    std::atomic<bool> shouldTerminate{ false };
-    std::vector<std::atomic<bool>*> frameReady;
-    std::vector<std::atomic<bool>*> threadDone;
-    std::condition_variable cv;
-    std::mutex mutex;
-
-    // Safety flag to prevent multiple simultaneous Draw calls
-    std::atomic<bool> currentlyDrawing{ false };
-
-    // Initialize thread resources
-    void InitializeThreadResources(HDC targetHDC) {
-        RECT rect;
-        GetClientRect(WindowFromDC(targetHDC), &rect);
-        int width = rect.right;
-        int height = rect.bottom;
-
-        threadHDCs.resize(numThreads);
-        threadBitmaps.resize(numThreads);
-        oldBitmaps.resize(numThreads);
-
-        for (int i = 0; i < numThreads; i++) {
-            threadHDCs[i] = CreateCompatibleDC(targetHDC);
-            if (!threadHDCs[i]) continue; // Skip if creation failed
-
-            threadBitmaps[i] = CreateCompatibleBitmap(targetHDC, width, height);
-            if (!threadBitmaps[i]) {
-                DeleteDC(threadHDCs[i]);
-                threadHDCs[i] = nullptr;
-                continue;
-            }
-
-            oldBitmaps[i] = (HBITMAP)SelectObject(threadHDCs[i], threadBitmaps[i]);
-        }
-    }
-
-    // Clean up thread resources
-    void CleanupThreadResources() {
-        for (int i = 0; i < numThreads; i++) {
-            if (threadHDCs[i]) {
-                SelectObject(threadHDCs[i], oldBitmaps[i]);
-                DeleteObject(threadBitmaps[i]);
-                DeleteDC(threadHDCs[i]);
-                threadHDCs[i] = nullptr;
-            }
-        }
-
-        // Clean up the atomic pointers
-        for (auto& ptr : frameReady) {
-            delete ptr;
-        }
-        for (auto& ptr : threadDone) {
-            delete ptr;
-        }
-
-        frameReady.clear();
-        threadDone.clear();
-        threadHDCs.clear();
-        threadBitmaps.clear();
-        oldBitmaps.clear();
-    }
-
-    // Worker thread function
-    void WorkerThread(int threadId) {
-        while (!shouldTerminate) {
-            // Wait for work
-            {
-                std::unique_lock<std::mutex> lock(mutex);
-                cv.wait(lock, [this, threadId]() {
-                    return (frameReady[threadId] && *frameReady[threadId]) || shouldTerminate;
-                    });
-
-                if (shouldTerminate) break;
-            }
-
-            // Skip if we don't have valid DC
-            if (!threadHDCs[threadId]) {
-                *frameReady[threadId] = false;
-                *threadDone[threadId] = true;
-                cv.notify_one();
-                continue;
-            }
-
-            // Get screen dimensions safely
-            BITMAP bm;
-            if (GetObject(threadBitmaps[threadId], sizeof(BITMAP), &bm) == 0) {
-                *frameReady[threadId] = false;
-                *threadDone[threadId] = true;
-                cv.notify_one();
-                continue;
-            }
-
-            int width = bm.bmWidth;
-            int height = bm.bmHeight;
-
-            // Clear bitmap
-            RECT rc = { 0, 0, width, height };
-            FillRect(threadHDCs[threadId], &rc, (HBRUSH)GetStockObject(BLACK_BRUSH));
-
-            // Safe copy of points to avoid any race conditions
-            std::vector<Point> pointsVector;
-            {
-                std::unique_lock<std::mutex> lock(mutex);
-                pointsVector.assign(points.begin(), points.end());
-            }
-
-            // Calculate which points to process (divide points evenly among threads)
-            int pointsPerThread = (pointsVector.size() + numThreads - 1) / numThreads;
-            int startIdx = threadId * pointsPerThread;
-            int endIdx = startIdx + pointsPerThread;
-
-            // Prevent out of bounds access
-            if (endIdx > pointsVector.size()) {
-                endIdx = pointsVector.size();
-            }
-
-            // Draw assigned points
-            for (int i = startIdx; i < endIdx && i < pointsVector.size(); i++) {
-                const Point& p = pointsVector[i];
-                DrawBoldPoint(threadHDCs[threadId], p.x, p.y, PointBoldness, p.color);
-            }
-
-            // Mark thread as done
-            *frameReady[threadId] = false;
-            *threadDone[threadId] = true;
-            cv.notify_one(); // Notify main thread
-        }
-    }
-
-    // Initialize thread pool
-    void InitializeThreadPool(HDC targetHDC) {
-        try {
-            // Set up synchronization primitives
-            frameReady.resize(numThreads, nullptr);
-            threadDone.resize(numThreads, nullptr);
-
-            for (int i = 0; i < numThreads; i++) {
-                frameReady[i] = new std::atomic<bool>(false);
-                threadDone[i] = new std::atomic<bool>(true);
-            }
-
-            // Create resources for each thread
-            InitializeThreadResources(targetHDC);
-
-            // Create worker threads
-            for (int i = 0; i < numThreads; i++) {
-                workerThreads.push_back(std::thread(&PointManager::WorkerThread, this, i));
-            }
-
-            threadsInitialized = true;
-        }
-        catch (const std::exception& e) {
-            // Handle exceptions during initialization
-            CleanupThreadResources();
-            threadsInitialized = false;
-            OutputDebugStringA(e.what());
-        }
-    }
 
 public:
     Point LastDrawn = { 0, 0, 0 };
 
     // Constructor
-    PointManager(int cap, int c, int threadCount = 8) :
-        _capacity(cap), _c(c), numThreads(threadCount) {
-        // Limit thread count to hardware concurrency
-        int maxThreads = std::thread::hardware_concurrency();
-        if (maxThreads > 0 && numThreads > maxThreads) {
-            numThreads = maxThreads;
-        }
-
-        // Ensure at least one thread
-        if (numThreads < 1) numThreads = 1;
-    }
-
-    // Destructor to clean up threads
-    ~PointManager() {
-        if (threadsInitialized) {
-            shouldTerminate = true;
-
-            // Signal all threads to terminate
-            for (int i = 0; i < numThreads; i++) {
-                if (frameReady[i]) *frameReady[i] = true;
-            }
-            cv.notify_all();
-
-            // Join all threads
-            for (auto& thread : workerThreads) {
-                if (thread.joinable()) {
-                    thread.join();
-                }
-            }
-
-            CleanupThreadResources();
-        }
-    }
+    PointManager(int cap, int c) : _capacity(cap), _c(c) {}
 
     Point ToBucket(Point p) {
         int bucketX = p.x / _c;
@@ -407,7 +212,6 @@ public:
     }
 
     Point insert(Point p) {
-        std::unique_lock<std::mutex> lock(mutex); // Lock during modification
 
         Point checker = CheckIntersection(p);
         LastDrawn = checker;
@@ -420,7 +224,7 @@ public:
             RemovePoint(oldest);
         }
 
-        p.color = GetColorFromInputs(rgb_window_handle);
+        p.color = lastColorFromInputs;
         points.insert(p);
         insertionOrder.push(p);
         buckets[ToBucket(p)].push_back(p);
@@ -428,7 +232,6 @@ public:
     }
 
     void remove(Point p) {
-        // No need for mutex here as this is called from insert which already has the lock
         points.erase(p);
         Point key = ToBucket(p);
         auto& vec = buckets[key];
@@ -436,7 +239,6 @@ public:
     }
 
     Point CheckIntersection(Point p) {
-        // No need for mutex here as this is called from insert which already has the lock
         Point base = ToBucket(p);
         for (int dx = -1; dx <= 1; ++dx)
             for (int dy = -1; dy <= 1; ++dy)
@@ -456,161 +258,38 @@ public:
         return p; // no match
     }
 
-    // Safe direct drawing for small collections
-    void DrawPointsDirect(HDC targetHDC) {
-        std::unique_lock<std::mutex> lock(mutex);
+    void DrawPoints(HDC targetHDC) {
         for (const auto& p : points) {
             DrawBoldPoint(targetHDC, p.x, p.y, PointBoldness, p.color);
         }
     }
 
-    // Multithreaded drawing implementation with reentry protection
-    void DrawPoints(HDC targetHDC) {
-        // Only allow one thread to be drawing at a time
-        if (currentlyDrawing.exchange(true)) {
-            return; // Another thread is already drawing, skip this frame
-        }
+	void EachFrame(HDC& targetHDC) override {
+		DrawPoints(targetHDC);
+	}
 
-        // Guard for exception safety
-        struct DrawGuard {
-            std::atomic<bool>& flag;
-            DrawGuard(std::atomic<bool>& f) : flag(f) {}
-            ~DrawGuard() { flag = false; }
-        } guard(currentlyDrawing);
-
-        try {
-            // Validate HDC
-            if (!targetHDC) return;
-
-            // Get the number of points (thread-safe)
-            size_t numPoints;
-            {
-                std::unique_lock<std::mutex> lock(mutex);
-                numPoints = points.size();
-            }
-
-            // For very small collections, just draw directly
-            if (numPoints < 100) {
-                DrawPointsDirect(targetHDC);
-                return;
-            }
-
-            // Initialize thread pool if not already done
-            if (!threadsInitialized) {
-                InitializeThreadPool(targetHDC);
-            }
-
-            // Skip if threads failed to initialize
-            if (!threadsInitialized) {
-                DrawPointsDirect(targetHDC);
-                return;
-            }
-
-            // Signal all threads to start working
-            for (int i = 0; i < numThreads; i++) {
-                *threadDone[i] = false;
-                *frameReady[i] = true;
-            }
-            cv.notify_all();
-
-            // Wait for all threads to complete (with timeout protection)
-            bool allDone = false;
-            {
-                std::unique_lock<std::mutex> lock(mutex);
-                allDone = cv.wait_for(lock, std::chrono::milliseconds(100), [this]() {
-                    for (int i = 0; i < numThreads; i++) {
-                        if (!*threadDone[i]) return false;
-                    }
-                    return true;
-                    });
-            }
-
-            // If we timed out, some threads might still be working
-            if (!allDone) {
-                DrawPointsDirect(targetHDC);
-                return;
-            }
-
-            // Get client dimensions
-            RECT rect;
-            if (!GetClientRect(WindowFromDC(targetHDC), &rect)) {
-                DrawPointsDirect(targetHDC);
-                return;
-            }
-
-            int width = rect.right;
-            int height = rect.bottom;
-
-            // Create temporary DC for blending
-            HDC tempDC = CreateCompatibleDC(targetHDC);
-            if (!tempDC) {
-                DrawPointsDirect(targetHDC);
-                return;
-            }
-
-            HBITMAP tempBitmap = CreateCompatibleBitmap(targetHDC, width, height);
-            if (!tempBitmap) {
-                DeleteDC(tempDC);
-                DrawPointsDirect(targetHDC);
-                return;
-            }
-
-            HBITMAP oldTempBitmap = (HBITMAP)SelectObject(tempDC, tempBitmap);
-
-            // Clear the temp bitmap
-            RECT rc = { 0, 0, width, height };
-            FillRect(tempDC, &rc, (HBRUSH)GetStockObject(BLACK_BRUSH));
-
-            // Blend all thread bitmaps
-            for (int i = 0; i < numThreads; i++) {
-                if (threadHDCs[i]) {
-                    BitBlt(tempDC, 0, 0, width, height, threadHDCs[i], 0, 0, SRCPAINT);
-                }
-            }
-
-            // Copy to target
-            BitBlt(targetHDC, 0, 0, width, height, tempDC, 0, 0, SRCCOPY);
-
-            // Clean up temp resources
-            SelectObject(tempDC, oldTempBitmap);
-            DeleteObject(tempBitmap);
-            DeleteDC(tempDC);
-        }
-        catch (const std::exception& e) {
-            OutputDebugStringA(e.what());
-            // If multithreaded drawing fails, fall back to direct drawing
-            DrawPointsDirect(targetHDC);
-        }
-    }
 };
 
 
 
 // LineManager Class
-class LineManager {
+class LineManager : public IDrawEachFrame{
 private:
     std::unordered_set<Line, LineHash> lines;
 
-    PointManager* pointManager;
-
 public:
-    LineManager(PointManager* pm) : pointManager(pm) {}
 
-    void addLine(Point P, Point Q) {
-        Point intersectingPointP = pointManager->CheckIntersection(P);
-        Point intersectingPointQ = pointManager->CheckIntersection(Q);
+    LineManager() = default;
 
-		if (intersectingPointP == intersectingPointQ) { // if they are the same point, we don't need to add a line
-			return;
-		}
-
-        
-        lines.insert(Line(intersectingPointP, intersectingPointQ, GetColorFromInputs(rgb_window_handle))); // else add needed line with wanted color        
+    void addLine(Point& P, Point& Q) {
+        lines.insert({ P, Q, lastColorFromInputs });
     }
-    void removeLine(Point P, Point Q) {
-        lines.erase(Line(P, Q));
+
+    void removeLine(Point& P, Point& Q) {
+        lines.erase(Line{ P, Q });
     }
-    void removeLinesWithPoint(Point P) {
+
+    void removeLinesWithPoint(Point& P) {
         for (auto it = lines.begin(); it != lines.end();) {
             if (it->p1 == P || it->p2 == P) {
                 it = lines.erase(it);
@@ -620,69 +299,65 @@ public:
             }
         }
     }
-    void DrawLines(HDC hdc) {
-        for (const auto& line : lines) {
-            DrawLine(hdc, line, LineBoldness, line.color);
+
+    void DrawLines(HDC& targetHDC) {
+        for (const auto& l : lines) {
+            DrawLine(targetHDC, l, LineBoldness, l.color);
         }
     }
+
+    void EachFrame(HDC& targetHDC) override {
+        DrawLines(targetHDC);
+    }
+
 };
 
 
 // Function Definitions
-void DrawBoldPoint(HDC hdc, int x, int y, int boldness, COLORREF color) {
-	if (!PositionIsLegal({ x, y })) return; // Check if the position is legal before drawing
 
-    for (int i = -boldness; i <= boldness; ++i) {
-        for (int j = -boldness; j <= boldness; ++j) {
-            SetPixel(hdc, x + i, y + j, color);
-        }
-    }
+void LogMessage(const char* message) {
+    OutputDebugStringA(message);
+}
+
+void DrawBoldPoint(HDC& hdc, int x, int y, int boldness, COLORREF color) {
+    if (!PositionIsLegal({ x, y })) return;
+
+    HBRUSH brush = CreateSolidBrush(color);
+    HBRUSH oldBrush = (HBRUSH)SelectObject(hdc, brush);
+
+    // Draw a filled square centered at (x, y)
+    Rectangle(hdc, x - boldness, y - boldness, x + boldness + 1, y + boldness + 1);
+
+    SelectObject(hdc, oldBrush);
+    DeleteObject(brush);
 }
 
 void DrawTextAtMiddle(HDC hdc, Line line, const char* text, COLORREF color) {
-
-    // Set the text color
     SetTextColor(hdc, color);
+    SetBkMode(hdc, TRANSPARENT); 
 
-    // Get the size of the text to center it
     SIZE textSize;
     GetTextExtentPoint32A(hdc, text, strlen(text), &textSize);
 
-    // Adjust the Y-coordinate to be above the line
-    int textY = line.Middle.y - textSize.cy - 5; // 5 pixels above the midpoint
-
-    // Draw the text centered over the midpoint
     int textX = line.Middle.x - (textSize.cx / 2);
+    int textY = line.Middle.y - textSize.cy - 5;
+
     TextOutA(hdc, textX, textY, text, strlen(text));
 }
 
+
 void DrawLine(HDC& hdc, const Line& line, const int boldness, const COLORREF& color) {
-	Point p1 = line.p1;
-	Point p2 = line.p2;
+    if (!PositionIsLegal(line.p1) || !PositionIsLegal(line.p2)) return;
 
-    int dx = abs(p2.x - p1.x);
-    int dy = abs(p2.y - p1.y);
-    int sx = (p1.x < p2.x) ? 1 : -1;
-    int sy = (p1.y < p2.y) ? 1 : -1;
-    int err = dx - dy;
+    HPEN pen = CreatePen(PS_SOLID, boldness, color);
+    HPEN oldPen = (HPEN)SelectObject(hdc, pen);
 
-    while (true) {
-        if (PositionIsLegal(p1)) {
-            DrawBoldPoint(hdc, p1.x, p1.y, boldness, color);
-        }
-        if (p1.x == p2.x && p1.y == p2.y) break;
-        int e2 = 2 * err;
-        if (e2 > -dy) {
-            err -= dy;
-            p1.x += sx;
-        }
-        if (e2 < dx) {
-            err += dx;
-            p1.y += sy;
-        }
-    }
+    MoveToEx(hdc, line.p1.x, line.p1.y, nullptr);
+    LineTo(hdc, line.p2.x, line.p2.y);
 
-    // Draw text above the line at the midpoint
+    SelectObject(hdc, oldPen);
+    DeleteObject(pen);
+
     DrawTextAtMiddle(hdc, line, line.text, color);
 }
 
@@ -710,7 +385,6 @@ bool PositionIsLegal(Point p) {
 
 
 
-COLORREF lastColorFromInputs = WHITE;
 void OnLeftMouseDown(HWND hwnd) {
     POINT cursPos;
     GetCursorPos(&cursPos);
@@ -718,7 +392,6 @@ void OnLeftMouseDown(HWND hwnd) {
     Point toAdd = { cursPos.x, cursPos.y };
     if(!PositionIsLegal(toAdd)) return;
 	PointsToDraw->insert(toAdd);
-	lastColorFromInputs = GetColorFromInputs(rgb_window_handle);
 }
 
 
@@ -739,7 +412,7 @@ void OnLeftMouseUp(HWND hwnd) {
 	Point intersectionChecker = PointsToDraw->CheckIntersection(LastCursPos);
     Point lastPointDrawn = PointsToDraw->LastDrawn;
     if (!PositionIsLegal(intersectionChecker)) return;
-    LinesToDraw->addLine(lastPointDrawn, intersectionChecker);
+    if(lastPointDrawn != intersectionChecker) LinesToDraw->addLine(lastPointDrawn, intersectionChecker);
     PointsToDraw->insert(LastCursPos);
 }
 
@@ -751,7 +424,7 @@ void RemovePoint(Point p) {
 // Initialize the PointManager and LineManager objects
 void InitializeManagers() {
     PointsToDraw = new PointManager(drawingCapacity, 2* PointBoldness);
-    LinesToDraw = new LineManager(PointsToDraw);
+    LinesToDraw = new LineManager();
 }
 
 

@@ -9,11 +9,12 @@ bool InputFieldsManager::g_angleSpeedChanged = false;
 HWND InputFieldsManager::g_colorPreviewBox = NULL;
 
 
-InputField  AngleInput(104, L"0", L"Angle:"),
-			AngleChangeSpeedInput(105, L"0", L"Angle Change Speed:");
+InputField  AngleInputField(104, L"0", L"Angle:"),
+			AngleChangeSpeedInputField(105, L"0", L"Angle Change Speed:");
 
-ColorInputField PointColorInput(101, L"255", L"Point: ");
+ColorInputField PointColorInputField(101, L"255", L"Point: ");
 
+COLORREF lastColorFromInputs = RGB(255, 255, 255);
 
 template <typename T>
 T Clamp(T val, T minVal, T maxVal) {
@@ -26,13 +27,13 @@ COLORREF GetColorFromInputs(HWND rgb_window ) {
         return RGB(255, 255, 255);
     }
     BOOL success;
-    int r = GetDlgItemInt(rgb_window, PointColorInput.fields[REDi].id, &success, FALSE);
+    int r = GetDlgItemInt(rgb_window, PointColorInputField.fields[REDi].id, &success, FALSE);
     if (!success) r = 255;
 
-    int g = GetDlgItemInt(rgb_window, PointColorInput.fields[GREENi].id, &success, FALSE);
+    int g = GetDlgItemInt(rgb_window, PointColorInputField.fields[GREENi].id, &success, FALSE);
     if (!success) g = 255;
 
-    int b = GetDlgItemInt(rgb_window, PointColorInput.fields[BLUEi].id, &success, FALSE);
+    int b = GetDlgItemInt(rgb_window, PointColorInputField.fields[BLUEi].id, &success, FALSE);
     if (!success) b = 255;
 
     // Clamp values between 0 and 255
@@ -40,7 +41,8 @@ COLORREF GetColorFromInputs(HWND rgb_window ) {
     g = Clamp(g, 0, 255);
     b = Clamp(b, 0, 255);
 
-    return RGB(r, g, b);
+    lastColorFromInputs = RGB(r, g, b);
+    return lastColorFromInputs;
 }
 
 
@@ -49,7 +51,7 @@ int GetAngleFromInputs(HWND rgb_window ) {
         return 0;
     }
     BOOL success;
-    int angle = GetDlgItemInt(rgb_window, AngleInput.id, &success, FALSE);
+    int angle = GetDlgItemInt(rgb_window, AngleInputField.id, &success, FALSE);
     if (!success) angle = 0;
 
     // Clamp values between 0 and 360
@@ -66,7 +68,7 @@ double GetAngleChangeSpeedFromInputs(HWND rgb_window ) {
     }
     BOOL success;
     double MaxChangeSpeed = 0.2;
-    int rawValue = GetDlgItemInt(rgb_window, AngleChangeSpeedInput.id, &success, FALSE);
+    int rawValue = GetDlgItemInt(rgb_window, AngleChangeSpeedInputField.id, &success, FALSE);
     if (!success) rawValue = 0;
 
     double angleChangeSpeed = rawValue / 100.0; // Convert to percentage
@@ -87,7 +89,7 @@ double GetAngleChangeSpeedFromInputs(HWND rgb_window ) {
 
 
 std::vector<InputField> InputFieldsManager::inputFields = {
-    PointColorInput.fields[REDi], PointColorInput.fields[GREENi], PointColorInput.fields[BLUEi], AngleInput, AngleChangeSpeedInput
+    PointColorInputField.fields[REDi], PointColorInputField.fields[GREENi], PointColorInputField.fields[BLUEi], AngleInputField, AngleChangeSpeedInputField
 };
 
 int InputFieldsManager::InputTextWidth = 150;
@@ -125,7 +127,7 @@ void InputFieldsManager::initializeInputFields(HWND rgb_window) {
         SetWindowTextW(editField, field.defaultVal);
 
         //  If this is the Green field, place the preview box next to it
-        if (field.id == PointColorInput.fields[GREENi].id) {
+        if (field.id == PointColorInputField.fields[GREENi].id) {
             int previewBoxX = InputFieldX + InputFieldWidth + 10;
             int boxSize = InputTextHeight;
 

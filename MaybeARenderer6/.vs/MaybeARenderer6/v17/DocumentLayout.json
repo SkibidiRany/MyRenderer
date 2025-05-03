@@ -30,7 +30,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -43,6 +43,19 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{d3750d8a-574b-4fb3-b7e2-aa8af40e8231}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Utilities.h",
+              "DocumentMoniker": "C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\Utilities.h",
+              "RelativeDocumentMoniker": "Utilities.h",
+              "ToolTip": "C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\Utilities.h",
+              "RelativeToolTip": "Utilities.h",
+              "ViewState": "AgIAAH8BAAAAAAAAAAAuwNABAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-03-14T17:58:20.837Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Bookmark",
@@ -58,8 +71,7 @@
               "RelativeToolTip": "InputFields.cpp",
               "ViewState": "AgIAAAUAAAAAAAAAAAAQwCwAAAALAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-04-14T16:58:50.624Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-14T16:58:50.624Z"
             },
             {
               "$type": "Document",
@@ -71,21 +83,7 @@
               "RelativeToolTip": "InputFields.h",
               "ViewState": "AgIAADgAAAAAAAAAAAAAADAAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-04-14T16:58:35.457Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Utilities.h",
-              "DocumentMoniker": "C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\Utilities.h",
-              "RelativeDocumentMoniker": "Utilities.h",
-              "ToolTip": "C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\Utilities.h",
-              "RelativeToolTip": "Utilities.h",
-              "ViewState": "AgIAAIoAAAAAAAAAAAAAABMBAAARAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-03-14T17:58:20.837Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-14T16:58:35.457Z"
             },
             {
               "$type": "Document",
@@ -97,8 +95,7 @@
               "RelativeToolTip": "MaybeARenderer6.cpp",
               "ViewState": "AgIAAEsAAAAAAAAAAAAAAFwAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-03-13T19:10:06.567Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-13T19:10:06.567Z"
             },
             {
               "$type": "Document",

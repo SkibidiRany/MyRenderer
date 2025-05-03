@@ -58,8 +58,7 @@
               "RelativeToolTip": "InputFields.cpp",
               "ViewState": "AgIAAAUAAAAAAAAAAAAQwCwAAAALAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-04-14T16:58:50.624Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-14T16:58:50.624Z"
             },
             {
               "$type": "Document",
@@ -71,8 +70,7 @@
               "RelativeToolTip": "InputFields.h",
               "ViewState": "AgIAADgAAAAAAAAAAAAAADAAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-04-14T16:58:35.457Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-14T16:58:35.457Z"
             },
             {
               "$type": "Document",
@@ -80,9 +78,9 @@
               "Title": "Utilities.h",
               "DocumentMoniker": "C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\Utilities.h",
               "RelativeDocumentMoniker": "Utilities.h",
-              "ToolTip": "C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\Utilities.h*",
-              "RelativeToolTip": "Utilities.h*",
-              "ViewState": "AgIAAI8BAAAAAAAAAAAhwK4BAAAiAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\Utilities.h",
+              "RelativeToolTip": "Utilities.h",
+              "ViewState": "AgIAABMBAAAAAAAAAAAewF4BAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2025-03-14T17:58:20.837Z",
               "EditorCaption": ""

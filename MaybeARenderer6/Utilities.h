@@ -13,8 +13,11 @@
 #include <locale>
 #include <memory>
 #include <format>
+#include <string>
 
 using std::vector;
+using std::string;
+
 class PointManager;
 class LineManager;
 
@@ -122,20 +125,9 @@ struct PointHash {
 };
 
 
-double GetDistance(const Point& p1, const Point& p2) {
-    double dx = std::abs(p1.x - p2.x);
-    double dy = std::abs(p1.y - p2.y);
-    double dz = std::abs(p1.z - p2.z);
-
-    // Manual sort of dx, dy, dz to find max, mid, min
-    double maxD = dx, midD = dy, minD = dz;
-
-    if (maxD < midD) std::swap(maxD, midD);
-    if (midD < minD) std::swap(midD, minD);
-    if (maxD < midD) std::swap(maxD, midD);
-
-    return 0.939 * maxD + 0.389 * midD + 0.298 * minD;
-}
+double GetDistance(const Point& p1, const Point& p2);
+const char* GetDistanceAsConstChar(const Point& p1, const Point& p2);
+float fastSqrt(float number);
 
 
 
@@ -143,19 +135,21 @@ double GetDistance(const Point& p1, const Point& p2) {
 // Line Struct
 struct Line {
     Point p1 = {}, p2 = {}, Middle = {};
-    const char* text = "";
+    std::string text = ""; 
     COLORREF color = WHITE;
-    Line(const Point& a, const Point& b, COLORREF col = WHITE, const char* t = "") : p1(a), p2(b), color(col),
+
+    Line(const Point& a, const Point& b, COLORREF col = WHITE)
+        : p1(a), p2(b), color(col),
         Middle({ (p1.x + p2.x) / 2 ,
                  (p1.y + p2.y) / 2 ,
                  (p1.z + p2.z) / 2 , col }),
-        text(""/*(GetDistance(a, b))*/) {}
-
+        text(std::format("{:.2f}", GetDistance(a, b))) {}
 
     bool operator==(const Line& other) const {
         return (p1 == other.p1 && p2 == other.p2) || (p1 == other.p2 && p2 == other.p1);
     }
 };
+
 
 // Hash for Line
 struct LineHash {
@@ -169,9 +163,11 @@ Point pivot = { Middle.x , Middle.y, Middle.z };
 Point LastCursPos = { 0, 0, 0 };
 
 // Function Declarations
+
 void LogMessage(const char* message);
 void DrawBoldPoint(HDC& hdc, int x, int y, int boldness, COLORREF color = WHITE);
 void DrawLine(HDC& hdc, const Line& line, const int boldness, const COLORREF& color = WHITE);
+void DrawTextAtMiddle(HDC hdc, Line line, const char* text, COLORREF color = WHITE);
 Point MultiplyMatrixByPoint(const double matrix[3][3], const Point& p);
 Point RotatePointAround(Point p, Point pivot, double matrix[3][3]);
 bool PositionIsLegal(Point p);
@@ -314,6 +310,44 @@ public:
 
 
 // Function Definitions
+double GetDistance(const Point& p1, const Point& p2) {
+    double dx = std::abs(p1.x - p2.x);
+    double dy = std::abs(p1.y - p2.y);
+    double dz = std::abs(p1.z - p2.z);
+
+    // Manual sort of dx, dy, dz to find max, mid, min
+    double maxD = dx, midD = dy, minD = dz;
+
+    if (maxD < midD) std::swap(maxD, midD);
+    if (midD < minD) std::swap(midD, minD);
+    if (maxD < midD) std::swap(maxD, midD);
+
+    return 0.939 * maxD + 0.389 * midD + 0.298 * minD;
+}
+
+const char* GetDistanceAsConstChar(const Point& p1, const Point& p2)
+{
+	string distanceStr = std::format("{:.2f}", GetDistance(p1, p2));
+	const char* result = distanceStr.c_str();
+    return result;
+}
+
+float fastSqrt(float number) // copied off of wikipedia, based on Quake 3 fast inverse square root
+{
+    long i;
+    float x2, y;
+    const float threehalfs = 1.5F;
+
+    x2 = number * 0.5F;
+    y = number;
+    i = *(long*)&y;                       // evil floating point bit level hacking
+    i = 0x5f3759df - (i >> 1);               // what the fuck?
+    y = *(float*)&i;
+    y = y * (threehalfs - (x2 * y * y));   // 1st iteration
+    //	y  = y * ( threehalfs - ( x2 * y * y ) );   // 2nd iteration, this can be removed
+
+    return y;
+}
 
 void LogMessage(const char* message) {
     OutputDebugStringA(message);
@@ -358,7 +392,7 @@ void DrawLine(HDC& hdc, const Line& line, const int boldness, const COLORREF& co
     SelectObject(hdc, oldPen);
     DeleteObject(pen);
 
-    DrawTextAtMiddle(hdc, line, line.text, color);
+    DrawTextAtMiddle(hdc, line, line.text.c_str(), color);
 }
 
 Point MultiplyMatrixByPoint(const double matrix[3][3], const Point& p) {

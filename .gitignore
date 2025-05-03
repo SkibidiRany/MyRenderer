@@ -1,3 +1,5 @@
 MaybeARenderer6/.vs/MaybeARenderer6/FileContentIndex/24ed6473-1448-4f65-89fd-e31bc94f7bfc.vsidx
 MaybeARenderer6/.vs/MaybeARenderer6/FileContentIndex/24ed6473-1448-4f65-89fd-e31bc94f7bfc.vsidx
 *.vsidx
+*.ipch
+.ipch/

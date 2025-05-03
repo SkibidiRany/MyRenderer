@@ -27,7 +27,7 @@ public:
     virtual void DrawPoints(HDC hdc) const {
         if (hdc == NULL) throw std::runtime_error("Device context not initialized");
         for (const Point& p : Points) {
-            DrawBoldPoint(hdc, p.x, p.y, PointBoldness, p.color);
+            DrawBoldPoint(hdc, p, PointBoldness, p.color);
         }
     }
 
@@ -36,6 +36,7 @@ public:
         return Points;
     }
 };
+
 
 class Rect3D : public Shape {
 protected:
@@ -77,6 +78,7 @@ public:
 
     }
 };
+
 
 class Pyramid3D : public Shape {
 protected:
@@ -160,8 +162,6 @@ public:
 };
 
 
-
-
 class DoublePyramid3D : public Shape {
 
 public:
@@ -181,10 +181,10 @@ public:
 		if (hdc == NULL) throw std::runtime_error("Device context not initialized");
         
         for (int i = 0; i < 3; i++) 
-            DrawBoldPoint(hdc, Points[i].x, Points[i].y, PointBoldness, RED);
+            DrawBoldPoint(hdc, Points[i], PointBoldness, RED);
 		
 		for (int i = 3; i < 5; i++) 
-			DrawBoldPoint(hdc, Points[i].x, Points[i].y, PointBoldness, GREEN);
+			DrawBoldPoint(hdc, Points[i], PointBoldness, GREEN);
 	}
 
 
@@ -211,10 +211,6 @@ public:
 
 
 };
-
-
-
-
 
 
 class PolygonWith2Heads3D : public Shape {
@@ -275,12 +271,12 @@ public:
 
         // Draw base vertices in the desired color
         for (int i = 0; i < n; ++i) {
-            DrawBoldPoint(hdc, Points[i].x, Points[i].y, PointBoldness, BASE_COLOR);
+            DrawBoldPoint(hdc, Points[i], PointBoldness, BASE_COLOR);
         }
 
         // Draw front and back vertices in another color
-        DrawBoldPoint(hdc, Points[n].x, Points[n].y, PointBoldness, HEAD_COLOR);
-        DrawBoldPoint(hdc, Points[n + 1].x, Points[n + 1].y, PointBoldness, HEAD_COLOR);
+        DrawBoldPoint(hdc, Points[n], PointBoldness, HEAD_COLOR);
+        DrawBoldPoint(hdc, Points[n + 1], PointBoldness, HEAD_COLOR);
     }
 };
 
@@ -305,3 +301,6 @@ Shape* GetWantedDrawing(Drawings WantedDrawing) {
         return NULL;
     }
 }
+
+
+

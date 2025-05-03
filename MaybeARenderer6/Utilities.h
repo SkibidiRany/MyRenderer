@@ -50,7 +50,7 @@ const int LineBoldness = 1;
 
 
 double angle = 0;
-double angleChangeSpeed = 0.01;
+double angleChangeSpeed = 0.001;
 const bool AutoAngleChangeSpeed = false; // if false, the angle change speed will be set to the value in the input field
 
 const bool ToDrawShape = true;
@@ -81,16 +81,19 @@ struct Point {
     int x = 0;
     int y = 0;
     int z = 0;
+    
+    std::string CoordStr = "";
+
 
     COLORREF color = WHITE;
 
-	Point() : x(0), y(0), z(0), color(WHITE) {} // Default constructor
+	Point() : x(0), y(0), z(0), color(WHITE), CoordStr(std::format("{},{},{}",x,y,z)) {} // Default constructor
     // A constructor for implicit conversions
-    Point(int _d) : x(_d), y(_d), z(_d), color(WHITE) {} 
+    Point(int _d) : x(_d), y(_d), z(_d), color(WHITE), CoordStr(std::format("{},{},{}", x, y, z)) {}
 
 	// default / custom constructor
     Point(int _x, int _y, int _z = 0, COLORREF col = WHITE)
-        : x(_x), y(_y), z(_z), color(col) {}
+        : x(_x), y(_y), z(_z), color(col), CoordStr(std::format("{},{},{}", x, y, z)) {}
 
     bool operator==(const Point& other) const {
         return x == other.x && y == other.y && z == other.z;
@@ -135,7 +138,7 @@ float fastSqrt(float number);
 // Line Struct
 struct Line {
     Point p1 = {}, p2 = {}, Middle = {};
-    std::string text = ""; 
+    std::string lengthStr = ""; 
     COLORREF color = WHITE;
 
     Line(const Point& a, const Point& b, COLORREF col = WHITE)
@@ -143,7 +146,7 @@ struct Line {
         Middle({ (p1.x + p2.x) / 2 ,
                  (p1.y + p2.y) / 2 ,
                  (p1.z + p2.z) / 2 , col }),
-        text(std::format("{:.2f}", GetDistance(a, b))) {}
+        lengthStr(std::format("{:.2f}", GetDistance(a, b))) {}
 
     bool operator==(const Line& other) const {
         return (p1 == other.p1 && p2 == other.p2) || (p1 == other.p2 && p2 == other.p1);
@@ -165,7 +168,7 @@ Point LastCursPos = { 0, 0, 0 };
 // Function Declarations
 
 void LogMessage(const char* message);
-void DrawBoldPoint(HDC& hdc, int x, int y, int boldness, COLORREF color = WHITE);
+void DrawBoldPoint(HDC& hdc, const Point& p, int boldness, COLORREF color = WHITE);
 void DrawLine(HDC& hdc, const Line& line, const int boldness, const COLORREF& color = WHITE);
 void DrawTextAtMiddle(HDC hdc, Line line, const char* text, COLORREF color = WHITE);
 Point MultiplyMatrixByPoint(const double matrix[3][3], const Point& p);
@@ -256,7 +259,7 @@ public:
 
     void DrawPoints(HDC targetHDC) {
         for (const auto& p : points) {
-            DrawBoldPoint(targetHDC, p.x, p.y, PointBoldness, p.color);
+            DrawBoldPoint(targetHDC, p, PointBoldness, p.color);
         }
     }
 
@@ -353,17 +356,25 @@ void LogMessage(const char* message) {
     OutputDebugStringA(message);
 }
 
-void DrawBoldPoint(HDC& hdc, int x, int y, int boldness, COLORREF color) {
-    if (!PositionIsLegal({ x, y })) return;
+void DrawBoldPoint(HDC& hdc, const Point& p, int boldness, COLORREF color) {
+    if (!PositionIsLegal(p)) return;
 
     HBRUSH brush = CreateSolidBrush(color);
     HBRUSH oldBrush = (HBRUSH)SelectObject(hdc, brush);
 
     // Draw a filled square centered at (x, y)
-    Rectangle(hdc, x - boldness, y - boldness, x + boldness + 1, y + boldness + 1);
+    Rectangle(hdc, p.x - boldness, p.y - boldness, p.x + boldness + 1, p.y + boldness + 1);
 
     SelectObject(hdc, oldBrush);
     DeleteObject(brush);
+
+
+    int textOffsetX = boldness + 4;
+    int textOffsetY = -boldness - 4;
+
+
+    const char* coords = p.CoordStr.c_str();
+    TextOutA(hdc, p.x + textOffsetX, p.y + textOffsetY, coords, strlen(coords));
 }
 
 void DrawTextAtMiddle(HDC hdc, Line line, const char* text, COLORREF color) {
@@ -392,7 +403,7 @@ void DrawLine(HDC& hdc, const Line& line, const int boldness, const COLORREF& co
     SelectObject(hdc, oldPen);
     DeleteObject(pen);
 
-    DrawTextAtMiddle(hdc, line, line.text.c_str(), color);
+    DrawTextAtMiddle(hdc, line, line.lengthStr.c_str(), color);
 }
 
 Point MultiplyMatrixByPoint(const double matrix[3][3], const Point& p) {

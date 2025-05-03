@@ -71,7 +71,7 @@ double GetAngleChangeSpeedFromInputs(HWND rgb_window ) {
     int rawValue = GetDlgItemInt(rgb_window, AngleChangeSpeedInputField.id, &success, FALSE);
     if (!success) rawValue = 0;
 
-    double angleChangeSpeed = rawValue / 100.0; // Convert to percentage
+    double angleChangeSpeed = rawValue / 1000.0; // Convert to milli
 
     // Clamp it between 0 and MaxChangeSpeed
     angleChangeSpeed = Clamp(angleChangeSpeed, 0.0, MaxChangeSpeed);

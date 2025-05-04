@@ -304,3 +304,110 @@ Shape* GetWantedDrawing(Drawings WantedDrawing) {
 
 
 
+class ShapeRotationManager : public IDrawEachFrame {
+private:
+    bool isRotating = false;
+    int lastMouseX = 0;
+    int lastMouseY = 0;
+    float yaw = 0.0f;
+    float pitch = 0.0f;
+
+    Shape* shape = nullptr;
+
+    float Clamp(float value, float min, float max) {
+        if (value < min) return min;
+        if (value > max) return max;
+        return value;
+    }
+
+    void MakeRotationMatrixX(float angleDeg, double matrix[3][3]) {
+        float rad = angleDeg * 3.14159265f / 180.0f;
+        matrix[0][0] = 1; matrix[0][1] = 0;           matrix[0][2] = 0;
+        matrix[1][0] = 0; matrix[1][1] = cos(rad);    matrix[1][2] = -sin(rad);
+        matrix[2][0] = 0; matrix[2][1] = sin(rad);    matrix[2][2] = cos(rad);
+    }
+
+    void MakeRotationMatrixY(float angleDeg, double matrix[3][3]) {
+        float rad = angleDeg * 3.14159265f / 180.0f;
+        matrix[0][0] = cos(rad);  matrix[0][1] = 0; matrix[0][2] = sin(rad);
+        matrix[1][0] = 0;         matrix[1][1] = 1; matrix[1][2] = 0;
+        matrix[2][0] = -sin(rad); matrix[2][1] = 0; matrix[2][2] = cos(rad);
+    }
+
+public:
+    void SetShape(Shape* s) {
+        shape = s;
+    }
+
+    void OnMouseDown(int button, int x, int y) {
+        if (button == VK_RBUTTON) {
+            isRotating = true;
+            lastMouseX = x;
+            lastMouseY = y;
+        }
+    }
+
+    void OnMouseUp(int button) {
+        if (button == VK_RBUTTON) {
+            isRotating = false;
+        }
+    }
+
+    void OnMouseMove(int x, int y) {
+        if (!isRotating || !shape) return;
+
+        int dx = x - lastMouseX;
+        int dy = y - lastMouseY;
+
+        float sensitivity = 0.5f;
+        yaw += dx * sensitivity;
+        pitch += dy * sensitivity;
+
+        pitch = Clamp(pitch, -89.0f, 89.0f);
+
+        lastMouseX = x;
+        lastMouseY = y;
+    }
+
+    void EachFrame(HDC& targethdc) override {
+        if (!shape) return;
+
+		if (isRotating) {
+			Point p = GetCursPos(window_handle);
+            OnMouseMove(p.x,p.y);
+		}
+
+        double rotX[3][3];
+        double rotY[3][3];
+        double rotZ[3][3] = {
+            {1, 0, 0}, // Identity matrix for Z — no roll
+            {0, 1, 0},
+            {0, 0, 1}
+        };
+
+        MakeRotationMatrixX(pitch, rotX);
+        MakeRotationMatrixY(yaw, rotY);
+
+        shape->RotatePoints(rotX, rotY, rotZ);
+        shape->DrawLines(targethdc);
+        shape->DrawPoints(targethdc);
+    }
+};
+
+
+
+
+ShapeRotationManager* ShapeRotator = new ShapeRotationManager();
+
+
+void OnRightMouseDown(HWND hwnd) {
+	Point cursPos = GetCursPos(hwnd);
+	ShapeRotator->OnMouseDown(VK_RBUTTON, cursPos.x, cursPos.y);
+}
+
+
+
+void OnRightMouseUp() {
+    ShapeRotator->OnMouseUp(VK_RBUTTON);
+}
+

@@ -82,18 +82,17 @@ struct Point {
     int y = 0;
     int z = 0;
     
-    std::string CoordStr = "";
 
 
     COLORREF color = WHITE;
 
-	Point() : x(0), y(0), z(0), color(WHITE), CoordStr(std::format("{},{},{}",x,y,z)) {} // Default constructor
+	Point() : x(0), y(0), z(0), color(WHITE) {} // Default constructor
     // A constructor for implicit conversions
-    Point(int _d) : x(_d), y(_d), z(_d), color(WHITE), CoordStr(std::format("{},{},{}", x, y, z)) {}
+    Point(int _d) : x(_d), y(_d), z(_d), color(WHITE) {}
 
 	// default / custom constructor
     Point(int _x, int _y, int _z = 0, COLORREF col = WHITE)
-        : x(_x), y(_y), z(_z), color(col), CoordStr(std::format("{},{},{}", x, y, z)) {}
+        : x(_x), y(_y), z(_z), color(col) {}
 
     bool operator==(const Point& other) const {
         return x == other.x && y == other.y && z == other.z;
@@ -166,7 +165,7 @@ Point pivot = { Middle.x , Middle.y, Middle.z };
 Point LastCursPos = { 0, 0, 0 };
 
 // Function Declarations
-
+Point GetCursPos(HWND hwnd);
 void LogMessage(const char* message);
 void DrawBoldPoint(HDC& hdc, const Point& p, int boldness, COLORREF color = WHITE);
 void DrawLine(HDC& hdc, const Line& line, const int boldness, const COLORREF& color = WHITE);
@@ -312,6 +311,10 @@ public:
 };
 
 
+
+
+
+
 // Function Definitions
 double GetDistance(const Point& p1, const Point& p2) {
     double dx = std::abs(p1.x - p2.x);
@@ -373,7 +376,8 @@ void DrawBoldPoint(HDC& hdc, const Point& p, int boldness, COLORREF color) {
     int textOffsetY = -boldness - 4;
 
 
-    const char* coords = p.CoordStr.c_str();
+    std::string formatted = std::format("({},{},{})", p.x, p.y, p.z);
+    const char* coords = formatted.c_str();
     TextOutA(hdc, p.x + textOffsetX, p.y + textOffsetY, coords, strlen(coords));
 }
 
@@ -431,10 +435,8 @@ bool PositionIsLegal(Point p) {
 
 
 void OnLeftMouseDown(HWND hwnd) {
-    POINT cursPos;
-    GetCursorPos(&cursPos);
-    ScreenToClient(hwnd, &cursPos);
-    Point toAdd = { cursPos.x, cursPos.y };
+    Point toAdd = GetCursPos(hwnd);
+
     if(!PositionIsLegal(toAdd)) return;
 	PointsToDraw->insert(toAdd);
 }
@@ -443,10 +445,8 @@ void OnLeftMouseDown(HWND hwnd) {
 
 
 void OnLeftMouseHold(HWND hwnd, HDC hdc) {
-	POINT cursPos;
-	GetCursorPos(&cursPos);
-	ScreenToClient(hwnd, &cursPos);
-	LastCursPos = { cursPos.x, cursPos.y };
+
+    LastCursPos = GetCursPos(hwnd);
 	if (!PositionIsLegal(LastCursPos)) return;
     DrawLine(hdc, Line({ LastCursPos, PointsToDraw->LastDrawn }), LineBoldness, lastColorFromInputs);
 
@@ -460,6 +460,16 @@ void OnLeftMouseUp(HWND hwnd) {
     if(lastPointDrawn != intersectionChecker) LinesToDraw->addLine(lastPointDrawn, intersectionChecker);
     PointsToDraw->insert(LastCursPos);
 }
+
+
+
+Point GetCursPos(HWND hwnd) {
+	POINT cursPos;
+	GetCursorPos(&cursPos);
+	ScreenToClient(hwnd, &cursPos);
+	return { cursPos.x, cursPos.y };
+}
+
 
 void RemovePoint(Point p) {
     PointsToDraw->remove(p);

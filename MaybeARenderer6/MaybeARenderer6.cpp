@@ -33,6 +33,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pCmdLine, 
 
     Shape* myShape = GetWantedDrawing(WantedDrawing);
     
+	ShapeRotator->SetShape(myShape);
 
     if (myShape == NULL) return -1;
 
@@ -92,7 +93,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pCmdLine, 
 
         PointsToDraw->EachFrame(memDC);
 		LinesToDraw->EachFrame(memDC);
-
+		ShapeRotator->EachFrame(memDC);
 
         // Copy the off-screen buffer to the screen
         BitBlt(hdc, 0, 0, screenWidth, screenHeight, memDC, 0, 0, SRCCOPY);
@@ -143,6 +144,13 @@ LRESULT CALLBACK WindowProcessMessage(HWND window_handle, UINT message, WPARAM w
         break;
     case WM_LBUTTONUP:
 		OnLeftMouseUp(window_handle);
+        break;
+    case WM_RBUTTONDOWN:
+		OnRightMouseDown(window_handle);
+		break;
+    case WM_RBUTTONUP:
+		OnRightMouseUp();
+		break;
     default:
         return DefWindowProc(window_handle, message, wParam, lParam);
     }

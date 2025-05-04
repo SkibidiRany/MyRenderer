@@ -312,6 +312,8 @@ private:
     float yaw = 0.0f;
     float pitch = 0.0f;
 
+    
+
     Shape* shape = nullptr;
 
     float Clamp(float value, float min, float max) {
@@ -339,18 +341,14 @@ public:
         shape = s;
     }
 
-    void OnMouseDown(int button, int x, int y) {
-        if (button == VK_RBUTTON) {
+    void OnMouseDown(int x, int y) {
             isRotating = true;
             lastMouseX = x;
             lastMouseY = y;
-        }
     }
 
-    void OnMouseUp(int button) {
-        if (button == VK_RBUTTON) {
-            isRotating = false;
-        }
+    void OnMouseUp() {
+        isRotating = false;
     }
 
     void OnMouseMove(int x, int y) {
@@ -402,12 +400,12 @@ ShapeRotationManager* ShapeRotator = new ShapeRotationManager();
 
 void OnRightMouseDown(HWND hwnd) {
 	Point cursPos = GetCursPos(hwnd);
-	ShapeRotator->OnMouseDown(VK_RBUTTON, cursPos.x, cursPos.y);
+	ShapeRotator->OnMouseDown(cursPos.x, cursPos.y);
 }
 
 
 
 void OnRightMouseUp() {
-    ShapeRotator->OnMouseUp(VK_RBUTTON);
+    ShapeRotator->OnMouseUp();
 }
 

@@ -378,6 +378,7 @@ void DrawBoldPoint(HDC& hdc, const Point& p, int boldness, COLORREF color) {
 
     std::string formatted = std::format("({},{},{})", p.x, p.y, p.z);
     const char* coords = formatted.c_str();
+    SetTextColor(hdc, color);
     TextOutA(hdc, p.x + textOffsetX, p.y + textOffsetY, coords, strlen(coords));
 }
 

@@ -14,6 +14,9 @@ TODO :
 					 this is weird, I don't have time to look through it now. will need to fix it later.
 
 
+----- FIX: On left mouse button hold, all other points (NOT including Points deriving from shape class) change their color to the last color we got from the RGB inputs.  DONE
+
+
 - The code Needs HEAVY reactoring, it works but it is getting closer to being spaghetti, here is the architecture I am thinking about currently:
 					# Global parameters in Utilities.h
 					# Base functions in myFunctions.h

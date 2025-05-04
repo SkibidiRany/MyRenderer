@@ -1,11 +1,11 @@
 ﻿  MaybeARenderer6.cpp
-C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\Utilities.h(381,71): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\Utilities.h(382,71): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
   (compiling source file 'MaybeARenderer6.cpp')
   
-C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\Utilities.h(389,44): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\Utilities.h(390,44): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
   (compiling source file 'MaybeARenderer6.cpp')
   
-C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\Utilities.h(394,45): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\Utilities.h(395,45): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
   (compiling source file 'MaybeARenderer6.cpp')
   
 C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\Shapes.h(229,19): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data

@@ -58,7 +58,7 @@ const bool AutoRotate = true;
 
 const int drawingCapacity = 60;
 
-
+char FlushButton = 'R';
 
 
 
@@ -185,9 +185,12 @@ interface IDrawEachFrame {
     virtual void EachFrame(HDC& targethdc) = 0;
 };
 
+interface IFlushable {
+	virtual void Flush() = 0;
+};
 
 // PointManager Class
-class PointManager : public IDrawEachFrame {
+class PointManager : public IDrawEachFrame, public IFlushable {
 private:
     std::unordered_map<Point, std::vector<Point>, PointHash> buckets;
     std::unordered_set<Point, PointHash> points;
@@ -266,12 +269,18 @@ public:
 		DrawPoints(targetHDC);
 	}
 
+    void Flush() override {
+        buckets.clear();
+        points.clear();
+        insertionOrder.empty();
+    }
+
 };
 
 
 
 // LineManager Class
-class LineManager : public IDrawEachFrame{
+class LineManager : public IDrawEachFrame, public IFlushable {
 private:
     std::unordered_set<Line, LineHash> lines;
 
@@ -306,6 +315,10 @@ public:
 
     void EachFrame(HDC& targetHDC) override {
         DrawLines(targetHDC);
+    }
+
+    void Flush() override {
+        lines.clear();
     }
 
 };
@@ -487,3 +500,7 @@ void InitializeManagers() {
 }
 
 
+void FlushScreen() {
+    LinesToDraw->Flush();
+    PointsToDraw->Flush();
+}

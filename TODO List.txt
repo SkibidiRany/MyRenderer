@@ -1,26 +1,26 @@
 TODO : 
-- Add Input Field inheritance.   I don't want to add this
-- ADD THREADS TO DRAWING LOGIC TO BOOST PERFORMANCE.  	FAILED - no can do
+-1	Add Input Field inheritance.   I don't want to add this
+-1	ADD THREADS TO DRAWING LOGIC TO BOOST PERFORMANCE.  	FAILED - no can do
 
 
-- Add text on midpoint functionality:
+1	Add text on midpoint functionality:
 	add:   DONE
 	FIX DRAWING RECTANGLE INSTEAD OF TEXT BUG. DONE
 	
-- Add rotating using right mouse button.   	DONE
+1 	Add rotating using right mouse button.   	DONE
 
 
---------- This came back again"	FIX DRAWING RECTANGLE INSTEAD OF TEXT BUG. DONE", but this time it is only for DRAWING THE COORDS OF POINTS in shapes deriving from shape class.
-					 this is weird, I don't have time to look through it now. will need to fix it later.   DONE
+1 	This came back again"	FIX DRAWING RECTANGLE INSTEAD OF TEXT BUG. DONE", but this time it is only for DRAWING THE COORDS OF POINTS in shapes deriving from shape class.
+					this is weird, I don't have time to look through it now. will need to fix it later.   DONE
 
 
------ FIX: On left mouse button hold, all other points (NOT including Points deriving from shape class) change their color to the last color we got from the RGB inputs.  DONE
+1 	FIX: On left mouse button hold, all other points (NOT including Points deriving from shape class) change their color to the last color we got from the RGB inputs.  DONE
 
 
------ The code Needs HEAVY reactoring, it works but it is getting closer to being spaghetti, here is the architecture I am thinking about currently:
+0	The code Needs HEAVY reactoring, it works but it is getting closer to being spaghetti, here is the architecture I am thinking about currently:
 					# Global parameters in Utilities.h
 					# Base functions in myFunctions.h
 					# Base classes and interfaces in myClasses.h
 					# InputFields.h and InputFields.cpp as is
 
-- Add flush screen drawings button.
+1	Add flush screen drawings button. DONE

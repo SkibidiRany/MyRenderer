@@ -1,23 +1,26 @@
 ﻿  MaybeARenderer6.cpp
-C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\Utilities.h(385,71): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\Utilities.h(275,29): warning C4858: discarding return value: This member function returns a bool indicating whether the collection is empty and has no other effects. It is not useful to call this member function and discard the return value. This collection can be cleared by assigning an empty value to it.
   (compiling source file 'MaybeARenderer6.cpp')
   
-C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\Utilities.h(393,44): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\Utilities.h(398,71): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
   (compiling source file 'MaybeARenderer6.cpp')
   
-C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\Utilities.h(398,45): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\Utilities.h(406,44): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
   (compiling source file 'MaybeARenderer6.cpp')
   
-C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\Shapes.h(229,19): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\Utilities.h(411,45): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
   (compiling source file 'MaybeARenderer6.cpp')
   
 C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\Shapes.h(230,19): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
   (compiling source file 'MaybeARenderer6.cpp')
   
-C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\Shapes.h(248,15): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\Shapes.h(231,19): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
   (compiling source file 'MaybeARenderer6.cpp')
   
-C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\Shapes.h(270,15): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\Shapes.h(249,15): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  (compiling source file 'MaybeARenderer6.cpp')
+  
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\Shapes.h(271,15): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
   (compiling source file 'MaybeARenderer6.cpp')
   
   MaybeARenderer6.vcxproj -> C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\x64\Debug\MaybeARenderer6.exe

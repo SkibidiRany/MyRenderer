@@ -10,6 +10,7 @@
 using std::vector;
 
 
+Shape* myShape;
 
 
 
@@ -31,9 +32,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pCmdLine, 
 
     InitializeManagers();
 
-    Shape* myShape = GetWantedDrawing(WantedDrawing);
+    myShape = GetWantedDrawing(WantedDrawing);
     
-	ShapeRotator->SetShape(myShape);
+    shapeManager->SetShape(myShape);
 
     if (myShape == NULL) return -1;
 
@@ -78,10 +79,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pCmdLine, 
             {sin(angle), cos(angle), 0},
             {0, 0, 1}
         };
-        if (ToDrawShape) {
-            myShape->DrawPoints(memDC);
-            myShape->DrawLines(memDC);
-            if (ToRotate) myShape->RotatePoints(ToRotate[X] ? RotateX : NULL, ToRotate[Y] ? RotateY : NULL, ToRotate[Z] ? RotateZ : NULL);
+        if (ToDrawShape){
+            shapeManager->EachFrame(memDC);
         }
 
 
@@ -93,7 +92,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pCmdLine, 
 
         PointsToDraw->EachFrame(memDC);
 		LinesToDraw->EachFrame(memDC);
-		ShapeRotator->EachFrame(memDC);
 
         // Copy the off-screen buffer to the screen
         BitBlt(hdc, 0, 0, screenWidth, screenHeight, memDC, 0, 0, SRCCOPY);
@@ -151,6 +149,12 @@ LRESULT CALLBACK WindowProcessMessage(HWND window_handle, UINT message, WPARAM w
     case WM_RBUTTONUP:
 		OnRightMouseUp();
 		break;
+    case WM_KEYDOWN:
+        if (wParam == FlushButton) {
+            FlushScreen();
+            shapeManager->Flush();
+        }
+        break;
     default:
         return DefWindowProc(window_handle, message, wParam, lParam);
     }

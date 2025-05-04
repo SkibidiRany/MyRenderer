@@ -4,7 +4,7 @@
 #include <stdexcept>
 using std::vector;
 
-class Shape {
+class Shape{
 protected:
     vector<Point> Points;
     vector<Point> OriginalPoints; // Store the original positions
@@ -35,6 +35,7 @@ public:
     vector<Point> GetPoints() const {
         return Points;
     }
+
 };
 
 
@@ -304,7 +305,7 @@ Shape* GetWantedDrawing(Drawings WantedDrawing) {
 
 
 
-class ShapeRotationManager : public IDrawEachFrame {
+class ShapeManager : public IDrawEachFrame, public IFlushable {
 private:
     bool isRotating = false;
     int lastMouseX = 0;
@@ -341,17 +342,17 @@ public:
         shape = s;
     }
 
-    void OnMouseDown(int x, int y) {
+    void OnRightMouseDown(int x, int y) {
             isRotating = true;
             lastMouseX = x;
             lastMouseY = y;
     }
 
-    void OnMouseUp() {
+    void OnRightMouseUp() {
         isRotating = false;
     }
 
-    void OnMouseMove(int x, int y) {
+    void OnRightMouseMove(int x, int y) {
         if (!isRotating || !shape) return;
 
         int dx = x - lastMouseX;
@@ -372,7 +373,7 @@ public:
 
 		if (isRotating) {
 			Point p = GetCursPos(window_handle);
-            OnMouseMove(p.x,p.y);
+            OnRightMouseMove(p.x,p.y);
 		}
 
         double rotX[3][3];
@@ -390,22 +391,29 @@ public:
         shape->DrawLines(targethdc);
         shape->DrawPoints(targethdc);
     }
+
+    void Flush() override {
+        if (shape) {
+            delete shape;
+            shape = nullptr;
+        }
+    }
 };
 
 
 
 
-ShapeRotationManager* ShapeRotator = new ShapeRotationManager();
+ShapeManager* shapeManager = new ShapeManager();
 
 
 void OnRightMouseDown(HWND hwnd) {
 	Point cursPos = GetCursPos(hwnd);
-	ShapeRotator->OnMouseDown(cursPos.x, cursPos.y);
+    shapeManager->OnRightMouseDown(cursPos.x, cursPos.y);
 }
 
 
 
 void OnRightMouseUp() {
-    ShapeRotator->OnMouseUp();
+    shapeManager->OnRightMouseUp();
 }
 

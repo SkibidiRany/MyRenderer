@@ -1,8 +1,18 @@
 #pragma once
-#include "Utilities.h"
 #include <vector>
 #include <stdexcept>
+
+#include "Constants.h"
+#include "MyClasses.h"
+#include "DrawingFunctions.h"
+#include "BaseFunctions.h"
+
+
+
 using std::vector;
+
+extern struct Point pivot;
+extern struct Point Middle;
 
 class Shape{
 protected:
@@ -125,8 +135,8 @@ public:
         : Shape({
             {Middle.x, Middle.y, Middle.z - depth / 2},  // A 
             {Middle.x, Middle.y, Middle.z + depth / 2},   // B
-            {Middle.x, Middle.y - height / 4, Middle.z, RED}, // C
-            {Middle.x + width / 4, Middle.y - height / 2, Middle.z, BLUE}, // D
+            {Middle.x, Middle.y - height / 4, Middle.z}, // C
+            {Middle.x + width / 4, Middle.y - height / 2, Middle.z}, // D
             {Middle.x + width / 2, Middle.y - height / 4, Middle.z}, // E
             {Middle.x, Middle.y + height / 2, Middle.z},   // F
             {Middle.x - width / 2, Middle.y - height / 4, Middle.z}, // G
@@ -182,10 +192,10 @@ public:
 		if (hdc == NULL) throw std::runtime_error("Device context not initialized");
         
         for (int i = 0; i < 3; i++) 
-            DrawBoldPoint(hdc, Points[i], PointBoldness, RED);
+            DrawBoldPoint(hdc, Points[i], PointBoldness, MyColors.RED);
 		
 		for (int i = 3; i < 5; i++) 
-			DrawBoldPoint(hdc, Points[i], PointBoldness, GREEN);
+			DrawBoldPoint(hdc, Points[i], PointBoldness, MyColors.GREEN);
 	}
 
 
@@ -216,9 +226,9 @@ public:
 
 class PolygonWith2Heads3D : public Shape {
 protected: 
-	COLORREF BASE_COLOR = RED;
-	COLORREF HEAD_COLOR = GREEN;
-    COLORREF LINE_COLOR = BLUE;
+	COLORREF BASE_COLOR = MyColors.RED;
+	COLORREF HEAD_COLOR = MyColors.GREEN;
+    COLORREF LINE_COLOR = MyColors.BLUE;
 private:
     std::vector<Point> GeneratePolygonVertices(int n, double r, double h) {
         std::vector<Point> vertices;

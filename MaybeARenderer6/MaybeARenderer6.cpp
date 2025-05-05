@@ -4,7 +4,8 @@
 #include <vector>
 #include "Shapes.h"
 #include "Utilities.h"
-#include "InputFields.h"
+#include "MyFunctions.h"
+#include "InputFunctions.h"
 #include <string>
 #include <iostream>
 using std::vector;
@@ -12,7 +13,10 @@ using std::vector;
 
 Shape* myShape;
 
-
+void InitializeManagers() {
+    PointsToDraw = new PointManager(drawingCapacity, 2 * PointBoldness);
+    LinesToDraw = new LineManager();
+}
 
 LRESULT CALLBACK WindowProcessMessage(HWND, UINT, WPARAM, LPARAM);
 LRESULT CALLBACK RGBWindowProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
@@ -85,7 +89,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pCmdLine, 
 
 
 		if ((GetKeyState(VK_LBUTTON) & 0x100) != 0) {
-			OnLeftMouseHold(window_handle, memDC);
+			LastCursPos = OnLeftMouseHold(window_handle, memDC, PointsToDraw, PointBoldness, lastColorFromInputs);
 		}
         
 
@@ -138,10 +142,10 @@ LRESULT CALLBACK WindowProcessMessage(HWND window_handle, UINT message, WPARAM w
         PostQuitMessage(0);
         return 0;
     case WM_LBUTTONDOWN:
-        OnLeftMouseDown(window_handle);
+        OnLeftMouseDown(window_handle, PointsToDraw);
         break;
     case WM_LBUTTONUP:
-		OnLeftMouseUp(window_handle);
+		OnLeftMouseUp(window_handle, LastCursPos, PointsToDraw, LinesToDraw);
         break;
     case WM_RBUTTONDOWN:
 		OnRightMouseDown(window_handle);
@@ -151,7 +155,7 @@ LRESULT CALLBACK WindowProcessMessage(HWND window_handle, UINT message, WPARAM w
 		break;
     case WM_KEYDOWN:
         if (wParam == FlushButton) {
-            FlushScreen();
+            FlushScreen(PointsToDraw, LinesToDraw);
             shapeManager->Flush();
         }
         break;

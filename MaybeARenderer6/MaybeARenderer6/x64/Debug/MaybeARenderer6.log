@@ -1,26 +1,491 @@
-﻿  MaybeARenderer6.cpp
-C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\Utilities.h(275,29): warning C4858: discarding return value: This member function returns a bool indicating whether the collection is empty and has no other effects. It is not useful to call this member function and discard the return value. This collection can be cleared by assigning an empty value to it.
+﻿  InputFunctions.cpp
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\InputFunctions.h(5,14): warning C4091: 'extern ': ignored on left of 'PointManager' when no variable is declared
+  (compiling source file 'InputFunctions.cpp')
+  
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\InputFunctions.h(6,14): warning C4091: 'extern ': ignored on left of 'LineManager' when no variable is declared
+  (compiling source file 'InputFunctions.cpp')
+  
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\InputFunctions.h(7,15): warning C4091: 'extern ': ignored on left of 'Point' when no variable is declared
+  (compiling source file 'InputFunctions.cpp')
+  
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\PointManager.h(10,14): warning C4099: 'Point': type name first seen using 'struct' now seen using 'class'
+  (compiling source file 'InputFunctions.cpp')
+      C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\InputFunctions.h(7,15):
+      see declaration of 'Point'
+  
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\PointManager.h(10,14): warning C4091: 'extern ': ignored on left of 'Point' when no variable is declared
+  (compiling source file 'InputFunctions.cpp')
+  
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\PointManager.h(11,14): warning C4091: 'extern ': ignored on left of 'Line' when no variable is declared
+  (compiling source file 'InputFunctions.cpp')
+  
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\PointManager.h(12,14): warning C4091: 'extern ': ignored on left of 'PointHash' when no variable is declared
+  (compiling source file 'InputFunctions.cpp')
+  
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\PointManager.h(13,14): warning C4091: 'extern ': ignored on left of 'LineHash' when no variable is declared
+  (compiling source file 'InputFunctions.cpp')
+  
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\PointManager.h(18,29): error C2504: 'IDrawEachFrame': base class undefined
+  (compiling source file 'InputFunctions.cpp')
+  
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\PointManager.h(18,52): error C2504: 'IFlushable': base class undefined
+  (compiling source file 'InputFunctions.cpp')
+  
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xmemory(1485,42): error C2139: 'PointHash': an undefined class is not allowed as an argument to compiler intrinsic type trait '__is_empty'
+  (compiling source file 'InputFunctions.cpp')
+      C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\PointManager.h(12,14):
+      see declaration of 'PointHash'
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xmemory(1485,42):
+      the template instantiation context (the oldest one first) is
+          C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\PointManager.h(20,62):
+          see reference to class template instantiation 'std::unordered_map<Point,std::vector<Point,std::allocator<Point>>,PointHash,std::equal_to<Point>,std::allocator<std::pair<const Point,std::vector<Point,std::allocator<Point>>>>>' being compiled
+          C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\unordered_map(61,30):
+          see reference to class template instantiation 'std::_Hash<std::_Umap_traits<_Kty,_Ty,std::_Uhash_compare<_Kty,_Hasher,_Keyeq>,_Alloc,false>>' being compiled
+          with
+          [
+              _Kty=Point,
+              _Ty=std::vector<Point,std::allocator<Point>>,
+              _Hasher=PointHash,
+              _Keyeq=std::equal_to<Point>,
+              _Alloc=std::allocator<std::pair<const Point,std::vector<Point,std::allocator<Point>>>>
+          ]
+          C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xhash(332,56):
+          see reference to class template instantiation 'std::_Umap_traits<_Kty,_Ty,std::_Uhash_compare<_Kty,_Hasher,_Keyeq>,_Alloc,false>' being compiled
+          with
+          [
+              _Kty=Point,
+              _Ty=std::vector<Point,std::allocator<Point>>,
+              _Hasher=PointHash,
+              _Keyeq=std::equal_to<Point>,
+              _Alloc=std::allocator<std::pair<const Point,std::vector<Point,std::allocator<Point>>>>
+          ]
+          C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\unordered_map(29,29):
+          see reference to class template instantiation 'std::_Uhash_compare<_Kty,_Hasher,_Keyeq>' being compiled
+          with
+          [
+              _Kty=Point,
+              _Hasher=PointHash,
+              _Keyeq=std::equal_to<Point>
+          ]
+          C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xmemory(1485,42):
+          see reference to variable template 'const bool is_empty_v<PointHash>' being compiled
+  
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xmemory(1485,63): error C2139: 'PointHash': an undefined class is not allowed as an argument to compiler intrinsic type trait '__is_empty'
+  (compiling source file 'InputFunctions.cpp')
+      C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\PointManager.h(12,14):
+      see declaration of 'PointHash'
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xmemory(1485,63):
+      the template instantiation context (the oldest one first) is
+          C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xmemory(1485,63):
+          see reference to variable template 'const bool is_final_v<PointHash>' being compiled
+  
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xmemory(1514,10): error C2079: 'std::_Compressed_pair<_Hasher,std::_Compressed_pair<_Keyeq,float,true>,false>::_Myval1' uses undefined class 'PointHash'
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xmemory(1514,10): error C2079:         with
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xmemory(1514,10): error C2079:         [
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xmemory(1514,10): error C2079:             _Hasher=PointHash,
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xmemory(1514,10): error C2079:             _Keyeq=std::equal_to<Point>
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xmemory(1514,10): error C2079:         ]
+  (compiling source file 'InputFunctions.cpp')
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xmemory(1514,10):
+      the template instantiation context (the oldest one first) is
+          C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xhash(173,64):
+          see reference to class template instantiation 'std::_Compressed_pair<_Hasher,std::_Compressed_pair<_Keyeq,float,true>,false>' being compiled
+          with
+          [
+              _Hasher=PointHash,
+              _Keyeq=std::equal_to<Point>
+          ]
+  
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\deque(547,38): error C2027: use of undefined type 'Point'
+  (compiling source file 'InputFunctions.cpp')
+      C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\InputFunctions.h(7,15):
+      see declaration of 'Point'
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\deque(547,38):
+      the template instantiation context (the oldest one first) is
+          C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\PointManager.h(22,23):
+          see reference to class template instantiation 'std::queue<Point,std::deque<Point,std::allocator<Point>>>' being compiled
+          C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\queue(29,50):
+          see reference to class template instantiation 'std::deque<Point,std::allocator<Point>>' being compiled
+          C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\deque(610,58):
+          see reference to class template instantiation 'std::_Deque_val<std::_Deque_simple_types<_Ty>>' being compiled
+          with
+          [
+              _Ty=Point
+          ]
+  
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\PointManager.h(27,11): error C2079: 'PointManager::LastDrawn' uses undefined struct 'Point'
+  (compiling source file 'InputFunctions.cpp')
+  
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\PointManager.h(37,10): error C3668: 'PointManager::EachFrame': method with override specifier 'override' did not override any base class methods
+  (compiling source file 'InputFunctions.cpp')
+  
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\PointManager.h(38,10): error C3668: 'PointManager::Flush': method with override specifier 'override' did not override any base class methods
+  (compiling source file 'InputFunctions.cpp')
+  
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\PointManager.h(27,23): error C2440: 'initializing': cannot convert from 'initializer list' to 'int'
+  (compiling source file 'InputFunctions.cpp')
+      C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\PointManager.h(27,23):
+      The initializer contains too many elements
+  
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\PointManager.h(27,23): error C2439: 'PointManager::LastDrawn': member could not be initialized
+  (compiling source file 'InputFunctions.cpp')
+      C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\PointManager.h(27,11):
+      see declaration of 'PointManager::LastDrawn'
+  
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\MyClasses.h(10,8): warning C4099: 'Line': type name first seen using 'class' now seen using 'struct'
+  (compiling source file 'InputFunctions.cpp')
+      C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\PointManager.h(11,14):
+      see declaration of 'Line'
+  
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\MyClasses.h(11,8): warning C4099: 'PointHash': type name first seen using 'class' now seen using 'struct'
+  (compiling source file 'InputFunctions.cpp')
+      C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\PointManager.h(12,14):
+      see declaration of 'PointHash'
+  
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\MyClasses.h(12,8): warning C4099: 'LineHash': type name first seen using 'class' now seen using 'struct'
+  (compiling source file 'InputFunctions.cpp')
+      C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\PointManager.h(13,14):
+      see declaration of 'LineHash'
+  
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\MyClasses.h(79,8): warning C4099: 'PointHash': type name first seen using 'class' now seen using 'struct'
+  (compiling source file 'InputFunctions.cpp')
+      C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\MyClasses.h(79,8):
+      see declaration of 'PointHash'
+  
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\MyClasses.h(86,8): warning C4099: 'Line': type name first seen using 'class' now seen using 'struct'
+  (compiling source file 'InputFunctions.cpp')
+      C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\MyClasses.h(86,8):
+      see declaration of 'Line'
+  
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\MyClasses.h(104,8): warning C4099: 'LineHash': type name first seen using 'class' now seen using 'struct'
+  (compiling source file 'InputFunctions.cpp')
+      C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\MyClasses.h(104,8):
+      see declaration of 'LineHash'
+  
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\DrawingFunctions.h(4,15): warning C4091: 'extern ': ignored on left of 'Point' when no variable is declared
+  (compiling source file 'InputFunctions.cpp')
+  
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\DrawingFunctions.h(5,15): warning C4091: 'extern ': ignored on left of 'Line' when no variable is declared
+  (compiling source file 'InputFunctions.cpp')
+  
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\BaseFunctions.h(5,15): warning C4091: 'extern ': ignored on left of 'Point' when no variable is declared
+  (compiling source file 'InputFunctions.cpp')
+  
+  MaybeARenderer6.cpp
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\DrawingFunctions.h(4,15): warning C4091: 'extern ': ignored on left of 'Point' when no variable is declared
   (compiling source file 'MaybeARenderer6.cpp')
   
-C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\Utilities.h(398,71): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\DrawingFunctions.h(5,15): warning C4091: 'extern ': ignored on left of 'Line' when no variable is declared
   (compiling source file 'MaybeARenderer6.cpp')
   
-C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\Utilities.h(406,44): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\BaseFunctions.h(5,15): warning C4091: 'extern ': ignored on left of 'Point' when no variable is declared
   (compiling source file 'MaybeARenderer6.cpp')
   
-C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\Utilities.h(411,45): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\Shapes.h(240,19): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
   (compiling source file 'MaybeARenderer6.cpp')
   
-C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\Shapes.h(230,19): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\Shapes.h(241,19): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
   (compiling source file 'MaybeARenderer6.cpp')
   
-C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\Shapes.h(231,19): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\Shapes.h(259,15): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
   (compiling source file 'MaybeARenderer6.cpp')
   
-C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\Shapes.h(249,15): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\Shapes.h(281,15): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
   (compiling source file 'MaybeARenderer6.cpp')
   
-C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\Shapes.h(271,15): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\PointManager.h(10,14): warning C4099: 'Point': type name first seen using 'struct' now seen using 'class'
+  (compiling source file 'MaybeARenderer6.cpp')
+      C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\MyClasses.h(36,8):
+      see declaration of 'Point'
+  
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\PointManager.h(10,14): warning C4091: 'extern ': ignored on left of 'Point' when no variable is declared
   (compiling source file 'MaybeARenderer6.cpp')
   
-  MaybeARenderer6.vcxproj -> C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\x64\Debug\MaybeARenderer6.exe
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\PointManager.h(11,14): warning C4099: 'Line': type name first seen using 'struct' now seen using 'class'
+  (compiling source file 'MaybeARenderer6.cpp')
+      C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\MyClasses.h(86,8):
+      see declaration of 'Line'
+  
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\PointManager.h(11,14): warning C4091: 'extern ': ignored on left of 'Line' when no variable is declared
+  (compiling source file 'MaybeARenderer6.cpp')
+  
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\PointManager.h(12,14): warning C4099: 'PointHash': type name first seen using 'struct' now seen using 'class'
+  (compiling source file 'MaybeARenderer6.cpp')
+      C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\MyClasses.h(79,8):
+      see declaration of 'PointHash'
+  
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\PointManager.h(12,14): warning C4091: 'extern ': ignored on left of 'PointHash' when no variable is declared
+  (compiling source file 'MaybeARenderer6.cpp')
+  
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\PointManager.h(13,14): warning C4099: 'LineHash': type name first seen using 'struct' now seen using 'class'
+  (compiling source file 'MaybeARenderer6.cpp')
+      C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\MyClasses.h(104,8):
+      see declaration of 'LineHash'
+  
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\PointManager.h(13,14): warning C4091: 'extern ': ignored on left of 'LineHash' when no variable is declared
+  (compiling source file 'MaybeARenderer6.cpp')
+  
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\Utilities.h(21,14): warning C4091: 'extern ': ignored on left of 'PointManager' when no variable is declared
+  (compiling source file 'MaybeARenderer6.cpp')
+  
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\Utilities.h(22,14): warning C4091: 'extern ': ignored on left of 'LineManager' when no variable is declared
+  (compiling source file 'MaybeARenderer6.cpp')
+  
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\MyFunctions.h(5,14): warning C4091: 'extern ': ignored on left of 'PointManager' when no variable is declared
+  (compiling source file 'MaybeARenderer6.cpp')
+  
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\MyFunctions.h(6,14): warning C4091: 'extern ': ignored on left of 'LineManager' when no variable is declared
+  (compiling source file 'MaybeARenderer6.cpp')
+  
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\MyFunctions.h(7,15): warning C4091: 'extern ': ignored on left of 'Point' when no variable is declared
+  (compiling source file 'MaybeARenderer6.cpp')
+  
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\InputFunctions.h(5,14): warning C4091: 'extern ': ignored on left of 'PointManager' when no variable is declared
+  (compiling source file 'MaybeARenderer6.cpp')
+  
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\InputFunctions.h(6,14): warning C4091: 'extern ': ignored on left of 'LineManager' when no variable is declared
+  (compiling source file 'MaybeARenderer6.cpp')
+  
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\InputFunctions.h(7,15): warning C4091: 'extern ': ignored on left of 'Point' when no variable is declared
+  (compiling source file 'MaybeARenderer6.cpp')
+  
+  MyFunctions.cpp
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\MyFunctions.h(5,14): warning C4091: 'extern ': ignored on left of 'PointManager' when no variable is declared
+  (compiling source file 'MyFunctions.cpp')
+  
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\MyFunctions.h(6,14): warning C4091: 'extern ': ignored on left of 'LineManager' when no variable is declared
+  (compiling source file 'MyFunctions.cpp')
+  
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\MyFunctions.h(7,15): warning C4091: 'extern ': ignored on left of 'Point' when no variable is declared
+  (compiling source file 'MyFunctions.cpp')
+  
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\PointManager.h(10,14): warning C4099: 'Point': type name first seen using 'struct' now seen using 'class'
+  (compiling source file 'MyFunctions.cpp')
+      C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\MyClasses.h(36,8):
+      see declaration of 'Point'
+  
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\PointManager.h(10,14): warning C4091: 'extern ': ignored on left of 'Point' when no variable is declared
+  (compiling source file 'MyFunctions.cpp')
+  
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\PointManager.h(11,14): warning C4099: 'Line': type name first seen using 'struct' now seen using 'class'
+  (compiling source file 'MyFunctions.cpp')
+      C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\MyClasses.h(86,8):
+      see declaration of 'Line'
+  
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\PointManager.h(11,14): warning C4091: 'extern ': ignored on left of 'Line' when no variable is declared
+  (compiling source file 'MyFunctions.cpp')
+  
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\PointManager.h(12,14): warning C4099: 'PointHash': type name first seen using 'struct' now seen using 'class'
+  (compiling source file 'MyFunctions.cpp')
+      C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\MyClasses.h(79,8):
+      see declaration of 'PointHash'
+  
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\PointManager.h(12,14): warning C4091: 'extern ': ignored on left of 'PointHash' when no variable is declared
+  (compiling source file 'MyFunctions.cpp')
+  
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\PointManager.h(13,14): warning C4099: 'LineHash': type name first seen using 'struct' now seen using 'class'
+  (compiling source file 'MyFunctions.cpp')
+      C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\MyClasses.h(104,8):
+      see declaration of 'LineHash'
+  
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\PointManager.h(13,14): warning C4091: 'extern ': ignored on left of 'LineHash' when no variable is declared
+  (compiling source file 'MyFunctions.cpp')
+  
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\DrawingFunctions.h(4,15): warning C4091: 'extern ': ignored on left of 'Point' when no variable is declared
+  (compiling source file 'MyFunctions.cpp')
+  
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\DrawingFunctions.h(5,15): warning C4091: 'extern ': ignored on left of 'Line' when no variable is declared
+  (compiling source file 'MyFunctions.cpp')
+  
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\Utilities.h(21,14): warning C4091: 'extern ': ignored on left of 'PointManager' when no variable is declared
+  (compiling source file 'MyFunctions.cpp')
+  
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\Utilities.h(22,14): warning C4091: 'extern ': ignored on left of 'LineManager' when no variable is declared
+  (compiling source file 'MyFunctions.cpp')
+  
+  PointManager.cpp
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\PointManager.h(10,14): warning C4091: 'extern ': ignored on left of 'Point' when no variable is declared
+  (compiling source file 'PointManager.cpp')
+  
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\PointManager.h(11,14): warning C4091: 'extern ': ignored on left of 'Line' when no variable is declared
+  (compiling source file 'PointManager.cpp')
+  
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\PointManager.h(12,14): warning C4091: 'extern ': ignored on left of 'PointHash' when no variable is declared
+  (compiling source file 'PointManager.cpp')
+  
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\PointManager.h(13,14): warning C4091: 'extern ': ignored on left of 'LineHash' when no variable is declared
+  (compiling source file 'PointManager.cpp')
+  
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\PointManager.h(18,29): error C2504: 'IDrawEachFrame': base class undefined
+  (compiling source file 'PointManager.cpp')
+  
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\PointManager.h(18,52): error C2504: 'IFlushable': base class undefined
+  (compiling source file 'PointManager.cpp')
+  
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xmemory(1485,42): error C2139: 'PointHash': an undefined class is not allowed as an argument to compiler intrinsic type trait '__is_empty'
+  (compiling source file 'PointManager.cpp')
+      C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\PointManager.h(12,14):
+      see declaration of 'PointHash'
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xmemory(1485,42):
+      the template instantiation context (the oldest one first) is
+          C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\PointManager.h(20,62):
+          see reference to class template instantiation 'std::unordered_map<Point,std::vector<Point,std::allocator<Point>>,PointHash,std::equal_to<Point>,std::allocator<std::pair<const Point,std::vector<Point,std::allocator<Point>>>>>' being compiled
+          C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\unordered_map(61,30):
+          see reference to class template instantiation 'std::_Hash<std::_Umap_traits<_Kty,_Ty,std::_Uhash_compare<_Kty,_Hasher,_Keyeq>,_Alloc,false>>' being compiled
+          with
+          [
+              _Kty=Point,
+              _Ty=std::vector<Point,std::allocator<Point>>,
+              _Hasher=PointHash,
+              _Keyeq=std::equal_to<Point>,
+              _Alloc=std::allocator<std::pair<const Point,std::vector<Point,std::allocator<Point>>>>
+          ]
+          C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xhash(332,56):
+          see reference to class template instantiation 'std::_Umap_traits<_Kty,_Ty,std::_Uhash_compare<_Kty,_Hasher,_Keyeq>,_Alloc,false>' being compiled
+          with
+          [
+              _Kty=Point,
+              _Ty=std::vector<Point,std::allocator<Point>>,
+              _Hasher=PointHash,
+              _Keyeq=std::equal_to<Point>,
+              _Alloc=std::allocator<std::pair<const Point,std::vector<Point,std::allocator<Point>>>>
+          ]
+          C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\unordered_map(29,29):
+          see reference to class template instantiation 'std::_Uhash_compare<_Kty,_Hasher,_Keyeq>' being compiled
+          with
+          [
+              _Kty=Point,
+              _Hasher=PointHash,
+              _Keyeq=std::equal_to<Point>
+          ]
+          C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xmemory(1485,42):
+          see reference to variable template 'const bool is_empty_v<PointHash>' being compiled
+  
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xmemory(1485,63): error C2139: 'PointHash': an undefined class is not allowed as an argument to compiler intrinsic type trait '__is_empty'
+  (compiling source file 'PointManager.cpp')
+      C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\PointManager.h(12,14):
+      see declaration of 'PointHash'
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xmemory(1485,63):
+      the template instantiation context (the oldest one first) is
+          C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xmemory(1485,63):
+          see reference to variable template 'const bool is_final_v<PointHash>' being compiled
+  
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xmemory(1514,10): error C2079: 'std::_Compressed_pair<_Hasher,std::_Compressed_pair<_Keyeq,float,true>,false>::_Myval1' uses undefined class 'PointHash'
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xmemory(1514,10): error C2079:         with
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xmemory(1514,10): error C2079:         [
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xmemory(1514,10): error C2079:             _Hasher=PointHash,
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xmemory(1514,10): error C2079:             _Keyeq=std::equal_to<Point>
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xmemory(1514,10): error C2079:         ]
+  (compiling source file 'PointManager.cpp')
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xmemory(1514,10):
+      the template instantiation context (the oldest one first) is
+          C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xhash(173,64):
+          see reference to class template instantiation 'std::_Compressed_pair<_Hasher,std::_Compressed_pair<_Keyeq,float,true>,false>' being compiled
+          with
+          [
+              _Hasher=PointHash,
+              _Keyeq=std::equal_to<Point>
+          ]
+  
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\deque(547,38): error C2027: use of undefined type 'Point'
+  (compiling source file 'PointManager.cpp')
+      C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\PointManager.h(10,14):
+      see declaration of 'Point'
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\deque(547,38):
+      the template instantiation context (the oldest one first) is
+          C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\PointManager.h(22,23):
+          see reference to class template instantiation 'std::queue<Point,std::deque<Point,std::allocator<Point>>>' being compiled
+          C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\queue(29,50):
+          see reference to class template instantiation 'std::deque<Point,std::allocator<Point>>' being compiled
+          C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\deque(610,58):
+          see reference to class template instantiation 'std::_Deque_val<std::_Deque_simple_types<_Ty>>' being compiled
+          with
+          [
+              _Ty=Point
+          ]
+  
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\PointManager.h(27,11): error C2079: 'PointManager::LastDrawn' uses undefined class 'Point'
+  (compiling source file 'PointManager.cpp')
+  
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\PointManager.h(37,10): error C3668: 'PointManager::EachFrame': method with override specifier 'override' did not override any base class methods
+  (compiling source file 'PointManager.cpp')
+  
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\PointManager.h(38,10): error C3668: 'PointManager::Flush': method with override specifier 'override' did not override any base class methods
+  (compiling source file 'PointManager.cpp')
+  
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\PointManager.h(27,23): error C2440: 'initializing': cannot convert from 'initializer list' to 'int'
+  (compiling source file 'PointManager.cpp')
+      C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\PointManager.h(27,23):
+      The initializer contains too many elements
+  
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\PointManager.h(27,23): error C2439: 'PointManager::LastDrawn': member could not be initialized
+  (compiling source file 'PointManager.cpp')
+      C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\PointManager.h(27,11):
+      see declaration of 'PointManager::LastDrawn'
+  
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\MyFunctions.h(5,14): warning C4091: 'extern ': ignored on left of 'PointManager' when no variable is declared
+  (compiling source file 'PointManager.cpp')
+  
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\MyFunctions.h(6,14): warning C4091: 'extern ': ignored on left of 'LineManager' when no variable is declared
+  (compiling source file 'PointManager.cpp')
+  
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\MyFunctions.h(7,15): warning C4099: 'Point': type name first seen using 'class' now seen using 'struct'
+  (compiling source file 'PointManager.cpp')
+      C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\PointManager.h(10,14):
+      see declaration of 'Point'
+  
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\MyFunctions.h(7,15): warning C4091: 'extern ': ignored on left of 'Point' when no variable is declared
+  (compiling source file 'PointManager.cpp')
+  
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\MyClasses.h(9,8): warning C4099: 'Point': type name first seen using 'class' now seen using 'struct'
+  (compiling source file 'PointManager.cpp')
+      C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\PointManager.h(10,14):
+      see declaration of 'Point'
+  
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\MyClasses.h(10,8): warning C4099: 'Line': type name first seen using 'class' now seen using 'struct'
+  (compiling source file 'PointManager.cpp')
+      C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\PointManager.h(11,14):
+      see declaration of 'Line'
+  
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\MyClasses.h(11,8): warning C4099: 'PointHash': type name first seen using 'class' now seen using 'struct'
+  (compiling source file 'PointManager.cpp')
+      C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\PointManager.h(12,14):
+      see declaration of 'PointHash'
+  
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\MyClasses.h(12,8): warning C4099: 'LineHash': type name first seen using 'class' now seen using 'struct'
+  (compiling source file 'PointManager.cpp')
+      C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\PointManager.h(13,14):
+      see declaration of 'LineHash'
+  
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\MyClasses.h(36,8): warning C4099: 'Point': type name first seen using 'class' now seen using 'struct'
+  (compiling source file 'PointManager.cpp')
+      C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\MyClasses.h(36,8):
+      see declaration of 'Point'
+  
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\MyClasses.h(79,8): warning C4099: 'PointHash': type name first seen using 'class' now seen using 'struct'
+  (compiling source file 'PointManager.cpp')
+      C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\MyClasses.h(79,8):
+      see declaration of 'PointHash'
+  
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\MyClasses.h(86,8): warning C4099: 'Line': type name first seen using 'class' now seen using 'struct'
+  (compiling source file 'PointManager.cpp')
+      C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\MyClasses.h(86,8):
+      see declaration of 'Line'
+  
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\MyClasses.h(104,8): warning C4099: 'LineHash': type name first seen using 'class' now seen using 'struct'
+  (compiling source file 'PointManager.cpp')
+      C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\MyClasses.h(104,8):
+      see declaration of 'LineHash'
+  
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\DrawingFunctions.h(4,15): warning C4091: 'extern ': ignored on left of 'Point' when no variable is declared
+  (compiling source file 'PointManager.cpp')
+  
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\DrawingFunctions.h(5,15): warning C4091: 'extern ': ignored on left of 'Line' when no variable is declared
+  (compiling source file 'PointManager.cpp')
+  
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\PointManager.cpp(20,17): error C2440: '=': cannot convert from 'Point' to 'int'
+      C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\PointManager.cpp(20,17):
+      No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+  
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\PointManager.cpp(76,25): warning C4858: discarding return value: This member function returns a bool indicating whether the collection is empty and has no other effects. It is not useful to call this member function and discard the return value. This collection can be cleared by assigning an empty value to it.
+  Generating Code...

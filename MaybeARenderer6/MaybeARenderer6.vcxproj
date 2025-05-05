@@ -129,17 +129,31 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="BaseFunctions.h" />
+    <ClInclude Include="Constants.h" />
+    <ClInclude Include="DrawingFunctions.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="InputFunctions.h" />
+    <ClInclude Include="LineManager.h" />
+    <ClInclude Include="MyClasses.h" />
     <ClInclude Include="InputFields.h" />
     <ClInclude Include="MaybeARenderer6.h" />
+    <ClInclude Include="MyFunctions.h" />
+    <ClInclude Include="PointManager.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Shapes.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Utilities.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BaseFunctions.cpp" />
+    <ClCompile Include="DrawingFunctions.cpp" />
     <ClCompile Include="InputFields.cpp" />
+    <ClCompile Include="InputFunctions.cpp" />
+    <ClCompile Include="LineManager.cpp" />
     <ClCompile Include="MaybeARenderer6.cpp" />
+    <ClCompile Include="MyFunctions.cpp" />
+    <ClCompile Include="PointManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="MaybeARenderer6.rc" />

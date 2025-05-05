@@ -7,11 +7,7 @@
 #include <algorithm>
 
 
-extern class Point;
-extern class Line;
-extern class PointHash;
-extern class LineHash;
-
+#include "MyClasses.h"
 
 
 // PointManager Class

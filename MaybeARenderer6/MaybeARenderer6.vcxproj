@@ -147,11 +147,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BaseFunctions.cpp" />
+    <ClCompile Include="Constants.cpp" />
     <ClCompile Include="DrawingFunctions.cpp" />
     <ClCompile Include="InputFields.cpp" />
     <ClCompile Include="InputFunctions.cpp" />
     <ClCompile Include="LineManager.cpp" />
     <ClCompile Include="MaybeARenderer6.cpp" />
+    <ClCompile Include="MyClasses.cpp" />
     <ClCompile Include="MyFunctions.cpp" />
     <ClCompile Include="PointManager.cpp" />
   </ItemGroup>

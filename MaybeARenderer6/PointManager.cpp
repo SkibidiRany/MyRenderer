@@ -23,7 +23,7 @@ Point PointManager::insert(Point p) {
     if (points.size() >= _capacity) {
         Point oldest = insertionOrder.front();
         insertionOrder.pop();
-        RemovePoint(oldest); // make sure RemovePoint is defined if needed
+        //RemovePoint(oldest); // make sure RemovePoint is defined if needed
     }
 
     p.color = lastColorFromInputs;

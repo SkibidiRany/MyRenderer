@@ -10,7 +10,7 @@ bool PositionIsLegal(Point p) {
 }
 
 const char* GetDistanceAsConstChar(const Point& p1, const Point& p2) {
-    static std::string distanceStr;  // static to persist outside the function
+    static std::string distanceStr; 
     distanceStr = std::format("{:.2f}", GetDistance(p1, p2));
     return distanceStr.c_str();
 }

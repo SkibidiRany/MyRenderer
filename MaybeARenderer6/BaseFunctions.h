@@ -2,7 +2,10 @@
 
 #include <windows.h>
 
-extern struct Point;
+#include "MyClasses.h"
+
+
+struct Point;
 
 // Function declarations
 bool PositionIsLegal(Point p);

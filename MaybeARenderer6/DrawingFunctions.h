@@ -1,8 +1,8 @@
 #pragma once
 #include <windows.h>
 
-extern struct Point;
-extern struct Line;
+struct Point;
+struct Line;
 
 
 

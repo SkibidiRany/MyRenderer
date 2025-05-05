@@ -4,7 +4,7 @@
 #include <vector>
 #include "Shapes.h"
 #include "Utilities.h"
-#include "MyFunctions.h"
+//#include "MyFunctions.h"
 #include "InputFunctions.h"
 #include <string>
 #include <iostream>
@@ -89,7 +89,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pCmdLine, 
 
 
 		if ((GetKeyState(VK_LBUTTON) & 0x100) != 0) {
-			LastCursPos = OnLeftMouseHold(window_handle, memDC, PointsToDraw, PointBoldness, lastColorFromInputs);
+			LastCursPos = OnLeftMouseHold(window_handle, memDC, PointsToDraw, LineBoldness, lastColorFromInputs);
 		}
         
 
@@ -155,7 +155,7 @@ LRESULT CALLBACK WindowProcessMessage(HWND window_handle, UINT message, WPARAM w
 		break;
     case WM_KEYDOWN:
         if (wParam == FlushButton) {
-            FlushScreen(PointsToDraw, LinesToDraw);
+            //FlushScreen(PointsToDraw, LinesToDraw);
             shapeManager->Flush();
         }
         break;

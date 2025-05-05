@@ -1,5 +1,4 @@
 #include "LineManager.h"
-#include "MyFunctions.h"
 #include "Constants.h"
 #include "InputFields.h"
 

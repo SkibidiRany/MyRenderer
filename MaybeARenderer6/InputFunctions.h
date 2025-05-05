@@ -2,9 +2,9 @@
 #include <Windows.h>
 
 // Forward declarations to avoid circular includes
-extern class PointManager;
-extern class LineManager;
-extern struct Point;
+class PointManager;
+class LineManager;
+struct Point;
 
 void OnLeftMouseDown(HWND hwnd, PointManager* p);
 Point OnLeftMouseHold(HWND hwnd, HDC hdc, PointManager* p, int boldness, COLORREF color);

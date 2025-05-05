@@ -18,8 +18,8 @@
 using std::vector;
 using std::string;
 
-extern class PointManager;
-extern class LineManager;
+class PointManager;
+class LineManager;
 
 PointManager* PointsToDraw;
 LineManager* LinesToDraw;

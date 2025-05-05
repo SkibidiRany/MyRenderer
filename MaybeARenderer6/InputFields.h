@@ -47,7 +47,7 @@ extern InputField AngleChangeSpeedInputField;
 extern ColorInputField PointColorInputField;
 
 extern COLORREF lastColorFromInputs;
-;
+
 
 
 

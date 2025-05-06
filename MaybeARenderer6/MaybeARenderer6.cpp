@@ -4,7 +4,6 @@
 #include <vector>
 #include "Shapes.h"
 #include "Utilities.h"
-//#include "MyFunctions.h"
 #include "InputFunctions.h"
 #include <string>
 #include <iostream>
@@ -17,6 +16,14 @@ void InitializeManagers() {
     PointsToDraw = new PointManager(drawingCapacity, 2 * PointBoldness);
     LinesToDraw = new LineManager();
 }
+
+
+void FlushScreen() {
+    LinesToDraw->Flush();
+    PointsToDraw->Flush();
+    shapeManager->Flush();
+}
+
 
 LRESULT CALLBACK WindowProcessMessage(HWND, UINT, WPARAM, LPARAM);
 LRESULT CALLBACK RGBWindowProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
@@ -155,8 +162,7 @@ LRESULT CALLBACK WindowProcessMessage(HWND window_handle, UINT message, WPARAM w
 		break;
     case WM_KEYDOWN:
         if (wParam == FlushButton) {
-            //FlushScreen(PointsToDraw, LinesToDraw);
-            shapeManager->Flush();
+            FlushScreen();
         }
         break;
     default:

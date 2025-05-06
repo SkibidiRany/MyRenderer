@@ -138,7 +138,6 @@
     <ClInclude Include="MyClasses.h" />
     <ClInclude Include="InputFields.h" />
     <ClInclude Include="MaybeARenderer6.h" />
-    <ClInclude Include="MyFunctions.h" />
     <ClInclude Include="PointManager.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Shapes.h" />
@@ -154,7 +153,6 @@
     <ClCompile Include="LineManager.cpp" />
     <ClCompile Include="MaybeARenderer6.cpp" />
     <ClCompile Include="MyClasses.cpp" />
-    <ClCompile Include="MyFunctions.cpp" />
     <ClCompile Include="PointManager.cpp" />
   </ItemGroup>
   <ItemGroup>

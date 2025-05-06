@@ -1,5 +1,4 @@
 #include "PointManager.h"
-#include "MyFunctions.h"
 #include "Constants.h"
 #include "InputFields.h"
 #include "MyClasses.h"
@@ -23,7 +22,6 @@ Point PointManager::insert(Point p) {
     if (points.size() >= _capacity) {
         Point oldest = insertionOrder.front();
         insertionOrder.pop();
-        //RemovePoint(oldest); // make sure RemovePoint is defined if needed
     }
 
     p.color = lastColorFromInputs;

@@ -17,10 +17,14 @@ TODO :
 1 	FIX: On left mouse button hold, all other points (NOT including Points deriving from shape class) change their color to the last color we got from the RGB inputs.  DONE
 
 
-0	The code Needs HEAVY reactoring, it works but it is getting closer to being spaghetti, here is the architecture I am thinking about currently:
+1	The code Needs HEAVY reactoring, it works but it is getting closer to being spaghetti, here is the architecture I am thinking about currently:
 					# Global parameters in Utilities.h
 					# Base functions in myFunctions.h
 					# Base classes and interfaces in myClasses.h
 					# InputFields.h and InputFields.cpp as is
 
 1	Add flush screen drawings button. DONE
+
+
+
+0 	Drawing 3d.

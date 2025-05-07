@@ -131,6 +131,7 @@
   <ItemGroup>
     <ClInclude Include="BaseFunctions.h" />
     <ClInclude Include="Constants.h" />
+    <ClInclude Include="DeletionManager.h" />
     <ClInclude Include="DrawingFunctions.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="InputFunctions.h" />
@@ -147,6 +148,7 @@
   <ItemGroup>
     <ClCompile Include="BaseFunctions.cpp" />
     <ClCompile Include="Constants.cpp" />
+    <ClCompile Include="DeletionManager.cpp" />
     <ClCompile Include="DrawingFunctions.cpp" />
     <ClCompile Include="InputFields.cpp" />
     <ClCompile Include="InputFunctions.cpp" />

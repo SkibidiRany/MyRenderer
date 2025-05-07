@@ -22,9 +22,3 @@ Point RotatePointAround(Point p, Point piv, double matrix[3][3]);
 
 
 
-
-
-
-
-
-

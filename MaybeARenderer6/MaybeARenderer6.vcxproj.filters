@@ -57,6 +57,9 @@
     <ClInclude Include="Constants.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="DeletionManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MaybeARenderer6.cpp">
@@ -84,6 +87,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Constants.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DeletionManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

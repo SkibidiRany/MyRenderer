@@ -19,6 +19,7 @@ struct PointHash;
 struct LineHash;
 interface IDrawEachFrame;
 interface IFlushable;
+interface IDeletable;
 
 // Function declarations
 double GetDistance(const Point& p1, const Point& p2);
@@ -82,4 +83,9 @@ interface IDrawEachFrame {
 
 interface IFlushable {
     virtual void Flush() = 0;
+};
+
+interface IDeletable {
+    virtual ~IDeletable() = default;
+    virtual void Delete() = 0;
 };

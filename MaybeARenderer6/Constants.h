@@ -27,7 +27,11 @@ extern const int screenHeight;
 extern bool quit;
 
 // input settings
-extern char FlushButton;
+extern const char FlushButton;
+inline extern constexpr UINT DRAW_POINT_DOWN = WM_LBUTTONDOWN;
+inline extern constexpr UINT DRAW_POINT_UP = WM_LBUTTONUP;
+inline extern constexpr UINT ROTATE_SHAPE_DOWN = WM_RBUTTONDOWN;
+inline extern constexpr UINT ROTATE_SHAPE_UP = WM_RBUTTONUP;
 
 // Shape settings
 extern double angle;

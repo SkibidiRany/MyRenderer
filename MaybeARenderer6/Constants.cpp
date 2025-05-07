@@ -29,8 +29,7 @@ const int screenHeight = 600;
 bool quit = false;
 
 // input settings
-char FlushButton = 'R';
-
+const char FlushButton = 'R';
 
 // Shape settings
 double angle = 0;

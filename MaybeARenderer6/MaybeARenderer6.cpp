@@ -148,16 +148,16 @@ LRESULT CALLBACK WindowProcessMessage(HWND window_handle, UINT message, WPARAM w
         quit = true;
         PostQuitMessage(0);
         return 0;
-    case WM_LBUTTONDOWN:
+    case DRAW_POINT_DOWN:
         OnLeftMouseDown(window_handle, PointsToDraw);
         break;
-    case WM_LBUTTONUP:
+    case DRAW_POINT_UP:
 		OnLeftMouseUp(window_handle, LastCursPos, PointsToDraw, LinesToDraw);
         break;
-    case WM_RBUTTONDOWN:
+    case ROTATE_SHAPE_DOWN:
 		OnRightMouseDown(window_handle);
 		break;
-    case WM_RBUTTONUP:
+    case ROTATE_SHAPE_UP:
 		OnRightMouseUp();
 		break;
     case WM_KEYDOWN:

@@ -5,6 +5,9 @@ C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\DrawingFuncti
 C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\InputFields.cpp;C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\MaybeARenderer6\x64\Debug\InputFields.obj
 C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\InputFunctions.cpp;C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\MaybeARenderer6\x64\Debug\InputFunctions.obj
 C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\LineManager.cpp;C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\MaybeARenderer6\x64\Debug\LineManager.obj
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\Matrix4.cpp;C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\MaybeARenderer6\x64\Debug\Matrix4.obj
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\MatrixManager.cpp;C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\MaybeARenderer6\x64\Debug\MatrixManager.obj
 C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\MaybeARenderer6.cpp;C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\MaybeARenderer6\x64\Debug\MaybeARenderer6.obj
 C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\MyClasses.cpp;C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\MaybeARenderer6\x64\Debug\MyClasses.obj
 C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\PointManager.cpp;C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\MaybeARenderer6\x64\Debug\PointManager.obj
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\Vector4.cpp;C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\MaybeARenderer6\x64\Debug\Vector4.obj

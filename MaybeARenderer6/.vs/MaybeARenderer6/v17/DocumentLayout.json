@@ -3,6 +3,22 @@
   "WorkspaceRootPath": "C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{2002F5E6-F7C8-41D9-8F5E-33FC6AED41CB}|MaybeARenderer6.vcxproj|C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\Constants.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2002F5E6-F7C8-41D9-8F5E-33FC6AED41CB}|MaybeARenderer6.vcxproj|solutionrelative:Constants.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2002F5E6-F7C8-41D9-8F5E-33FC6AED41CB}|MaybeARenderer6.vcxproj|C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\Constants.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2002F5E6-F7C8-41D9-8F5E-33FC6AED41CB}|MaybeARenderer6.vcxproj|solutionrelative:Constants.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2002F5E6-F7C8-41D9-8F5E-33FC6AED41CB}|MaybeARenderer6.vcxproj|C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\DrawingFunctions.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2002F5E6-F7C8-41D9-8F5E-33FC6AED41CB}|MaybeARenderer6.vcxproj|solutionrelative:DrawingFunctions.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2002F5E6-F7C8-41D9-8F5E-33FC6AED41CB}|MaybeARenderer6.vcxproj|C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\DrawingFunctions.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2002F5E6-F7C8-41D9-8F5E-33FC6AED41CB}|MaybeARenderer6.vcxproj|solutionrelative:DrawingFunctions.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{2002F5E6-F7C8-41D9-8F5E-33FC6AED41CB}|MaybeARenderer6.vcxproj|C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\MatrixManager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{2002F5E6-F7C8-41D9-8F5E-33FC6AED41CB}|MaybeARenderer6.vcxproj|solutionrelative:MatrixManager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
@@ -21,10 +37,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{2002F5E6-F7C8-41D9-8F5E-33FC6AED41CB}|MaybeARenderer6.vcxproj|C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\Shapes.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{2002F5E6-F7C8-41D9-8F5E-33FC6AED41CB}|MaybeARenderer6.vcxproj|solutionrelative:Shapes.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2002F5E6-F7C8-41D9-8F5E-33FC6AED41CB}|MaybeARenderer6.vcxproj|C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\Constants.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{2002F5E6-F7C8-41D9-8F5E-33FC6AED41CB}|MaybeARenderer6.vcxproj|solutionrelative:Constants.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2002F5E6-F7C8-41D9-8F5E-33FC6AED41CB}|MaybeARenderer6.vcxproj|C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\DeletionManager.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -50,7 +62,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 8,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Bookmark",
@@ -70,19 +82,69 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 1,
               "Title": "Constants.h",
               "DocumentMoniker": "C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\Constants.h",
               "RelativeDocumentMoniker": "Constants.h",
               "ToolTip": "C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\Constants.h",
               "RelativeToolTip": "Constants.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAeAAAAAAAAAA==",
+              "ViewState": "AgIAABUAAAAAAAAAAAAkwCUAAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-05-07T17:32:48.388Z"
+              "WhenOpened": "2025-05-07T17:32:48.388Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "DrawingFunctions.cpp",
+              "DocumentMoniker": "C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\DrawingFunctions.cpp",
+              "RelativeDocumentMoniker": "DrawingFunctions.cpp",
+              "ToolTip": "C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\DrawingFunctions.cpp",
+              "RelativeToolTip": "DrawingFunctions.cpp",
+              "ViewState": "AgIAACcAAAAAAAAAAAAAAD0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-05-07T19:39:48.896Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "DrawingFunctions.h",
+              "DocumentMoniker": "C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\DrawingFunctions.h",
+              "RelativeDocumentMoniker": "DrawingFunctions.h",
+              "ToolTip": "C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\DrawingFunctions.h",
+              "RelativeToolTip": "DrawingFunctions.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-05-07T19:39:46.454Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Constants.cpp",
+              "DocumentMoniker": "C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\Constants.cpp",
+              "RelativeDocumentMoniker": "Constants.cpp",
+              "ToolTip": "C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\Constants.cpp",
+              "RelativeToolTip": "Constants.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-05-07T19:38:55.146Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
+              "Title": "MatrixManager.cpp",
+              "DocumentMoniker": "C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\MatrixManager.cpp",
+              "RelativeDocumentMoniker": "MatrixManager.cpp",
+              "ToolTip": "C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\MatrixManager.cpp",
+              "RelativeToolTip": "MatrixManager.cpp",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAwAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-05-07T17:11:09.773Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
               "Title": "Shapes.h",
               "DocumentMoniker": "C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\Shapes.h",
               "RelativeDocumentMoniker": "Shapes.h",
@@ -90,12 +152,11 @@
               "RelativeToolTip": "Shapes.h",
               "ViewState": "AgIAAEcBAAAAAAAAAAAAAJIBAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-05-07T17:31:20.22Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-07T17:31:20.22Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 10,
               "Title": "MaybeARenderer6.cpp",
               "DocumentMoniker": "C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\MaybeARenderer6.cpp",
               "RelativeDocumentMoniker": "MaybeARenderer6.cpp",
@@ -107,7 +168,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 5,
               "Title": "MatrixManager.h",
               "DocumentMoniker": "C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\MatrixManager.h",
               "RelativeDocumentMoniker": "MatrixManager.h",
@@ -115,25 +176,11 @@
               "RelativeToolTip": "MatrixManager.h",
               "ViewState": "AgIAAAMAAAAAAAAAAAAAABIAAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-05-07T17:11:05.542Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-07T17:11:05.542Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "MatrixManager.cpp",
-              "DocumentMoniker": "C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\MatrixManager.cpp",
-              "RelativeDocumentMoniker": "MatrixManager.cpp",
-              "ToolTip": "C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\MatrixManager.cpp",
-              "RelativeToolTip": "MatrixManager.cpp",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAwAAAAoAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-05-07T17:11:09.773Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 9,
               "Title": "DeletionManager.h",
               "DocumentMoniker": "C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\DeletionManager.h",
               "RelativeDocumentMoniker": "DeletionManager.h",
@@ -145,7 +192,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 6,
               "Title": "Matrix4.h",
               "DocumentMoniker": "C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\Matrix4.h",
               "RelativeDocumentMoniker": "Matrix4.h",
@@ -153,12 +200,11 @@
               "RelativeToolTip": "Matrix4.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-05-07T16:47:28.529Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-07T16:47:28.529Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 7,
               "Title": "Matrix4.cpp",
               "DocumentMoniker": "C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\Matrix4.cpp",
               "RelativeDocumentMoniker": "Matrix4.cpp",
@@ -166,12 +212,11 @@
               "RelativeToolTip": "Matrix4.cpp",
               "ViewState": "AgIAAAkAAAAAAAAAAAAAAB4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-05-07T16:47:33.131Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-07T16:47:33.131Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 11,
               "Title": "Vector4.h",
               "DocumentMoniker": "C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\Vector4.h",
               "RelativeDocumentMoniker": "Vector4.h",
@@ -183,7 +228,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 12,
               "Title": "Vector4.cpp",
               "DocumentMoniker": "C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\Vector4.cpp",
               "RelativeDocumentMoniker": "Vector4.cpp",

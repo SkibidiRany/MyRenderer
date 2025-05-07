@@ -19,6 +19,8 @@ void DrawBoldPoint(HDC& hdc, const Point& p, int boldness, COLORREF color) {
     SelectObject(hdc, oldBrush);
     DeleteObject(brush);
 
+	if (!DrawCoords) return;
+
     int textOffsetX = boldness + 4;
     int textOffsetY = -boldness - 4;
 
@@ -55,6 +57,8 @@ void DrawLine(HDC& hdc, const Line& line, int boldness, COLORREF color) {
 
     SelectObject(hdc, oldPen);
     DeleteObject(pen);
+
+	if (!DrawLength) return;
 
     DrawTextAtMiddle(hdc, line, line.lengthStr.c_str(), color);
 }

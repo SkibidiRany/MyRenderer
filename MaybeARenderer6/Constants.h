@@ -6,23 +6,36 @@
 extern HWND window_handle;
 extern HWND rgb_window_handle;
 
-extern const int screenWidth;
-extern const int screenHeight;
+// value constants
 extern const float PI;
-extern bool quit;
+
+// Drawing settings
+extern const bool DrawLength;
+extern const bool DrawCoords;
+extern const bool ToDrawShape;
+extern const int drawingCapacity;
+
+// Drawing settings
 extern const int PointBoldness;
 extern const int LineBoldness;
 
+// screen settings
+extern const int screenWidth;
+extern const int screenHeight;
+
+// Application settings
+extern bool quit;
+
+// input settings
+extern char FlushButton;
+
+// Shape settings
 extern double angle;
 extern double angleChangeSpeed;
 extern const bool AutoAngleChangeSpeed;
-
-extern const bool ToDrawShape;
 extern const bool AutoRotate;
 
-extern const int drawingCapacity;
-extern char FlushButton;
-
+// global variables
 extern Point Middle;
 extern Point pivot;
 extern Point LastCursPos;

@@ -160,10 +160,24 @@ LRESULT CALLBACK WindowProcessMessage(HWND window_handle, UINT message, WPARAM w
     case ROTATE_SHAPE_UP:
 		OnRightMouseUp();
 		break;
+    case MOVE_POINT_DOWN:
+		LinesToDraw->OnMovePointDown(GetCursPos(window_handle));
+        break;
+	case MOVE_POINT_UP:
+		LinesToDraw->OnMovePointUp();
+        break;
     case WM_KEYDOWN:
         if (wParam == FlushButton) {
             FlushScreen();
         }
+        else if (wParam == 'M') {
+            LinesToDraw->OnMovePointDown(GetCursPos(window_handle));
+        }
+        break;
+    case WM_KEYUP:
+		if (wParam == 'M') {
+			LinesToDraw->OnMovePointUp();
+		}
         break;
     default:
         return DefWindowProc(window_handle, message, wParam, lParam);

@@ -32,6 +32,8 @@ inline extern constexpr UINT DRAW_POINT_DOWN = WM_LBUTTONDOWN;
 inline extern constexpr UINT DRAW_POINT_UP = WM_LBUTTONUP;
 inline extern constexpr UINT ROTATE_SHAPE_DOWN = WM_RBUTTONDOWN;
 inline extern constexpr UINT ROTATE_SHAPE_UP = WM_RBUTTONUP;
+inline extern constexpr UINT MOVE_POINT_DOWN = WM_MBUTTONDOWN;
+inline extern constexpr UINT MOVE_POINT_UP = WM_MBUTTONUP;
 
 // Shape settings
 extern double angle;

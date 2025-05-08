@@ -50,6 +50,13 @@ struct Point {
         x -= other.x; y -= other.y; z -= other.z;
         return *this;
     }
+    
+	Point& operator=(const Point& other) {
+		if (this != &other) {
+			x = other.x; y = other.y; z = other.z; color = other.color;
+		}
+		return *this;
+	}
 };
 
 // PointHash struct
@@ -66,7 +73,13 @@ struct Line {
     COLORREF color = MyColors.WHITE;
 
     Line(const Point& a, const Point& b, COLORREF col = MyColors.WHITE);
+    Line(const Line& other)
+        : p1(other.p1), p2(other.p2), color(other.color) {}
+
+    Line& operator=(const Line& other);
     bool operator==(const Line& other) const;
+
+
 };
 
 // LineHash struct

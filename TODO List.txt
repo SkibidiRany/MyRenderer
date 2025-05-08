@@ -30,7 +30,7 @@ TODO :
 
 1	Add drawLength for lines and drawcoords for Point constants
 
-0 	Change input buttons to constants that I can change
+1 	Change input buttons to constants that I can change
 
 0 	Drawing 3d.
 

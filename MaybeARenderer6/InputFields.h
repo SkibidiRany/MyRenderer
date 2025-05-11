@@ -3,6 +3,10 @@
 #include <windows.h>
 #include <algorithm>
 #include <vector>
+#include <string>
+
+#include "Constants.h"
+
 using std::vector;
 
 
@@ -39,6 +43,16 @@ struct ColorInputField {
 
 
 
+struct DropdownField {
+    const int id;
+    const wchar_t* label;
+    std::vector<std::wstring> items;
+
+    DropdownField(int id, const wchar_t* label, const std::vector<std::wstring>& items)
+        : id(id), label(label), items(items) {}
+};
+
+
 
 // Declare these for global use
 extern InputField AngleInputField;
@@ -65,6 +79,7 @@ double GetAngleChangeSpeedFromInputs(HWND rgb_window = NULL);
 class InputFieldsManager {
 private:
     static std::vector<InputField> inputFields;
+    static std::vector<DropdownField> dropdownFields; 
 
     static int InputTextWidth;
     static int InputTextHeight;
@@ -88,7 +103,10 @@ public:
     InputFieldsManager() = default;
 
     void AddInputField(InputField field);
-    std::vector<InputField> GetInputFields();
+    void AddDropdownField(DropdownField field); 
 
-    static void initializeInputFields(HWND rgb_window);
+    std::vector<InputField> GetInputFields();
+    std::vector<DropdownField> GetDropdownFields(); 
+
+    void initializeInputFields(HWND rgb_window);
 };

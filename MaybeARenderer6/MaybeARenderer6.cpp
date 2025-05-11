@@ -15,6 +15,8 @@ Shape* myShape;
 void InitializeManagers() {
     PointsToDraw = new PointManager(drawingCapacity, 2 * PointBoldness);
     LinesToDraw = new LineManager();
+
+	inputFieldsManager = new InputFieldsManager();
 }
 
 
@@ -283,7 +285,8 @@ HWND InitRGBControlWindow(HINSTANCE hInstance, int nCmdShow)
     ShowWindow(rgb_window, nCmdShow);
     UpdateWindow(rgb_window);
 
-	InputFieldsManager::initializeInputFields(rgb_window);
+
+	inputFieldsManager->initializeInputFields(rgb_window);
     
     return rgb_window;
 }

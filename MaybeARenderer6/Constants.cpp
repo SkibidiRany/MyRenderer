@@ -42,5 +42,14 @@ Point Middle = { screenWidth / 2, screenHeight / 2, 0 };
 Point pivot = { Middle.x, Middle.y, Middle.z };
 Point LastCursPos = { 0, 0, 0 };
 
+
+std::vector<std::wstring> ShapeNames = {
+    L"Rect",
+    L"Pyramid",
+    L"DoublePyramid",
+    L"PolygonWith2Heads",
+    L"Heart"
+};
+
 // Define WantedDrawing
 Drawings WantedDrawing = Heart;

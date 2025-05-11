@@ -1,6 +1,10 @@
 #pragma once
 #include <windows.h>
+#include <vector>
+#include <string>
+
 #include "MyClasses.h"
+
 
 // Extern declarations for global variables
 extern HWND window_handle;
@@ -54,4 +58,7 @@ enum Drawings {
     PolygonWith2Heads,
     Heart
 };
+
+extern std::vector<std::wstring> ShapeNames;
+
 extern Drawings WantedDrawing;

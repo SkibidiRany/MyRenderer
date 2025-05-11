@@ -42,3 +42,6 @@ Current Idea: create a common manager that takes in both, and for each method, i
 
 0 Add Depth FOV, consider looking into why engines use point system (x,y,z,w)
 
+0 Add scrollbar to decide which shape we want to draw, update ShapeManager accordingly:
+ ALMOST DONE: still need to respond to handle user selecting shape logic.
+

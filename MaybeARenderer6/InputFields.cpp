@@ -1,4 +1,4 @@
-#include "InputFields.h"
+#include "InputFields.h"    
 #include <algorithm>
 
 
@@ -7,6 +7,9 @@ bool InputFieldsManager::g_angleChanged = false;
 bool InputFieldsManager::g_angleSpeedChanged = false;
 
 HWND InputFieldsManager::g_colorPreviewBox = NULL;
+
+std::vector<DropdownField> InputFieldsManager::dropdownFields = {};
+
 
 
 InputField  AngleInputField(104, L"0", L"Angle:"),
@@ -110,8 +113,16 @@ void InputFieldsManager::AddInputField(InputField field) {
     inputFields.push_back(field);
 }
 
+void InputFieldsManager::AddDropdownField(DropdownField field) {
+    dropdownFields.push_back(field);
+}
+
 std::vector<InputField> InputFieldsManager::GetInputFields() {
     return inputFields;
+}
+
+std::vector<DropdownField> InputFieldsManager::GetDropdownFields() {
+    return dropdownFields;
 }
 
 void InputFieldsManager::initializeInputFields(HWND rgb_window) {
@@ -143,5 +154,30 @@ void InputFieldsManager::initializeInputFields(HWND rgb_window) {
 
         currentY += InputTextHeight + InputHeightOffset;
     }
+
+
+	AddDropdownField(DropdownField(106, L"Shape: ", ShapeNames));
+
+    for (const auto& dropdown : dropdownFields) {
+        CreateWindowW(L"STATIC", dropdown.label, WS_VISIBLE | WS_CHILD,
+            InputTextX, currentY, InputTextWidth, InputTextHeight,
+            rgb_window, NULL, NULL, NULL);
+
+        HWND comboBox = CreateWindowW(L"COMBOBOX", NULL,
+            CBS_DROPDOWNLIST | WS_CHILD | WS_VISIBLE | WS_VSCROLL,
+            InputFieldX, currentY, InputFieldWidth + 100, InputFieldHeight * 6,
+            rgb_window, (HMENU)dropdown.id, NULL, NULL);
+
+
+        for (const auto& item : dropdown.items) {
+            SendMessageW(comboBox, CB_ADDSTRING, 0, (LPARAM)item.c_str());
+        }
+
+        SendMessageW(comboBox, CB_SETCURSEL, 0, 0); // Default select first
+
+        currentY += InputTextHeight + InputHeightOffset;
+    }
+
+
 }
 

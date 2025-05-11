@@ -24,7 +24,7 @@ class LineManager;
 PointManager* PointsToDraw;
 LineManager* LinesToDraw;
 
-
+InputFieldsManager* inputFieldsManager;
 
 
 

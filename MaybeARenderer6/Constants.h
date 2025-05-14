@@ -39,11 +39,6 @@ inline extern constexpr UINT ROTATE_SHAPE_UP = WM_RBUTTONUP;
 inline extern constexpr UINT MOVE_POINT_DOWN = WM_MBUTTONDOWN;
 inline extern constexpr UINT MOVE_POINT_UP = WM_MBUTTONUP;
 
-// Shape settings
-extern double angle;
-extern double angleChangeSpeed;
-extern const bool AutoAngleChangeSpeed;
-extern const bool AutoRotate;
 
 // global variables
 extern Point Middle;

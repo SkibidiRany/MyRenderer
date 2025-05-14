@@ -3,12 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{2002F5E6-F7C8-41D9-8F5E-33FC6AED41CB}|MaybeARenderer6.vcxproj|C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\Shapes.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2002F5E6-F7C8-41D9-8F5E-33FC6AED41CB}|MaybeARenderer6.vcxproj|solutionrelative:Shapes.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2002F5E6-F7C8-41D9-8F5E-33FC6AED41CB}|MaybeARenderer6.vcxproj|C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\InputFields.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2002F5E6-F7C8-41D9-8F5E-33FC6AED41CB}|MaybeARenderer6.vcxproj|solutionrelative:InputFields.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{2002F5E6-F7C8-41D9-8F5E-33FC6AED41CB}|MaybeARenderer6.vcxproj|C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\InputFields.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{2002F5E6-F7C8-41D9-8F5E-33FC6AED41CB}|MaybeARenderer6.vcxproj|solutionrelative:InputFields.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2002F5E6-F7C8-41D9-8F5E-33FC6AED41CB}|MaybeARenderer6.vcxproj|C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\Constants.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{2002F5E6-F7C8-41D9-8F5E-33FC6AED41CB}|MaybeARenderer6.vcxproj|solutionrelative:Constants.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{2002F5E6-F7C8-41D9-8F5E-33FC6AED41CB}|MaybeARenderer6.vcxproj|C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\MaybeARenderer6.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2002F5E6-F7C8-41D9-8F5E-33FC6AED41CB}|MaybeARenderer6.vcxproj|solutionrelative:MaybeARenderer6.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2002F5E6-F7C8-41D9-8F5E-33FC6AED41CB}|MaybeARenderer6.vcxproj|C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\Constants.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -19,20 +27,12 @@
       "RelativeMoniker": "D:0:0:{2002F5E6-F7C8-41D9-8F5E-33FC6AED41CB}|MaybeARenderer6.vcxproj|solutionrelative:Utilities.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{2002F5E6-F7C8-41D9-8F5E-33FC6AED41CB}|MaybeARenderer6.vcxproj|C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\Constants.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2002F5E6-F7C8-41D9-8F5E-33FC6AED41CB}|MaybeARenderer6.vcxproj|solutionrelative:Constants.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{2002F5E6-F7C8-41D9-8F5E-33FC6AED41CB}|MaybeARenderer6.vcxproj|C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\BaseFunctions.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{2002F5E6-F7C8-41D9-8F5E-33FC6AED41CB}|MaybeARenderer6.vcxproj|solutionrelative:BaseFunctions.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2002F5E6-F7C8-41D9-8F5E-33FC6AED41CB}|MaybeARenderer6.vcxproj|C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\InputFields.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{2002F5E6-F7C8-41D9-8F5E-33FC6AED41CB}|MaybeARenderer6.vcxproj|solutionrelative:InputFields.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2002F5E6-F7C8-41D9-8F5E-33FC6AED41CB}|MaybeARenderer6.vcxproj|C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\MaybeARenderer6.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{2002F5E6-F7C8-41D9-8F5E-33FC6AED41CB}|MaybeARenderer6.vcxproj|solutionrelative:MaybeARenderer6.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2002F5E6-F7C8-41D9-8F5E-33FC6AED41CB}|MaybeARenderer6.vcxproj|C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\Shapes.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{2002F5E6-F7C8-41D9-8F5E-33FC6AED41CB}|MaybeARenderer6.vcxproj|solutionrelative:Shapes.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2002F5E6-F7C8-41D9-8F5E-33FC6AED41CB}|MaybeARenderer6.vcxproj|C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\LineManager.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -54,7 +54,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Bookmark",
@@ -74,7 +74,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
+              "Title": "InputFields.cpp",
+              "DocumentMoniker": "C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\InputFields.cpp",
+              "RelativeDocumentMoniker": "InputFields.cpp",
+              "ToolTip": "C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\InputFields.cpp",
+              "RelativeToolTip": "InputFields.cpp",
+              "ViewState": "AgIAADMAAAAAAAAAAAAAADMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-05-11T19:33:17.099Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "Utilities.h",
               "DocumentMoniker": "C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\Utilities.h",
               "RelativeDocumentMoniker": "Utilities.h",
@@ -87,13 +100,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 1,
               "Title": "InputFields.h",
               "DocumentMoniker": "C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\InputFields.h",
               "RelativeDocumentMoniker": "InputFields.h",
               "ToolTip": "C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\InputFields.h",
               "RelativeToolTip": "InputFields.h",
-              "ViewState": "AgIAAFMAAAAAAAAAAAAAAE4AAAAYAAAAAAAAAA==",
+              "ViewState": "AgIAAE8AAAAAAAAAAAAiwDkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2025-05-11T19:31:56.73Z",
               "EditorCaption": ""
@@ -101,38 +114,25 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "InputFields.cpp",
-              "DocumentMoniker": "C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\InputFields.cpp",
-              "RelativeDocumentMoniker": "InputFields.cpp",
-              "ToolTip": "C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\InputFields.cpp",
-              "RelativeToolTip": "InputFields.cpp",
-              "ViewState": "AgIAAJoAAAAAAAAAAAAAAKcAAABPAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-05-11T19:33:17.099Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
               "Title": "Shapes.h",
               "DocumentMoniker": "C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\Shapes.h",
               "RelativeDocumentMoniker": "Shapes.h",
               "ToolTip": "C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\Shapes.h",
               "RelativeToolTip": "Shapes.h",
-              "ViewState": "AgIAABoBAAAAAAAAAAAAACYBAAAgAAAAAAAAAA==",
+              "ViewState": "AgIAADcBAAAAAAAAAADgvz0BAAA/AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2025-05-07T17:31:20.22Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "Constants.h",
               "DocumentMoniker": "C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\Constants.h",
               "RelativeDocumentMoniker": "Constants.h",
               "ToolTip": "C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\Constants.h",
               "RelativeToolTip": "Constants.h",
-              "ViewState": "AgIAAC0AAAAAAAAAAAAAADAAAAATAAAAAAAAAA==",
+              "ViewState": "AgIAABgAAAAAAAAAAAAAACgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2025-05-07T17:32:48.388Z",
               "EditorCaption": ""
@@ -152,7 +152,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 7,
               "Title": "BaseFunctions.h",
               "DocumentMoniker": "C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\BaseFunctions.h",
               "RelativeDocumentMoniker": "BaseFunctions.h",
@@ -178,26 +178,26 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 6,
               "Title": "Constants.cpp",
               "DocumentMoniker": "C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\Constants.cpp",
               "RelativeDocumentMoniker": "Constants.cpp",
               "ToolTip": "C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\Constants.cpp",
               "RelativeToolTip": "Constants.cpp",
-              "ViewState": "AgIAABkAAAAAAAAAAAAIwDMAAAACAAAAAAAAAA==",
+              "ViewState": "AgIAABQAAAAAAAAAAAAQwCIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-05-07T19:38:55.146Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 3,
               "Title": "MaybeARenderer6.cpp",
               "DocumentMoniker": "C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\MaybeARenderer6.cpp",
               "RelativeDocumentMoniker": "MaybeARenderer6.cpp",
               "ToolTip": "C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\MaybeARenderer6.cpp",
               "RelativeToolTip": "MaybeARenderer6.cpp",
-              "ViewState": "AgIAABsBAAAAAAAAAAAAACMBAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAC8AAAAAAAAAAAAAADwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-05-07T17:30:50.797Z",
               "EditorCaption": ""

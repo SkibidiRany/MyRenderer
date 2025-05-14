@@ -73,25 +73,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pCmdLine, 
         DeleteObject(blackBrush);
 
 
-
-        // Rotation matrices
-        double RotateX[3][3] = {
-            {1, 0, 0},
-            {0, cos(angle), -sin(angle)},
-            {0, sin(angle), cos(angle)}
-        };
-
-        double RotateY[3][3] = {
-            {cos(angle), 0, sin(angle)},
-            {0, 1, 0},
-            {-sin(angle), 0, cos(angle)}
-        };
-
-        double RotateZ[3][3] = {
-            {cos(angle), -sin(angle), 0},
-            {sin(angle), cos(angle), 0},
-            {0, 0, 1}
-        };
         if (ToDrawShape){
             shapeManager->EachFrame(memDC);
         }
@@ -115,19 +96,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pCmdLine, 
         ReleaseDC(window_handle, hdc);
 
 
-        if (AutoRotate) 
-			if (AutoAngleChangeSpeed) angle += angleChangeSpeed;
-            else {
-                if (InputFieldsManager::g_angleSpeedChanged) {
-                    angleChangeSpeed = GetAngleChangeSpeedFromInputs(rgb_window_handle);
-                    InputFieldsManager::g_angleSpeedChanged = false;
-                }
-                angle += GetAngleChangeSpeedFromInputs(rgb_window_handle);
-            }
-        else if (InputFieldsManager::g_angleChanged) {
-			angle = GetAngleFromInputs(rgb_window_handle);
-			InputFieldsManager::g_angleChanged = false;
-        }
+       
     }
 
     return 0;

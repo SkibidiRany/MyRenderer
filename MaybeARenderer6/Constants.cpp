@@ -31,11 +31,7 @@ bool quit = false;
 // input settings
 const char FlushButton = 'R';
 
-// Shape settings
-double angle = 0;
-double angleChangeSpeed = 0.001;
-const bool AutoAngleChangeSpeed = false;
-const bool AutoRotate = true;
+
 
 
 Point Middle = { screenWidth / 2, screenHeight / 2, 0 };

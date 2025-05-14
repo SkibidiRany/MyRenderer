@@ -6,7 +6,7 @@
 #include "MyClasses.h"
 #include "DrawingFunctions.h"
 #include "BaseFunctions.h"
-
+#include "InputFields.h"
 
 
 using std::vector;
@@ -317,13 +317,29 @@ Shape* GetWantedDrawing(Drawings WantedDrawing) {
 
 class ShapeManager : public IDrawEachFrame, public IFlushable {
 private:
+	// Rotation settings
+    const bool RotateAxis[3] = {false, true, false};
+	const int X = 0, Y = 1, Z = 2; // Axis indices
+
+    enum Mode {
+        InputAngle,
+        InputAngleChangeSpeed,
+		Manual
+	};
+
+	Mode myMode = InputAngle;
+
     bool isRotating = false;
     int lastMouseX = 0;
     int lastMouseY = 0;
     float yaw = 0.0f;
     float pitch = 0.0f;
 
-    
+    // Auto settings
+    double angle = 0;
+    double angleChangeSpeed = 0.001;
+    const bool AutoAngleChange = true;
+    const bool AutoRotate = true;
 
     Shape* shape = nullptr;
 
@@ -381,10 +397,6 @@ public:
     void EachFrame(HDC& targethdc) override {
         if (!shape) return;
 
-		if (isRotating) {
-			Point p = GetCursPos(window_handle);
-            OnRightMouseMove(p.x,p.y);
-		}
 
         double rotX[3][3];
         double rotY[3][3];
@@ -393,6 +405,35 @@ public:
             {0, 1, 0},
             {0, 0, 1}
         };
+
+
+        switch (myMode) {
+		case Mode::InputAngle:
+			if (InputFieldsManager::g_angleChanged) {
+				angle = GetAngleFromInputs(rgb_window_handle);
+				InputFieldsManager::g_angleChanged = false;
+			}
+
+			break;
+        case Mode::InputAngleChangeSpeed:
+            if (InputFieldsManager::g_angleSpeedChanged) {
+                angleChangeSpeed = GetAngleChangeSpeedFromInputs(rgb_window_handle);
+                InputFieldsManager::g_angleSpeedChanged = false;
+            }
+            angle += angleChangeSpeed;
+
+            break;
+        case Manual:
+            if (isRotating) {
+                Point p = GetCursPos(window_handle);
+                OnRightMouseMove(p.x, p.y);
+            }
+            break;
+        }
+		
+
+        if (RotateAxis[X]) pitch = angle;
+        if (RotateAxis[Y]) yaw = angle;
 
         MakeRotationMatrixX(pitch, rotX);
         MakeRotationMatrixY(yaw, rotY);

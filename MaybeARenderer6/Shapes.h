@@ -327,7 +327,7 @@ private:
 		Manual
 	};
 
-	Mode myMode = InputAngle;
+	Mode myMode = InputAngleChangeSpeed;
 
     bool isRotating = false;
     int lastMouseX = 0;
@@ -365,6 +365,12 @@ private:
 
 public:
     void SetShape(Shape* s) {
+        if (!shape) {
+            shape = s;
+            return;
+        }
+
+        free(shape);
         shape = s;
     }
 

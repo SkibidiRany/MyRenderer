@@ -204,6 +204,12 @@ LRESULT CALLBACK RGBWindowProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam
                 InvalidateRect(InputFieldsManager::g_colorPreviewBox, NULL, TRUE);
             }
         }
+        else if (notifCode == CBN_SELCHANGE) {
+            if (ctrlID == 106) {// TODO #Define magic numbers
+                Drawings selected = GetSelectedDrawing(rgb_window_handle);
+                shapeManager->SetShape(GetWantedDrawing(selected));
+            }
+        }
         break;
     }
     }

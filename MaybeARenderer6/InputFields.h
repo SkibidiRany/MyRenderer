@@ -73,6 +73,7 @@ int GetAngleFromInputs(HWND rgb_window = NULL);
 
 double GetAngleChangeSpeedFromInputs(HWND rgb_window = NULL);
 
+Drawings GetSelectedDrawing(HWND rgb_window);
 
 
 

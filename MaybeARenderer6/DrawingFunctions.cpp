@@ -33,7 +33,7 @@ void DrawBoldPoint(HDC& hdc, const Point& p, int boldness, COLORREF color) {
     TextOutA(hdc, p.x + textOffsetX, p.y + textOffsetY, coords, static_cast<int>(strlen(coords)));
 }
 
-void DrawTextAtMiddle(HDC hdc, Line line, const char* text, COLORREF color) {
+void DrawTextAtMiddle(HDC& hdc, const Line& line, const char* text, COLORREF color) {
     SetTextColor(hdc, color);
     SetBkMode(hdc, TRANSPARENT);
 

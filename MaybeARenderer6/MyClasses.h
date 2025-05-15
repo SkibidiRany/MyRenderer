@@ -74,7 +74,10 @@ struct Line {
 
     Line(const Point& a, const Point& b, COLORREF col = MyColors.WHITE);
     Line(const Line& other)
-        : p1(other.p1), p2(other.p2), color(other.color) {}
+        : p1(other.p1), p2(other.p2),
+        Middle(other.Middle),
+        lengthStr(other.lengthStr),
+        color(other.color) {}
 
     Line& operator=(const Line& other);
     bool operator==(const Line& other) const;

@@ -327,7 +327,7 @@ private:
 		Manual
 	};
 
-	Mode myMode = InputAngleChangeSpeed;
+	Mode myRotationMode = InputAngleChangeSpeed;
 
     bool isRotating = false;
     int lastMouseX = 0;
@@ -413,7 +413,7 @@ public:
         };
 
 
-        switch (myMode) {
+        switch (myRotationMode) {
 		case Mode::InputAngle:
 			if (InputFieldsManager::g_angleChanged) {
 				angle = GetAngleFromInputs(rgb_window_handle);

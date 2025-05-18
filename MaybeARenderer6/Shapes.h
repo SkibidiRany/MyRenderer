@@ -364,6 +364,12 @@ private:
     }
 
 public:
+
+
+    ShapeManager() {
+        SetShape(GetWantedDrawing(WantedDrawing));
+    }
+
     void SetShape(Shape* s) {
         if (!shape) {
             shape = s;

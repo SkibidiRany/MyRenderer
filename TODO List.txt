@@ -40,8 +40,10 @@ TODO :
 This feature might need us to manually link PointManager and LineManager together, since moving a point should also move all lines connected to it. 
 Current Idea: create a common manager that takes in both, and for each method, it calls the right methods in each, and when we move a point, we also move all lines connected to it using a similar approach to that we used in "RemoveAllLinesWithPoint()" (I forgot the exact name)
 
-0 Add Depth FOV, consider looking into why engines use point system (x,y,z,w)
+0 	Add Depth FOV, consider looking into why engines use point system (x,y,z,w)
 
-0 Add scrollbar to decide which shape we want to draw, update ShapeManager accordingly:
- ALMOST DONE: still need to respond to handle user selecting shape logic.
+1	Add scrollbar to decide which shape we want to draw, update ShapeManager accordingly:
+ 	1 DONE:	"ALMOST DONE: still need to respond to handle user selecting shape logic."
+
+1	Add initialization to none to scrollbar
 

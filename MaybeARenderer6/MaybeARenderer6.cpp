@@ -45,11 +45,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pCmdLine, 
 
     InitializeManagers();
 
-    myShape = GetWantedDrawing(WantedDrawing);
     
-    shapeManager->SetShape(myShape);
 
-    if (myShape == NULL) return -1;
 
     // Main loop
     MSG message;

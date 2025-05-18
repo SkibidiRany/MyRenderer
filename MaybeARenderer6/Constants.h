@@ -47,6 +47,7 @@ extern Point LastCursPos;
 
 // Enum for Drawings
 enum Drawings {
+    None,
     Rect,
     Pyramid,
     DoublePyramid,

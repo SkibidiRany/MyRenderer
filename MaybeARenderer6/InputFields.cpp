@@ -85,10 +85,10 @@ double GetAngleChangeSpeedFromInputs(HWND rgb_window ) {
 
 Drawings GetSelectedDrawing(HWND rgb_window) {
     HWND comboBox = GetDlgItem(rgb_window, 106); // 106 is the ID for shape dropdown
-    if (!comboBox) return Drawings::Rect; // Default fallback
+    if (!comboBox) return Drawings::None; // Default fallback
 
     int selectedIndex = (int)SendMessageW(comboBox, CB_GETCURSEL, 0, 0);
-    if (selectedIndex == CB_ERR) return Drawings::Rect; // Invalid selection fallback
+    if (selectedIndex == CB_ERR) return Drawings::None; // Invalid selection fallback
 
     return static_cast<Drawings>(selectedIndex);
 }

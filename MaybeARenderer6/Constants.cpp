@@ -40,6 +40,7 @@ Point LastCursPos = { 0, 0, 0 };
 
 
 std::vector<std::wstring> ShapeNames = {
+    L"None",
     L"Rect",
     L"Pyramid",
     L"DoublePyramid",
@@ -48,4 +49,4 @@ std::vector<std::wstring> ShapeNames = {
 };
 
 // Define WantedDrawing
-Drawings WantedDrawing = Heart;
+Drawings WantedDrawing = None;

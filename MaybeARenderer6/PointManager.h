@@ -27,7 +27,8 @@ public:
 
     Point ToBucket(Point p);
     Point insert(Point p);
-    void remove(Point p);
+    Point remove(Point p);
+	std::pair<Point, Point> MovePoint(Point old, Point pos);
     Point CheckIntersection(Point p);
     void DrawPoints(HDC targetHDC);
     void EachFrame(HDC& targetHDC) override;

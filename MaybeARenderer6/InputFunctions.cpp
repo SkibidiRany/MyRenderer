@@ -3,9 +3,11 @@
 #include "LineManager.h"
 #include "BaseFunctions.h"
 #include "MyClasses.h"
+#include "InputFields.h"
 
 void OnLeftMouseDown(HWND hwnd, PointManager* p) {
     Point toAdd = GetCursPos(hwnd);
+    toAdd.color = lastColorFromInputs;
 
     if (!PositionIsLegal(toAdd)) return;
     p->insert(toAdd);
@@ -26,7 +28,7 @@ void OnLeftMouseUp(HWND hwnd, Point LastCursPos, PointManager* p, LineManager* l
     if (!PositionIsLegal(intersectionChecker)) return;
 
     if (lastPointDrawn != intersectionChecker)
-        l->addLine(lastPointDrawn, intersectionChecker);
-
+        l->addLine(Line{ lastPointDrawn, intersectionChecker, lastColorFromInputs });
+	LastCursPos.color = lastColorFromInputs;
     p->insert(LastCursPos);
 }

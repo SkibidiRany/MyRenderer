@@ -16,8 +16,8 @@ private:
 public:
     LineManager();
 
-    void addLine(const Point& P, const Point& Q);
-    void removeLine(Point& P, Point& Q);
+    void addLine(Line l);
+    void removeLine(Line l);
     void removeLinesWithPoint(const Point& P);
 
     std::vector<Line> getLinesWithPoint(const Point& p) const;
@@ -26,6 +26,7 @@ public:
     void OnMovePointUp();
 	void OnMovePoint(const Point& oldPoint, const Point& newPoint);
 
+    void MoveLinesWithPoint(Point old, Point pos);
 
     void DrawLines(HDC& targetHDC);
     void EachFrame(HDC& targetHDC) override;

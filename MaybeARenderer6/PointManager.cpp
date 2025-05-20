@@ -24,18 +24,32 @@ Point PointManager::insert(Point p) {
         insertionOrder.pop();
     }
 
-    p.color = lastColorFromInputs;
     points.insert(p);
     insertionOrder.push(p);
     buckets[ToBucket(p)].push_back(p);
     return p;
 }
 
-void PointManager::remove(Point p) {
-    points.erase(p);
-    Point key = ToBucket(p);
+Point PointManager::remove(Point p) {
+	Point intersection = CheckIntersection(p);
+
+    points.erase(intersection);
+    Point key = ToBucket(intersection);
     auto& vec = buckets[key];
-    vec.erase(std::remove(vec.begin(), vec.end(), p), vec.end());
+    vec.erase(std::remove(vec.begin(), vec.end(), intersection), vec.end());
+
+	return intersection;
+}
+
+std::pair<Point, Point> PointManager::MovePoint(Point old, Point pos)
+{
+	pos.color = old.color;
+
+    old = remove(old);
+	Point newPoint = insert(pos);
+
+    return std::pair<Point, Point>(old, newPoint);
+
 }
 
 Point PointManager::CheckIntersection(Point p) {

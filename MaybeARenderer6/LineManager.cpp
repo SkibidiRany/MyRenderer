@@ -5,12 +5,12 @@
 
 LineManager::LineManager() = default;
 
-void LineManager::addLine(const Point& P, const Point& Q) {
-    lines.insert({ P, Q, lastColorFromInputs });
+void LineManager::addLine(Line l) {
+    lines.insert(l);
 }
 
-void LineManager::removeLine(Point& P, Point& Q) {
-    lines.erase(Line{ P, Q });
+void LineManager::removeLine(Line l) {
+    lines.erase(l);
 }
 
 void LineManager::removeLinesWithPoint(const Point& P) {
@@ -56,9 +56,23 @@ void LineManager::OnMovePoint(const Point& oldP, const Point& newP) {
     for (auto& line : linesToUpdate) {
         if (line.p1 == oldP) line.p1 = newP;
         if (line.p2 == oldP) line.p2 = newP;
-        addLine(line.p1, line.p2);  // Reinsert with updated points
+        addLine(line);  // Reinsert with updated points
     }
 
+}
+
+void LineManager::MoveLinesWithPoint(Point old, Point pos)
+{
+    for (const Line& l : lines) {
+        if (l.p1 ==  old) {
+            removeLine({ l.p1, l.p2 });
+            addLine({ pos, l.p2 });
+		}
+		else if (l.p2 == old) {
+			removeLine({l.p1, l.p2});
+			addLine({l.p1, pos});
+        }
+    }
 }
 
 void LineManager::DrawLines(HDC& targetHDC) {

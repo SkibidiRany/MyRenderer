@@ -39,6 +39,24 @@ TODO :
 0	Addd moving points feature: given coordinates, we should be able to move the point in those coordinates depending on mouse cursor input. Kepp in mind: only one point exists in our spatial hashing grid, we can use that.
 This feature might need us to manually link PointManager and LineManager together, since moving a point should also move all lines connected to it. 
 Current Idea: create a common manager that takes in both, and for each method, it calls the right methods in each, and when we move a point, we also move all lines connected to it using a similar approach to that we used in "RemoveAllLinesWithPoint()" (I forgot the exact name)
+Additional planning: 
+- Define PointLineManager class. make it inheret from IEachFrame and IDeletable and IFlushable.
+- Initialize it in Initialize Managers, make its EachFrame function call PointManager and LineManager EachFrame, since it will now control them.
+- Define the interfaces methods.
+- Define the method "MovePointLines": Call PointManager::MovePoint, get the returned pair then call LineManager::MoveLinesWithPoint.
+- Define the input methods, this will have to change when I integrate my own event system.
+
+Changes to PointManager:			DONE
+- Define the method "MovePoint": this method should take as an input (old, new), where old is the point we want to move and new is the point we want to move it to. One good looking implementation is just to do "remove(old); insert(new);" since we already deal with points existing in the same new point in the insert method.
+
+Changes to LineManager:				DONE
+- Define the method "MoveLinesWithPoint": this method should take as an input (old, new), where old is the point we want to move all lines connected to it, and new is the point we want to move the lines to. 
+
+This approach comes up with 1 big problem: We need to use the spatial hashing grid in PointManager, so that LineManager can know if the point old and new intersect with any other point.
+SOLVED:
+- My current solution: in PointLineManager::MovePointLines, we call PointManager::MovePoint, and this method knows everything, since it needs the information about intersecting points in order to move the point correctly, so all we have to do is save the point intersecting with old and the point intersecting with new in a pair, and to just return the pair to PointLineManager, Then, we can just feed the pair to LineManager::MoveLinesWithPoint.  		
+I think this would work great.
+
 
 0 	Add Depth FOV, consider looking into why engines use point system (x,y,z,w)
 

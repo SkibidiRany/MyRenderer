@@ -32,11 +32,10 @@ TODO :
 
 1 	Change input buttons to constants that I can change
 
-0 	Drawing 3d.
 
 
 
-0	Add moving points feature: given coordinates, we should be able to move the point in those coordinates depending on mouse cursor input. Keep in mind: only one point exists in our spatial hashing grid, we can use that.
+1	Add moving points feature: given coordinates, we should be able to move the point in those coordinates depending on mouse cursor input. Keep in mind: only one point exists in our spatial hashing grid, we can use that.
 This feature might need us to manually link PointManager and LineManager together, since moving a point should also move all lines connected to it. 
 Current Idea: create a common manager that takes in both, and for each method, it calls the right methods in each, and when we move a point, we also move all lines connected to it using a similar approach to that we used in "RemoveAllLinesWithPoint()" (I forgot the exact name)
 Additional planning: 
@@ -63,8 +62,18 @@ After adding the moving points and lines feature, I was greeted with another sma
 - Update LineManager::MoveLinesWithPoint method: While moving lines, after changing one point of a lines, call UpdateMidPoint 		DONE
 
 
-0 	Add Depth FOV, consider looking into why engines use point system (x,y,z,w)
+0 	Drawing 3d.
 
+0 	Add Depth FOV, consider looking into why engines use point system (x,y,z,w) DONE
+- add Vector4 class. 	DONE
+- add Matrix4 class. 	DONE
+ 	
+Finished adding the math needed for perspective projection, all that's left to do is: 
+- initialize the MatrixManager at the start.
+- insert the needed matrices in main. 
+- apply all matrices to each point before drawing it.
+
+ 
 1	Add scrollbar to decide which shape we want to draw, update ShapeManager accordingly:
  	1 DONE:	"ALMOST DONE: still need to respond to handle user selecting shape logic."
 

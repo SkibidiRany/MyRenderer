@@ -1,11 +1,12 @@
 #include "InputFunctions.h"
 #include "PointManager.h"
 #include "LineManager.h"
+#include "PointLineManager.h"
 #include "BaseFunctions.h"
 #include "MyClasses.h"
 #include "InputFields.h"
 
-void OnLeftMouseDown(HWND hwnd, PointManager* p) {
+void OnLeftMouseDown(HWND hwnd, PointLineManager* p) {
     Point toAdd = GetCursPos(hwnd);
     toAdd.color = lastColorFromInputs;
 
@@ -13,7 +14,7 @@ void OnLeftMouseDown(HWND hwnd, PointManager* p) {
     p->insert(toAdd);
 }
 
-Point OnLeftMouseHold(HWND hwnd, HDC hdc, PointManager* p, int boldness, COLORREF color) {
+Point OnLeftMouseHold(HWND hwnd, HDC hdc, PointLineManager* p, int boldness, COLORREF color) {
     Point LastCursPos = GetCursPos(hwnd);
     if (!PositionIsLegal(LastCursPos)) return { 0, 0, 0 };
 
@@ -21,14 +22,16 @@ Point OnLeftMouseHold(HWND hwnd, HDC hdc, PointManager* p, int boldness, COLORRE
     return LastCursPos;
 }
 
-void OnLeftMouseUp(HWND hwnd, Point LastCursPos, PointManager* p, LineManager* l) {
-    Point intersectionChecker = p->CheckIntersection(LastCursPos);
+void OnLeftMouseUp(HWND hwnd, Point LastCursPos, PointLineManager* p) {
+    std::optional<Point> intersectionChecker = p->CheckIntersection(LastCursPos);
+    Point intersection = intersectionChecker.value_or(LastCursPos);
     Point lastPointDrawn = p->LastDrawn;
 
-    if (!PositionIsLegal(intersectionChecker)) return;
+    if (!PositionIsLegal(intersection)) return;
 
-    if (lastPointDrawn != intersectionChecker)
-        l->addLine(Line{ lastPointDrawn, intersectionChecker, lastColorFromInputs });
-	LastCursPos.color = lastColorFromInputs;
+    if (lastPointDrawn != intersection)
+        p->addLine(Line{ lastPointDrawn, intersection, lastColorFromInputs });
+
+    LastCursPos.color = lastColorFromInputs;
     p->insert(LastCursPos);
 }

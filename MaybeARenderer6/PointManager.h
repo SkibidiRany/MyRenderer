@@ -5,7 +5,7 @@
 #include <queue>
 #include <vector>
 #include <algorithm>
-
+#include <optional>
 
 #include "MyClasses.h"
 
@@ -29,7 +29,8 @@ public:
     Point insert(Point p);
     Point remove(Point p);
 	std::pair<Point, Point> MovePoint(Point old, Point pos);
-    Point CheckIntersection(Point p);
+    std::optional<Point> CheckIntersection(Point p);
+
     void DrawPoints(HDC targetHDC);
     void EachFrame(HDC& targetHDC) override;
     void Flush() override;

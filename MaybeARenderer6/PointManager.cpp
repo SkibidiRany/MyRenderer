@@ -15,23 +15,32 @@ Point PointManager::ToBucket(Point p) {
 }
 
 Point PointManager::insert(Point p) {
-    Point checker = CheckIntersection(p);
-    LastDrawn = checker;
-    if (checker != p) return checker;
+    std::optional<Point> checker = CheckIntersection(p);
+
+    if (checker.has_value()) {
+        LastDrawn = checker.value();
+        return checker.value(); // Point already exists nearby
+    }
 
     if (points.size() >= _capacity) {
         Point oldest = insertionOrder.front();
         insertionOrder.pop();
+        // Note: You may also want to erase `oldest` from `points` and `buckets`
     }
 
     points.insert(p);
     insertionOrder.push(p);
     buckets[ToBucket(p)].push_back(p);
+    LastDrawn = p;
     return p;
 }
 
+
 Point PointManager::remove(Point p) {
-	Point intersection = CheckIntersection(p);
+	auto intersectionChecker = CheckIntersection(p);
+
+	if (!intersectionChecker.has_value()) return p;
+	Point intersection = intersectionChecker.value();
 
     points.erase(intersection);
     Point key = ToBucket(intersection);
@@ -52,7 +61,7 @@ std::pair<Point, Point> PointManager::MovePoint(Point old, Point pos)
 
 }
 
-Point PointManager::CheckIntersection(Point p) {
+std::optional<Point> PointManager::CheckIntersection(Point p) {
     Point base = ToBucket(p);
     for (int dx = -1; dx <= 1; ++dx)
         for (int dy = -1; dy <= 1; ++dy)
@@ -69,8 +78,11 @@ Point PointManager::CheckIntersection(Point p) {
                     }
                 }
             }
-    return p;
+    return std::nullopt;
 }
+
+
+
 
 void PointManager::DrawPoints(HDC targetHDC) {
     for (const auto& p : points) {

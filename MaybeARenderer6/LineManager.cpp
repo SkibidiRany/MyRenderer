@@ -35,43 +35,20 @@ std::vector<Line> LineManager::getLinesWithPoint(const Point& p) const {
     return result; 
 }
 
-void LineManager::OnMovePointDown(const Point& old) {
-	oldPoint = old; // Store the old point for later use
-}
 
-void LineManager::OnMovePointUp()
-{
-    Point newP = GetCursPos(window_handle);
-    OnMovePoint(oldPoint, newP);
-}
-
-void LineManager::OnMovePoint(const Point& oldP, const Point& newP) {
-
-    auto linesToUpdate = getLinesWithPoint(oldP);
-
-    // Remove lines connected to the old point
-    removeLinesWithPoint(oldP);
-
-    // Add lines with the new point
-    for (auto& line : linesToUpdate) {
-        if (line.p1 == oldP) line.p1 = newP;
-        if (line.p2 == oldP) line.p2 = newP;
-        addLine(line);  // Reinsert with updated points
-    }
-
-}
 
 void LineManager::MoveLinesWithPoint(Point old, Point pos)
 {
-    for (const Line& l : lines) {
-        if (l.p1 ==  old) {
-            removeLine({ l.p1, l.p2 });
-            addLine({ pos, l.p2 });
-		}
-		else if (l.p2 == old) {
-			removeLine({l.p1, l.p2});
-			addLine({l.p1, pos});
-        }
+    auto linesToUpdate = getLinesWithPoint(old);
+
+    // Remove lines connected to the old point
+    removeLinesWithPoint(old);
+
+    // Add lines with the new point
+    for (auto& line : linesToUpdate) {
+        if (line.p1 == old) line.p1 = pos;
+        if (line.p2 == old) line.p2 = pos;
+        addLine(line);  // Reinsert with updated points
     }
 }
 

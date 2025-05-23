@@ -36,15 +36,15 @@ TODO :
 
 
 
-0	Addd moving points feature: given coordinates, we should be able to move the point in those coordinates depending on mouse cursor input. Kepp in mind: only one point exists in our spatial hashing grid, we can use that.
+0	Add moving points feature: given coordinates, we should be able to move the point in those coordinates depending on mouse cursor input. Keep in mind: only one point exists in our spatial hashing grid, we can use that.
 This feature might need us to manually link PointManager and LineManager together, since moving a point should also move all lines connected to it. 
 Current Idea: create a common manager that takes in both, and for each method, it calls the right methods in each, and when we move a point, we also move all lines connected to it using a similar approach to that we used in "RemoveAllLinesWithPoint()" (I forgot the exact name)
 Additional planning: 
-- Define PointLineManager class. make it inheret from IEachFrame and IDeletable and IFlushable.
-- Initialize it in Initialize Managers, make its EachFrame function call PointManager and LineManager EachFrame, since it will now control them.
-- Define the interfaces methods.
-- Define the method "MovePointLines": Call PointManager::MovePoint, get the returned pair then call LineManager::MoveLinesWithPoint.
-- Define the input methods, this will have to change when I integrate my own event system.
+- Define PointLineManager class. make it inherit from IEachFrame and IDeletable and IFlushable. Done
+- Initialize it in Initialize Managers, make its EachFrame function call PointManager and LineManager EachFrame, since it will now control them. Done
+- Define the interfaces methods. Done
+- Define the method "MovePointLines": Call PointManager::MovePoint, get the returned pair then call LineManager::MoveLinesWithPoint. Done
+- Define the input methods, this will have to change when I integrate my own event system. Done
 
 Changes to PointManager:			DONE
 - Define the method "MovePoint": this method should take as an input (old, new), where old is the point we want to move and new is the point we want to move it to. One good looking implementation is just to do "remove(old); insert(new);" since we already deal with points existing in the same new point in the insert method.
@@ -57,7 +57,10 @@ SOLVED:
 - My current solution: in PointLineManager::MovePointLines, we call PointManager::MovePoint, and this method knows everything, since it needs the information about intersecting points in order to move the point correctly, so all we have to do is save the point intersecting with old and the point intersecting with new in a pair, and to just return the pair to PointLineManager, Then, we can just feed the pair to LineManager::MoveLinesWithPoint.  		
 I think this would work great.
 
-
+ALL DONE, BUT ONE MINOR ISSUE:
+After adding the moving points and lines feature, I was greeted with another small bug: because I took the lines as static when I added the length text feature, when we move a line, the text draws at the old spot.
+- Define UpdateMidPoint method in Line struct
+- Update LineManager::MoveLinesWithPoint method: While moving lines, after changing one point of a lines, call UpdateMidPoint
 0 	Add Depth FOV, consider looking into why engines use point system (x,y,z,w)
 
 1	Add scrollbar to decide which shape we want to draw, update ShapeManager accordingly:

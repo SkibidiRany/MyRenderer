@@ -10,9 +10,7 @@
 class LineManager : public IDrawEachFrame, public IFlushable {
 private:
     std::unordered_set<Line, LineHash> lines;
-    std::unordered_map<Point, std::unordered_set<Line>, PointHash> pointToLinesMap;
 
-    Point oldPoint;
 public:
     LineManager();
 
@@ -22,9 +20,6 @@ public:
 
     std::vector<Line> getLinesWithPoint(const Point& p) const;
 
-    void OnMovePointDown(const Point& old);
-    void OnMovePointUp();
-	void OnMovePoint(const Point& oldPoint, const Point& newPoint);
 
     void MoveLinesWithPoint(Point old, Point pos);
 

@@ -141,6 +141,7 @@
     <ClInclude Include="MyClasses.h" />
     <ClInclude Include="InputFields.h" />
     <ClInclude Include="MaybeARenderer6.h" />
+    <ClInclude Include="PointLineManager.h" />
     <ClInclude Include="PointManager.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Shapes.h" />
@@ -160,6 +161,7 @@
     <ClCompile Include="MatrixManager.cpp" />
     <ClCompile Include="MaybeARenderer6.cpp" />
     <ClCompile Include="MyClasses.cpp" />
+    <ClCompile Include="PointLineManager.cpp" />
     <ClCompile Include="PointManager.cpp" />
     <ClCompile Include="Vector4.cpp" />
   </ItemGroup>

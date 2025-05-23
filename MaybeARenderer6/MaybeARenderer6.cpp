@@ -2,27 +2,36 @@
 #include <stdbool.h>
 #include <math.h>
 #include <vector>
+#include <string>
+#include <iostream>
+
 #include "Shapes.h"
 #include "Utilities.h"
 #include "InputFunctions.h"
-#include <string>
-#include <iostream>
+#include "PointLineManager.h"
+
 using std::vector;
 
 
 Shape* myShape;
 
 void InitializeManagers() {
-    PointsToDraw = new PointManager(drawingCapacity, 2 * PointBoldness);
-    LinesToDraw = new LineManager();
+
+    
+    pointLineManager = new PointLineManager(drawingCapacity, 2 * PointBoldness);
+    //PointsToDraw = new PointManager(drawingCapacity, 2 * PointBoldness);
+    //LinesToDraw = new LineManager();
 
 	inputFieldsManager = new InputFieldsManager();
 }
 
 
 void FlushScreen() {
-    LinesToDraw->Flush();
-    PointsToDraw->Flush();
+
+	pointLineManager->Flush();
+    //LinesToDraw->Flush();
+    //PointsToDraw->Flush();
+
     shapeManager->Flush();
 }
 
@@ -76,13 +85,15 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pCmdLine, 
 
 
 		if ((GetKeyState(VK_LBUTTON) & 0x100) != 0) {
-			LastCursPos = OnLeftMouseHold(window_handle, memDC, PointsToDraw, LineBoldness, lastColorFromInputs);
+			LastCursPos = OnLeftMouseHold(window_handle, memDC, pointLineManager, LineBoldness, lastColorFromInputs);
 		}
         
 
 
-        PointsToDraw->EachFrame(memDC);
-		LinesToDraw->EachFrame(memDC);
+  //      PointsToDraw->EachFrame(memDC);
+		//LinesToDraw->EachFrame(memDC);
+
+		pointLineManager->EachFrame(memDC);
 
         // Copy the off-screen buffer to the screen
         BitBlt(hdc, 0, 0, screenWidth, screenHeight, memDC, 0, 0, SRCCOPY);
@@ -117,10 +128,10 @@ LRESULT CALLBACK WindowProcessMessage(HWND window_handle, UINT message, WPARAM w
         PostQuitMessage(0);
         return 0;
     case DRAW_POINT_DOWN:
-        OnLeftMouseDown(window_handle, PointsToDraw);
+        OnLeftMouseDown(window_handle, pointLineManager);
         break;
     case DRAW_POINT_UP:
-		OnLeftMouseUp(window_handle, LastCursPos, PointsToDraw, LinesToDraw);
+		OnLeftMouseUp(window_handle, LastCursPos, pointLineManager);
         break;
     case ROTATE_SHAPE_DOWN:
 		OnRightMouseDown(window_handle);
@@ -129,22 +140,22 @@ LRESULT CALLBACK WindowProcessMessage(HWND window_handle, UINT message, WPARAM w
 		OnRightMouseUp();
 		break;
     case MOVE_POINT_DOWN:
-		LinesToDraw->OnMovePointDown(GetCursPos(window_handle));
+		pointLineManager ->OnMovePointDown(GetCursPos(window_handle));
         break;
 	case MOVE_POINT_UP:
-		LinesToDraw->OnMovePointUp();
+		pointLineManager->OnMovePointUp();
         break;
     case WM_KEYDOWN:
         if (wParam == FlushButton) {
             FlushScreen();
         }
         else if (wParam == 'M') {
-            LinesToDraw->OnMovePointDown(GetCursPos(window_handle));
+            pointLineManager->OnMovePointDown(GetCursPos(window_handle));
         }
         break;
     case WM_KEYUP:
 		if (wParam == 'M') {
-			LinesToDraw->OnMovePointUp();
+            pointLineManager->OnMovePointUp();
 		}
         break;
     default:

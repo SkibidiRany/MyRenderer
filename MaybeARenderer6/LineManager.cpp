@@ -48,6 +48,9 @@ void LineManager::MoveLinesWithPoint(Point old, Point pos)
     for (auto& line : linesToUpdate) {
         if (line.p1 == old) line.p1 = pos;
         if (line.p2 == old) line.p2 = pos;
+        line.UpdateLength();
+        line.UpdateMidPoint();
+
         addLine(line);  // Reinsert with updated points
     }
 }

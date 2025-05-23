@@ -24,3 +24,15 @@ Line& Line::operator=(const Line& other) {
 bool Line::operator==(const Line& other) const {
     return (p1 == other.p1 && p2 == other.p2) || (p1 == other.p2 && p2 == other.p1);
 }
+
+void Line::UpdateMidPoint()
+{
+	Middle.x = (p1.x + p2.x) / 2;
+	Middle.y = (p1.y + p2.y) / 2;
+	Middle.z = (p1.z + p2.z) / 2;
+}
+
+void Line::UpdateLength()
+{
+    lengthStr = std::format("{:.2f}", GetDistance(p1, p2));
+}

@@ -82,7 +82,8 @@ struct Line {
     Line& operator=(const Line& other);
     bool operator==(const Line& other) const;
 
-
+	void UpdateMidPoint();
+    void UpdateLength();
 };
 
 // LineHash struct

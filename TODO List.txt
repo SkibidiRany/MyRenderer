@@ -60,7 +60,9 @@ I think this would work great.
 ALL DONE, BUT ONE MINOR ISSUE:
 After adding the moving points and lines feature, I was greeted with another small bug: because I took the lines as static when I added the length text feature, when we move a line, the text draws at the old spot.
 - Define UpdateMidPoint method in Line struct
-- Update LineManager::MoveLinesWithPoint method: While moving lines, after changing one point of a lines, call UpdateMidPoint
+- Update LineManager::MoveLinesWithPoint method: While moving lines, after changing one point of a lines, call UpdateMidPoint 		DONE
+
+
 0 	Add Depth FOV, consider looking into why engines use point system (x,y,z,w)
 
 1	Add scrollbar to decide which shape we want to draw, update ShapeManager accordingly:

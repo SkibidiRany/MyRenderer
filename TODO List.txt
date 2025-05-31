@@ -89,13 +89,13 @@ Main methods are:
 
 1	Add initialization to none to scrollbar
 
-0	Add Time class, this class has to support the following:
+1	Add Time class, this class has to support the following:
 	- Initialize() function : initializes the clock to the current time.
 	- GetDeltaTime() function : returns the difference in time between the last frame and the current frame
 	- Update() function : set the recent frame in the main loop, and then set the last frame time at the end of the main loop.
 	- ElapsedTime() function : returns the time the program has been running.
 
-0	Add Animation class, this class has to support the following:
+1	Add Animation class, this class has to support the following:
 	- Constructor takes in a duration and a function that we want to run for that duration (such as lerp)
 	- Start function : starts the animation, calls f for the duration set.
 	- Stop function : stops the animation.
@@ -105,7 +105,7 @@ Main methods are:
 	- isRunning : are we running?
 	- thread : the thread we are running on.
 
-0	Add Animator class, this class has to support the following:
+1	Add Animator class, this class has to support the following:
 	- Add(Animation a) function : Adds a given animation to its data structure.
 	- Update(deltaTime) function : Calls all valid animations in its data structure.
 	This class must remove an animation form its data structure when the animation finishes its work.

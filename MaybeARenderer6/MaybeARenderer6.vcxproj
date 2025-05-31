@@ -129,6 +129,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Animation.h" />
+    <ClInclude Include="Animator.h" />
     <ClInclude Include="BaseFunctions.h" />
     <ClInclude Include="Constants.h" />
     <ClInclude Include="DeletionManager.h" />
@@ -150,6 +152,8 @@
     <ClInclude Include="Vector4.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Animation.cpp" />
+    <ClCompile Include="Animator.cpp" />
     <ClCompile Include="BaseFunctions.cpp" />
     <ClCompile Include="Constants.cpp" />
     <ClCompile Include="DeletionManager.cpp" />

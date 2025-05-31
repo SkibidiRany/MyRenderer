@@ -68,14 +68,44 @@ After adding the moving points and lines feature, I was greeted with another sma
 - add Vector4 class. 	DONE
 - add Matrix4 class. 	DONE
  	
-Finished adding the math needed for perspective projection, all that's left to do is: 
-- initialize the MatrixManager at the start.
-- insert the needed matrices in main. 
+Add the math needed for perspective projection, and then all that's left to do is: 
+- initialize the MatrixManager at the start. 	
+- insert the needed matrices in main. 		
 - apply all matrices to each point before drawing it.
+look into making MatrixManager all static if possible, since we need to call it everytime we "DrawPoints", and camera translation will change the needed matrices, so we can't really save a copy in each class that uses it. Or can we?
 
- 
+
+0 	Event System. look into making it not need function input, else we can use templates.
+- Data structure is a linked list of funcptr s for each signal.	
+Main methods are:
+	void Subscribe(funcptr, sig): Adds funcptr to the linked list of the signal sig.
+	void UnSubscribe(funcptr, sig): Removes funcptr from the linked list of the signal sig.
+	void invoke(sig): invokes all functions subscribed to signal sig.
+
+
+
 1	Add scrollbar to decide which shape we want to draw, update ShapeManager accordingly:
  	1 DONE:	"ALMOST DONE: still need to respond to handle user selecting shape logic."
 
 1	Add initialization to none to scrollbar
 
+0	Add Time class, this class has to support the following:
+	- Initialize() function : initializes the clock to the current time.
+	- GetDeltaTime() function : returns the difference in time between the last frame and the current frame
+	- Update() function : set the recent frame in the main loop, and then set the last frame time at the end of the main loop.
+	- ElapsedTime() function : returns the time the program has been running.
+
+0	Add Animation class, this class has to support the following:
+	- Constructor takes in a duration and a function that we want to run for that duration (such as lerp)
+	- Start function : starts the animation, calls f for the duration set.
+	- Stop function : stops the animation.
+	in private, we should save fields:
+	- func : the function we want to run.
+	- duration : the duration we want to run for.
+	- isRunning : are we running?
+	- thread : the thread we are running on.
+
+0	Add Animator class, this class has to support the following:
+	- Add(Animation a) function : Adds a given animation to its data structure.
+	- Update(deltaTime) function : Calls all valid animations in its data structure.
+	This class must remove an animation form its data structure when the animation finishes its work.

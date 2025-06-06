@@ -14,10 +14,13 @@ private:
 
 public:
     void Add(std::shared_ptr<Animation> animation);
-    void Add(float duration, std::function<void(float)> func);
     void Update(float deltaTime);
     size_t GetActiveAnimationCount() const;
     void Clear();
+
+	HDC CallAnimations();
+    void StartAnimations();
+    void StopAnimations();
 };
 
 #endif // ANIMATOR_H

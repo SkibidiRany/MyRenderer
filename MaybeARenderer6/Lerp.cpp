@@ -3,7 +3,7 @@
 #include "Constants.h"
 #include <algorithm>
 
-Lerp::Lerp(Point a, Point b, float dur) : a(a), b(b), Animation(dur) 
+Lerp::Lerp(Point a, Point b, float dur) : a(a), b(b), Animation(dur)
 {
 
 }
@@ -12,24 +12,16 @@ void Lerp::DoAnimation(HDC hdc, float deltaTime)
 {
     if (!IsRunning()) return;
 
-    elapsedTime += deltaTime;
-
-    // Clamp t between 0 and 1
-    float t = std::min(elapsedTime / duration, 1.0f);
-
-
     // Linearly interpolate between a and b
     Point current;
-    current.x = a.x + t * (b.x - a.x);
-    current.y = a.y + t * (b.y - a.y);
+    current.x = a.x + progress * (b.x - a.x);
+    current.y = a.y + progress * (b.y - a.y);
 
+	DrawBoldPoint(hdc, a, PointBoldness, a.color); // Draw the start point
+	DrawBoldPoint(hdc, b, PointBoldness, b.color); // Draw the end point
+
+    DrawLine(hdc, { a, current }, LineBoldness, a.color);
     // Draw the current point
     DrawBoldPoint(hdc, current, PointBoldness, a.color);
 
-    // Stop animation if it's done
-    if (t >= 1.0f)
-        Stop();
 }
-
-
-

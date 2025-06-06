@@ -9,6 +9,9 @@
 #include "Utilities.h"
 #include "InputFunctions.h"
 #include "PointLineManager.h"
+#include "Animator.h"
+#include "Time.h"
+#include "Lerp.h"
 
 using std::vector;
 
@@ -54,12 +57,36 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pCmdLine, 
 
     InitializeManagers();
 
-    
+	auto animator = new Animator();
+	auto clock = new Time;
+    clock->Initialize();
+    Point a = { 0, 0 }, b = { 400,400 }, c = { 400,200 };
 
+	auto anim1 = new Lerp(a,b, 5);
+	auto anim2 = new Lerp(b, c, 5);
+
+	animator->Add(std::shared_ptr<Animation>(anim1));
+	animator->Add(std::shared_ptr<Animation>(anim2));
+
+    anim1->Start();
+	anim2->Start();
 
     // Main loop
     MSG message;
     while (!quit) {
+
+        clock->Update();
+        float deltaTime = clock->GetDeltaTime();
+        animator->Update(deltaTime); // Time update only
+        
+
+        std::cout << "Active animations: " << animator->GetActiveAnimationCount() << std::endl;
+        std::cout << "Delta time: " << deltaTime << std::endl;
+
+        /*anim1->Update(deltaTime);
+		anim2->Update(deltaTime);*/
+        
+        
         while (PeekMessage(&message, NULL, 0, 0, PM_REMOVE)) {
             TranslateMessage(&message);
             DispatchMessage(&message);
@@ -90,21 +117,33 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pCmdLine, 
         
 
 
-  //      PointsToDraw->EachFrame(memDC);
+        //PointsToDraw->EachFrame(memDC);
 		//LinesToDraw->EachFrame(memDC);
 
 		pointLineManager->EachFrame(memDC);
 
+        // Animate and merge animation HDCs 
+        HDC animDC = animator->CallAnimations(); // Returns final HDC of all animations
+
+        // Merge animation content into your off-screen buffer (non-black only)
+        TransparentBlt(
+            memDC, 0, 0, screenWidth, screenHeight,
+            animDC, 0, 0, screenWidth, screenHeight,
+            RGB(0, 0, 0) // Treat black as transparent
+        );
+
+        // Proper cleanup
+        HBITMAP oldBitmap = (HBITMAP)SelectObject(animDC, GetStockObject(BLACK_BRUSH));
+        DeleteObject(oldBitmap);
+        DeleteDC(animDC);
+
         // Copy the off-screen buffer to the screen
         BitBlt(hdc, 0, 0, screenWidth, screenHeight, memDC, 0, 0, SRCCOPY);
-
         // Clean up
         DeleteObject(memBitmap);
         DeleteDC(memDC);
         ReleaseDC(window_handle, hdc);
 
-
-       
     }
 
     return 0;

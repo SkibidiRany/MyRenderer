@@ -17,6 +17,8 @@ public:
     void Update(float deltaTime);
     size_t GetActiveAnimationCount() const;
     void Clear();
+
+	HDC CallAnimations();
 };
 
 #endif // ANIMATOR_H

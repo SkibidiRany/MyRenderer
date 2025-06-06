@@ -1,3 +1,34 @@
-﻿  MatrixManager.cpp
-C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\MatrixManager.cpp(122,47): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+﻿  MaybeARenderer6.cpp
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\Shapes.h(240,19): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+  (compiling source file 'MaybeARenderer6.cpp')
+  
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\Shapes.h(241,19): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+  (compiling source file 'MaybeARenderer6.cpp')
+  
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\Shapes.h(259,15): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  (compiling source file 'MaybeARenderer6.cpp')
+  
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\Shapes.h(281,15): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  (compiling source file 'MaybeARenderer6.cpp')
+  
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\Shapes.h(447,40): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'MaybeARenderer6.cpp')
+  
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\Shapes.h(448,38): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'MaybeARenderer6.cpp')
+  
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\PointLineManager.h(5,33): warning C4584: 'PointLineManager': base-class 'IDrawEachFrame' is already a base-class of 'PointManager'
+  (compiling source file 'MaybeARenderer6.cpp')
+      C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\MyClasses.h(97,11):
+      see declaration of 'IDrawEachFrame'
+      C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\PointManager.h(14,7):
+      see declaration of 'PointManager'
+  
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\PointLineManager.h(5,33): warning C4584: 'PointLineManager': base-class 'IFlushable' is already a base-class of 'PointManager'
+  (compiling source file 'MaybeARenderer6.cpp')
+      C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\MyClasses.h(101,11):
+      see declaration of 'IFlushable'
+      C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\PointManager.h(14,7):
+      see declaration of 'PointManager'
+  
   MaybeARenderer6.vcxproj -> C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\x64\Debug\MaybeARenderer6.exe

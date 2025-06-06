@@ -327,7 +327,7 @@ private:
 		Manual
 	};
 
-	Mode myRotationMode = InputAngleChangeSpeed;
+	Mode myRotationMode = Manual;
 
     bool isRotating = false;
     int lastMouseX = 0;
@@ -443,10 +443,10 @@ public:
             break;
         }
 		
-
-        if (RotateAxis[X]) pitch = angle;
-        if (RotateAxis[Y]) yaw = angle;
-
+        if (myRotationMode != Manual) {
+            if (RotateAxis[X]) pitch = angle;
+            if (RotateAxis[Y]) yaw = angle;
+        }
         MakeRotationMatrixX(pitch, rotX);
         MakeRotationMatrixY(yaw, rotY);
 

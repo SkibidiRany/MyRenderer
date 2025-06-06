@@ -19,6 +19,8 @@ public:
     void Clear();
 
 	HDC CallAnimations();
+    void StartAnimations();
+    void StopAnimations();
 };
 
 #endif // ANIMATOR_H

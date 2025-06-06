@@ -110,3 +110,23 @@ HDC Animator::CallAnimations() {
 
     return finalDC;
 }
+
+void Animator::StartAnimations()
+{
+	// Start all animations that are not running
+	for (auto& anim : animations) {
+		if (!anim->IsRunning()) {
+			anim->Start();
+		}
+	}
+}
+
+void Animator::StopAnimations()
+{
+	// Stop all running animations
+	for (auto& anim : animations) {
+		if (anim->IsRunning()) {
+			anim->Stop();
+		}
+	}
+}

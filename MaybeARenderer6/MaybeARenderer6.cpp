@@ -63,13 +63,13 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pCmdLine, 
     Point a = { 0, 0 }, b = { 400,400 }, c = { 400,200 };
 
 	auto anim1 = new Lerp(a,b, 5);
-	auto anim2 = new Lerp(b, c, 5);
+	auto anim2 = new Lerp(c, b, 5);
 
 	animator->Add(std::shared_ptr<Animation>(anim1));
 	animator->Add(std::shared_ptr<Animation>(anim2));
 
-    anim1->Start();
-	anim2->Start();
+	animator->StartAnimations();
+
 
     // Main loop
     MSG message;
@@ -83,8 +83,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pCmdLine, 
         std::cout << "Active animations: " << animator->GetActiveAnimationCount() << std::endl;
         std::cout << "Delta time: " << deltaTime << std::endl;
 
-        /*anim1->Update(deltaTime);
-		anim2->Update(deltaTime);*/
         
         
         while (PeekMessage(&message, NULL, 0, 0, PM_REMOVE)) {

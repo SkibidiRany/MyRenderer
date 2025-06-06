@@ -105,25 +105,39 @@ Main methods are:
 	- isRunning : are we running?
 	- thread : the thread we are running on.
 
+	CHANGED: 
+	******* I changed the logic behind this class to the following: 
+	Animation class should be an abstract base class for animation classes to inherit from.
+	This class has to support the following:
+	- virtual DoAnimation() function: a pure virtual function that the inheriting animations should implement the way they way.
+	- Update() function: Updates progress of the animation. 
+
+
+
+
 1	Add Animator class, this class has to support the following:
 	- Add(Animation a) function : Adds a given animation to its data structure.
-	- Update(deltaTime) function : Calls all valid animations in its data structure.
+	- Update(deltaTime) function : Updates all valid animations in its data structure.
+	- CallAnimations() function : Calls all valid animations in its data structure.
 	This class must remove an animation form its data structure when the animation finishes its work.
 
 
 
+1	Add Lerp class, this class has to inherit from Animation class and has to support the following:
+	- Constructor takes in two points (a,b) and a duration.
+	- DoAnimation() function: Does the animation of lerping ("a + t * (b-a)")  
+	, the animation should run from a to b in time = duration seconds.
 
 
 
 
+0 	Add BackAndForth class, this class has to inherit from Animation class and has to support the following:
+	- Constructor takes in two points (a,b) and a duration.
+	- DoAnimation() function: Does the animation of lerping back and forth between a and b. ("a + t * (b-a)") 
+	, the animation should run from a to b in time = duration seconds, and then keep going back and forth
 
 
 
-
-
-
-
-	ASK CHAT ABOUT THIS IDEA FOR THREADS : EACH ANIMATION ALSO RETURNS A HDC BITMAP, AND THEN WE MERGE ALL, SO AFTER MERGING WE GET A NEW HDC BITMAP THAT HAS ALL, BUT THEY DO NOT AFFECT EACH OTHER (unless points overlap, but we don't care about that for now.)
 
 
 

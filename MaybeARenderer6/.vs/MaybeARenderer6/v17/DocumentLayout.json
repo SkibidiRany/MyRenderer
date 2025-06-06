@@ -7,22 +7,6 @@
       "RelativeMoniker": "D:0:0:{2002F5E6-F7C8-41D9-8F5E-33FC6AED41CB}|MaybeARenderer6.vcxproj|solutionrelative:MaybeARenderer6.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2002F5E6-F7C8-41D9-8F5E-33FC6AED41CB}|MaybeARenderer6.vcxproj|C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\Animation.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{2002F5E6-F7C8-41D9-8F5E-33FC6AED41CB}|MaybeARenderer6.vcxproj|solutionrelative:Animation.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2002F5E6-F7C8-41D9-8F5E-33FC6AED41CB}|MaybeARenderer6.vcxproj|C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\BaseFunctions.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{2002F5E6-F7C8-41D9-8F5E-33FC6AED41CB}|MaybeARenderer6.vcxproj|solutionrelative:BaseFunctions.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2002F5E6-F7C8-41D9-8F5E-33FC6AED41CB}|MaybeARenderer6.vcxproj|C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\Lerp.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{2002F5E6-F7C8-41D9-8F5E-33FC6AED41CB}|MaybeARenderer6.vcxproj|solutionrelative:Lerp.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2002F5E6-F7C8-41D9-8F5E-33FC6AED41CB}|MaybeARenderer6.vcxproj|C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\Time.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{2002F5E6-F7C8-41D9-8F5E-33FC6AED41CB}|MaybeARenderer6.vcxproj|solutionrelative:Time.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{2002F5E6-F7C8-41D9-8F5E-33FC6AED41CB}|MaybeARenderer6.vcxproj|C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\Animator.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{2002F5E6-F7C8-41D9-8F5E-33FC6AED41CB}|MaybeARenderer6.vcxproj|solutionrelative:Animator.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
@@ -31,12 +15,28 @@
       "RelativeMoniker": "D:0:0:{2002F5E6-F7C8-41D9-8F5E-33FC6AED41CB}|MaybeARenderer6.vcxproj|solutionrelative:Animator.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2002F5E6-F7C8-41D9-8F5E-33FC6AED41CB}|MaybeARenderer6.vcxproj|C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\Animation.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{2002F5E6-F7C8-41D9-8F5E-33FC6AED41CB}|MaybeARenderer6.vcxproj|solutionrelative:Animation.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{2002F5E6-F7C8-41D9-8F5E-33FC6AED41CB}|MaybeARenderer6.vcxproj|C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\Lerp.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{2002F5E6-F7C8-41D9-8F5E-33FC6AED41CB}|MaybeARenderer6.vcxproj|solutionrelative:Lerp.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2002F5E6-F7C8-41D9-8F5E-33FC6AED41CB}|MaybeARenderer6.vcxproj|C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\Lerp.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2002F5E6-F7C8-41D9-8F5E-33FC6AED41CB}|MaybeARenderer6.vcxproj|solutionrelative:Lerp.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2002F5E6-F7C8-41D9-8F5E-33FC6AED41CB}|MaybeARenderer6.vcxproj|C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\Animation.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2002F5E6-F7C8-41D9-8F5E-33FC6AED41CB}|MaybeARenderer6.vcxproj|solutionrelative:Animation.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2002F5E6-F7C8-41D9-8F5E-33FC6AED41CB}|MaybeARenderer6.vcxproj|C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\BaseFunctions.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2002F5E6-F7C8-41D9-8F5E-33FC6AED41CB}|MaybeARenderer6.vcxproj|solutionrelative:BaseFunctions.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2002F5E6-F7C8-41D9-8F5E-33FC6AED41CB}|MaybeARenderer6.vcxproj|C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\Time.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2002F5E6-F7C8-41D9-8F5E-33FC6AED41CB}|MaybeARenderer6.vcxproj|solutionrelative:Time.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2002F5E6-F7C8-41D9-8F5E-33FC6AED41CB}|MaybeARenderer6.vcxproj|C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\Animation.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2002F5E6-F7C8-41D9-8F5E-33FC6AED41CB}|MaybeARenderer6.vcxproj|solutionrelative:Animation.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\Time.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -81,7 +81,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 12,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Bookmark",
@@ -109,15 +109,16 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "BaseFunctions.h",
-              "DocumentMoniker": "C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\BaseFunctions.h",
-              "RelativeDocumentMoniker": "BaseFunctions.h",
-              "ToolTip": "C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\BaseFunctions.h",
-              "RelativeToolTip": "BaseFunctions.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAOAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-06-06T15:09:08.576Z"
+              "DocumentIndex": 0,
+              "Title": "MaybeARenderer6.cpp",
+              "DocumentMoniker": "C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\MaybeARenderer6.cpp",
+              "RelativeDocumentMoniker": "MaybeARenderer6.cpp",
+              "ToolTip": "C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\MaybeARenderer6.cpp",
+              "RelativeToolTip": "MaybeARenderer6.cpp",
+              "ViewState": "AgIAADMAAAAAAAAAAAAAAEEAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-05-07T17:30:50.797Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -133,19 +134,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "xmemory",
-              "DocumentMoniker": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.41.34120\\include\\xmemory",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.41.34120\\include\\xmemory",
-              "ToolTip": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.41.34120\\include\\xmemory",
-              "RelativeToolTip": "..\\..\\..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.41.34120\\include\\xmemory",
-              "ViewState": "AgIAABwIAAAAAAAAAAApwDAIAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-06-06T13:33:28.55Z"
+              "DocumentIndex": 6,
+              "Title": "BaseFunctions.h",
+              "DocumentMoniker": "C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\BaseFunctions.h",
+              "RelativeDocumentMoniker": "BaseFunctions.h",
+              "ToolTip": "C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\BaseFunctions.h",
+              "RelativeToolTip": "BaseFunctions.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-06-06T15:09:08.576Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 5,
               "Title": "Animation.h",
               "DocumentMoniker": "C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\Animation.h",
               "RelativeDocumentMoniker": "Animation.h",
@@ -153,8 +154,7 @@
               "RelativeToolTip": "Animation.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-05-31T18:29:44.208Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-31T18:29:44.208Z"
             },
             {
               "$type": "Document",
@@ -170,7 +170,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 7,
               "Title": "Time.cpp",
               "DocumentMoniker": "C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\Time.cpp",
               "RelativeDocumentMoniker": "Time.cpp",
@@ -182,32 +182,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "MaybeARenderer6.cpp",
-              "DocumentMoniker": "C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\MaybeARenderer6.cpp",
-              "RelativeDocumentMoniker": "MaybeARenderer6.cpp",
-              "ToolTip": "C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\MaybeARenderer6.cpp",
-              "RelativeToolTip": "MaybeARenderer6.cpp",
-              "ViewState": "AgIAADAAAAAAAAAAAAAAAEAAAAAbAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-05-07T17:30:50.797Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "Lerp.cpp",
               "DocumentMoniker": "C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\Lerp.cpp",
               "RelativeDocumentMoniker": "Lerp.cpp",
               "ToolTip": "C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\Lerp.cpp",
               "RelativeToolTip": "Lerp.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAA5AAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-06-06T13:03:59.236Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 3,
               "Title": "Lerp.h",
               "DocumentMoniker": "C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\Lerp.h",
               "RelativeDocumentMoniker": "Lerp.h",
@@ -219,7 +206,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "Animation.cpp",
               "DocumentMoniker": "C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\Animation.cpp",
               "RelativeDocumentMoniker": "Animation.cpp",
@@ -231,27 +218,41 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 2,
               "Title": "Animator.h",
               "DocumentMoniker": "C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\Animator.h",
               "RelativeDocumentMoniker": "Animator.h",
               "ToolTip": "C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\Animator.h",
               "RelativeToolTip": "Animator.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAUAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-05-31T18:30:37.772Z"
+              "WhenOpened": "2025-05-31T18:30:37.772Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 1,
               "Title": "Animator.cpp",
               "DocumentMoniker": "C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\Animator.cpp",
               "RelativeDocumentMoniker": "Animator.cpp",
               "ToolTip": "C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\Animator.cpp",
               "RelativeToolTip": "Animator.cpp",
-              "ViewState": "AgIAAAcAAAAAAAAAAAAgwG8AAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAGkAAAAAAAAAAAAuwIIAAAACAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-05-31T18:31:27.354Z"
+              "WhenOpened": "2025-05-31T18:31:27.354Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "xmemory",
+              "DocumentMoniker": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.41.34120\\include\\xmemory",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.41.34120\\include\\xmemory",
+              "ToolTip": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.41.34120\\include\\xmemory",
+              "RelativeToolTip": "..\\..\\..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.41.34120\\include\\xmemory",
+              "ViewState": "AgIAABwIAAAAAAAAAAApwDAIAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-06-06T13:33:28.55Z"
             },
             {
               "$type": "Document",

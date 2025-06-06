@@ -105,18 +105,12 @@ Main methods are:
 	- isRunning : are we running?
 	- thread : the thread we are running on.
 
-	CHANGED: 
-	******* I changed the logic behind this class to the following: 
-	Animation class should be an abstract base class for animation classes to inherit from.
-	This class has to support the following:
-	- virtual DoAnimation() function: a pure virtual function that the inheriting animations should implement the way they way.
-	- Update() function: Updates progress of the animation. 
-
-
-
-
 1	Add Animator class, this class has to support the following:
 	- Add(Animation a) function : Adds a given animation to its data structure.
+<<<<<<< Updated upstream
+	- Update(deltaTime) function : Calls all valid animations in its data structure.
+	This class must remove an animation form its data structure when the animation finishes its work.
+=======
 	- Update(deltaTime) function : Updates all valid animations in its data structure.
 	- CallAnimations() function : Calls all valid animations in its data structure.
 	This class must remove an animation form its data structure when the animation finishes its work.
@@ -138,6 +132,28 @@ Main methods are:
 
 
 
+0	Add .At() functionality: 
+	I want to allow Starting animations at a predetermined time, for example, I want to implement a data structure X that allows the following:
+	- X.At(Animation anim, float t) : calls anim at time = t.
+
+	Basic requirements for the data structure:
+	- insert(anim, t) : inserts anim to be called at time = t. 
+	- Update() : iterates through and calls animations that need to be called. 
+	Time complexity requirements:	
+	insert : O(1).
+	Update : O(k) where k is the amount of animations that we need to call.
+
+	current (first) idea:
+	Linked list that holds Animations ordered by time, Updates each frame, which iterates through all nodes that satisfy:
+	callbackTime < currentTime, calls and then removes them from the list. 
+	! insert O(n)
+	! Update O(k)
+	
+	(second) idea:
+	A linked list structure that supports threads with hand over hand algorithm, just like that in operating systems HW#3.
+	same Time complexity as first idea just more efficient but more complex
+
+	will have to look for better ideas in the future. 
 
 
 

@@ -5,10 +5,7 @@ void Animator::Add(std::shared_ptr<Animation> animation) {
     animations.push_back(animation);
 }
 
-void Animator::Add(float duration, std::function<void(float)> func) {
-    auto animation = std::make_shared<Animation>(duration, func);
-    animations.push_back(animation);
-}
+
 
 void Animator::Update(float deltaTime) {
     // Update all running animations

@@ -109,3 +109,27 @@ Main methods are:
 	- Add(Animation a) function : Adds a given animation to its data structure.
 	- Update(deltaTime) function : Calls all valid animations in its data structure.
 	This class must remove an animation form its data structure when the animation finishes its work.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	ASK CHAT ABOUT THIS IDEA FOR THREADS : EACH ANIMATION ALSO RETURNS A HDC BITMAP, AND THEN WE MERGE ALL, SO AFTER MERGING WE GET A NEW HDC BITMAP THAT HAS ALL, BUT THEY DO NOT AFFECT EACH OTHER (unless points overlap, but we don't care about that for now.)
+
+
+
+
+
+
+
+
+

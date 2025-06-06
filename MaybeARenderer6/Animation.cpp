@@ -2,8 +2,8 @@
 #include <chrono>
 #include <algorithm>
 
-Animation::Animation(float dur, std::function<void(float)> f)
-    : duration(dur), func(f), isRunning(false), elapsedTime(0.0f) {}
+Animation::Animation(float dur)
+    : duration(dur), isRunning(false), elapsedTime(0.0f) {}
 
 Animation::~Animation() {
     if (animThread.joinable()) {
@@ -25,7 +25,7 @@ void Animation::Start() {
             elapsedTime = std::chrono::duration<float>(currentTime - startTime).count();
 
             float progress = std::min(elapsedTime / duration, 1.0f);
-            func(progress);
+            
 
             if (elapsedTime >= duration) {
                 isRunning = false;
@@ -57,8 +57,7 @@ void Animation::Update(float deltaTime) {
 
     elapsedTime += deltaTime;
     float progress = std::min(elapsedTime / duration, 1.0f);
-    func(progress);
-
+    
     if (elapsedTime >= duration) {
         isRunning = false;
     }

@@ -1,5 +1,7 @@
 #include "Time.h"
 
+Time::Time(TickingManager& manager) : tickingManager(manager) {}
+
 void Time::Initialize() {
     auto now = std::chrono::high_resolution_clock::now();
     startTime = now;
@@ -15,6 +17,9 @@ float Time::GetDeltaTime() const {
 void Time::Update() {
     lastFrameTime = currentFrameTime;
     currentFrameTime = std::chrono::high_resolution_clock::now();
+
+    auto deltaTime = GetDeltaTime();
+	tickingManager.Tick(deltaTime);
 }
 
 float Time::ElapsedTime() const {

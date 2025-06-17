@@ -84,6 +84,9 @@
     <ClInclude Include="ScheduledAnimator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="TickingManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MaybeARenderer6.cpp">
@@ -141,6 +144,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ScheduledAnimator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TickingManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

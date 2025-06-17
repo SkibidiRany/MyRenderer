@@ -12,6 +12,9 @@
 #include "Animator.h"
 #include "Time.h"
 #include "Lerp.h"
+#include "Tests.h"
+#include "TestFunctions.h"
+
 
 using std::vector;
 
@@ -69,43 +72,16 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pCmdLine, 
     timeManager->Initialize();
 
 
+    Tests::NewTest([animator]() {
+        TestFunctions::LerpPressureTest(animator);
+        });
 
-    double delayTest = 5.0, runAnimsFor = 4.0;
+	Tests::NewTest([animator]() {
+		TestFunctions::AnimationAfterFunctionalityTest(animator);
+		});
+//	Tests::Run();
 
-    Point a = { 0, 0 };
-    Point b = { 400, 400 };
-    Point c = { 400, 200 };
-    Point d = { 800 -1, 600 -1};
 
-    auto ab = std::make_shared<Lerp>(a, b, runAnimsFor);
-    auto ac = std::make_shared<Lerp>(a, c, runAnimsFor);
-    auto ad = std::make_shared<Lerp>(a, d, runAnimsFor);
-
-    auto ba = std::make_shared<Lerp>(b, a, runAnimsFor);
-    auto bc = std::make_shared<Lerp>(b, c, runAnimsFor);
-    auto bd = std::make_shared<Lerp>(b, d, runAnimsFor);
-
-    auto ca = std::make_shared<Lerp>(c, a, runAnimsFor);
-    auto cb = std::make_shared<Lerp>(c, b, runAnimsFor);
-    auto cd = std::make_shared<Lerp>(c, d, runAnimsFor);
-
-    auto da = std::make_shared<Lerp>(d, a, runAnimsFor);
-    auto db = std::make_shared<Lerp>(d, b, runAnimsFor);
-    auto dc = std::make_shared<Lerp>(d, c, runAnimsFor);
-
-    // Add and schedule all animations with increasing delay
-    std::vector<std::shared_ptr<Animation>> allAnims = {
-        ab, ac, ad, ba, bc, bd, ca, cb, cd, da, db, dc
-    };
-
-    for (auto anim : allAnims) {
-        animator->Add(anim);
-        animator->At(anim, static_cast<float>( delayTest));
-    }
-
-	animator->StartAnimations();
-
-    bool didTest = false;
 
     // Main loop
     MSG message;
@@ -113,12 +89,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pCmdLine, 
 
         timeManager->Update();
 
-        float elapsed = timeManager->ElapsedTime();
 
-		if (elapsed > 2 && !didTest) { // Prevent too fast updates
-			animator->After(std::make_shared<Lerp>(a, Point(550, 450), runAnimsFor), 0);
-            didTest = true;
-		}
         
         while (PeekMessage(&message, NULL, 0, 0, PM_REMOVE)) {
             TranslateMessage(&message);
@@ -223,6 +194,9 @@ LRESULT CALLBACK WindowProcessMessage(HWND window_handle, UINT message, WPARAM w
         }
         else if (wParam == 'M') {
             pointLineManager->OnMovePointDown(GetCursPos(window_handle));
+        } 
+        else if (wParam == 'T') {
+            Tests::Run();
         }
         break;
     case WM_KEYUP:

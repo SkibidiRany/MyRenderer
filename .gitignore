@@ -38,3 +38,10 @@ MaybeARenderer6/x64/Debug/MaybeARenderer6.pdb
 MaybeARenderer6/.vs/MaybeARenderer6/CopilotIndices/0.2.1653.9816/SemanticSymbols.db-shm
 /MaybeARenderer6/.vs/MaybeARenderer6/CopilotIndices
 *.db-shm
+*.tlog
+*.obj
+*.ilk
+*.db
+
+
+

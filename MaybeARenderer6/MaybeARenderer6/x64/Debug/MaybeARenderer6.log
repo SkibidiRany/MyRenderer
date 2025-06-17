@@ -1,41 +1,9 @@
-﻿  MaybeARenderer6.cpp
-C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\Shapes.h(240,19): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-  (compiling source file 'MaybeARenderer6.cpp')
-  
-C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\Shapes.h(241,19): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-  (compiling source file 'MaybeARenderer6.cpp')
-  
-C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\Shapes.h(259,15): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-  (compiling source file 'MaybeARenderer6.cpp')
-  
-C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\Shapes.h(281,15): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-  (compiling source file 'MaybeARenderer6.cpp')
-  
-C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\Shapes.h(447,40): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'MaybeARenderer6.cpp')
-  
-C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\Shapes.h(448,38): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'MaybeARenderer6.cpp')
-  
-C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\PointLineManager.h(5,33): warning C4584: 'PointLineManager': base-class 'IDrawEachFrame' is already a base-class of 'PointManager'
-  (compiling source file 'MaybeARenderer6.cpp')
-      C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\MyClasses.h(97,11):
-      see declaration of 'IDrawEachFrame'
-      C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\PointManager.h(14,7):
-      see declaration of 'PointManager'
-  
-C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\PointLineManager.h(5,33): warning C4584: 'PointLineManager': base-class 'IFlushable' is already a base-class of 'PointManager'
-  (compiling source file 'MaybeARenderer6.cpp')
-      C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\MyClasses.h(101,11):
-      see declaration of 'IFlushable'
-      C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\PointManager.h(14,7):
-      see declaration of 'PointManager'
-  
+﻿  TestFunctions.cpp
 C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xutility(389,75): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'MaybeARenderer6.cpp')
+  (compiling source file 'TestFunctions.cpp')
       C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xutility(389,75):
       the template instantiation context (the oldest one first) is
-          C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\MaybeARenderer6.cpp(80,20):
+          C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\TestFunctions.cpp(20,20):
           see reference to function template instantiation 'std::shared_ptr<Lerp> std::make_shared<Lerp,Point&,Point&,double&>(Point &,Point &,double &)' being compiled
           C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\memory(2906,46):
           see reference to function template instantiation 'std::_Ref_count_obj2<Lerp>::_Ref_count_obj2<Point&,Point&,double&>(Point &,Point &,double &)' being compiled
@@ -53,10 +21,46 @@ C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.3412
           ]
   
 C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xutility(403,82): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'MaybeARenderer6.cpp')
+  (compiling source file 'TestFunctions.cpp')
+  
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xutility(389,75): warning C4244: 'argument': conversion from '_Ty' to 'float', possible loss of data
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xutility(389,75): warning C4244:         with
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xutility(389,75): warning C4244:         [
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xutility(389,75): warning C4244:             _Ty=int
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xutility(389,75): warning C4244:         ]
+  (compiling source file 'TestFunctions.cpp')
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xutility(389,75):
+      the template instantiation context (the oldest one first) is
+          C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\TestFunctions.cpp(50,26):
+          see reference to function template instantiation 'std::shared_ptr<Lerp> std::make_shared<Lerp,Point,Point,int>(Point &&,Point &&,int &&)' being compiled
+          C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\memory(2906,46):
+          see reference to function template instantiation 'std::_Ref_count_obj2<Lerp>::_Ref_count_obj2<_Ty,_Ty,int>(_Ty &&,_Ty &&,int &&)' being compiled
+          with
+          [
+              _Ty=Point
+          ]
+          C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\memory(2095,18):
+          see reference to function template instantiation 'void std::_Construct_in_place<_Ty,Point,Point,int>(_Ty &,Point &&,Point &&,int &&) noexcept(false)' being compiled
+          with
+          [
+              _Ty=Lerp
+          ]
+          C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xutility(399,14):
+          see reference to function template instantiation '_Ty *std::construct_at<_Ty,Point,Point,int>(_Ty *const ,Point &&,Point &&,int &&) noexcept(<expr>)' being compiled
+          with
+          [
+              _Ty=Lerp
+          ]
+  
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xutility(403,82): warning C4244: 'argument': conversion from '_Ty' to 'float', possible loss of data
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xutility(403,82): warning C4244:         with
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xutility(403,82): warning C4244:         [
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xutility(403,82): warning C4244:             _Ty=int
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xutility(403,82): warning C4244:         ]
+  (compiling source file 'TestFunctions.cpp')
   
 C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xutility(390,90): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-  (compiling source file 'MaybeARenderer6.cpp')
+  (compiling source file 'TestFunctions.cpp')
       C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xutility(390,90):
       the template instantiation context (the oldest one first) is
           C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\memory(2095,18):
@@ -72,6 +76,25 @@ C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.3412
               _Ty=Lerp
           ]
   
-  ScheduledAnimator.cpp
-  Generating Code...
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xutility(390,90): warning C4244: 'argument': conversion from '_Ty' to 'float', possible loss of data
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xutility(390,90): warning C4244:         with
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xutility(390,90): warning C4244:         [
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xutility(390,90): warning C4244:             _Ty=int
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xutility(390,90): warning C4244:         ]
+  (compiling source file 'TestFunctions.cpp')
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xutility(390,90):
+      the template instantiation context (the oldest one first) is
+          C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\memory(2095,18):
+          see reference to function template instantiation 'void std::_Construct_in_place<_Ty,Point,Point,int>(_Ty &,Point &&,Point &&,int &&) noexcept(false)' being compiled
+          with
+          [
+              _Ty=Lerp
+          ]
+          C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xutility(399,14):
+          see reference to function template instantiation '_Ty *std::construct_at<_Ty,Point,Point,int>(_Ty *const ,Point &&,Point &&,int &&) noexcept(false)' being compiled
+          with
+          [
+              _Ty=Lerp
+          ]
+  
   MaybeARenderer6.vcxproj -> C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\x64\Debug\MaybeARenderer6.exe

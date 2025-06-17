@@ -183,8 +183,14 @@ Main methods are:
 	- Call Tick for the referenced tickingManager In Time::Update (will be changed to Tick in order to inherit from ITick)
 	
 
-0	Add Test class, this class will contain future tests, using functions: each test is a function, and so in the future we just define a function for the test, and call Test::NewTest();
+1	Add Test class, this class will contain future tests, using functions: each test is a function, and so in the future we just define a function for the test, and call Test::NewTest();
 	pretty simple.
+
+	Add two classes: Tests class and TestFunctions class.
+	Tests should support the following methods:
+	- NewTest(test) : Registers a given test function (std::function<void> maybe) to the data structure.
+	- Run() : Runs all tests in our data structure.
+	TestFunctions should include functions that implement the test we want, we register them in main using a lambda:  Tests::NewTest([ PARAMETERS ]() { TestFunctions::TEST_FUNCTION(PARAMETERS); });
 
 
 1	Add .After(Animation anim, float t) method to Animator: this method should play the animation t seconds after it was called.

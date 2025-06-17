@@ -151,6 +151,8 @@
     <ClInclude Include="ScheduledAnimator.h" />
     <ClInclude Include="Shapes.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="TestFunctions.h" />
+    <ClInclude Include="Tests.h" />
     <ClInclude Include="TickingManager.h" />
     <ClInclude Include="Utilities.h" />
     <ClInclude Include="Vector4.h" />
@@ -173,6 +175,8 @@
     <ClCompile Include="PointLineManager.cpp" />
     <ClCompile Include="PointManager.cpp" />
     <ClCompile Include="ScheduledAnimator.cpp" />
+    <ClCompile Include="TestFunctions.cpp" />
+    <ClCompile Include="Tests.cpp" />
     <ClCompile Include="TickingManager.cpp" />
     <ClCompile Include="Time.cpp" />
     <ClCompile Include="Vector4.cpp" />

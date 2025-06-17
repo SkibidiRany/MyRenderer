@@ -20,7 +20,7 @@ void Animator::Add(std::shared_ptr<Animation> animation) {
 
 }
 
-void Animator::Update(float deltaTime) {
+void Animator::Tick(float deltaTime) {
     auto dueAnims = scheduler.CollectDueAnimations();
 
     for (auto& anim : dueAnims) {

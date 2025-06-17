@@ -56,12 +56,17 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pCmdLine, 
 
 
     InitializeManagers();
-    ScheduledAnimator scheduledAnimator;
+    auto scheduledAnimator = new ScheduledAnimator();
+    auto animator = new Animator(*scheduledAnimator);
+    
     TickingManager tickingManager;
 	
-    auto animator = new Animator(scheduledAnimator);
-	auto clock = new Time(tickingManager);
-    clock->Initialize();
+
+	tickingManager.Subscribe(scheduledAnimator);
+	tickingManager.Subscribe(animator);
+
+	auto timeManager = new Time(tickingManager);
+    timeManager->Initialize();
 
 
 
@@ -105,10 +110,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pCmdLine, 
     MSG message;
     while (!quit) {
 
-        clock->Update();
-        float deltaTime = clock->GetDeltaTime();            // integrate ITick interface and then TickingManager
-        animator->Update(deltaTime); // Time update only
-		scheduledAnimator.Tick(deltaTime); // Tick the scheduler
+        timeManager->Update();
 
         
         

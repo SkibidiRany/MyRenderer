@@ -17,7 +17,7 @@ struct AnimationResources {
     void* bits = nullptr;  // pointer to bitmap bits for clearing
 };
 
-class Animator {
+class Animator : public ITick {
 private:
     std::vector<std::shared_ptr<Animation>> animations;
     std::unordered_map<std::shared_ptr<Animation>, AnimationResources> animationCache;
@@ -27,7 +27,7 @@ public:
     Animator(ScheduledAnimator& schedulerRef);
 
     void Add(std::shared_ptr<Animation> animation);
-    void Update(float deltaTime);
+    void Tick(float deltaTime) override;
     void At(std::shared_ptr<Animation> anim, float time);
 
     size_t GetActiveAnimationCount() const;

@@ -169,7 +169,12 @@ Main methods are:
 	this interface will be inherited from by all classes that need to update using deltaTime, I added the similar function Update() to all these classes but I want to change the name to Tick.
 
 
-0 	Add TickingManagaer class, this class should support the following functions:
+1 	Make all relevant classes inherit from ITick:
+	- ScheduledAnimator
+	- Animator
+	 
+
+1 	Add TickingManager class, this class should support the following functions:
 	- void Subscribe(ITick* sub): adds a given member.
 	- void Tick(float deltaTime): calls all subscribed members.
 	

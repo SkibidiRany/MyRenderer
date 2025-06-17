@@ -35,7 +35,7 @@ C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.3412
   (compiling source file 'MaybeARenderer6.cpp')
       C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xutility(389,75):
       the template instantiation context (the oldest one first) is
-          C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\MaybeARenderer6.cpp(75,20):
+          C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\MaybeARenderer6.cpp(80,20):
           see reference to function template instantiation 'std::shared_ptr<Lerp> std::make_shared<Lerp,Point&,Point&,double&>(Point &,Point &,double &)' being compiled
           C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\memory(2906,46):
           see reference to function template instantiation 'std::_Ref_count_obj2<Lerp>::_Ref_count_obj2<Point&,Point&,double&>(Point &,Point &,double &)' being compiled

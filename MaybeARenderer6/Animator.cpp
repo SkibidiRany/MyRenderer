@@ -44,7 +44,12 @@ void Animator::Tick(float deltaTime) {
 }
 
 void Animator::At(std::shared_ptr<Animation> anim, float time) {
-    scheduler.Schedule(anim, time);
+    scheduler.At(anim, time);
+}
+
+void Animator::After(std::shared_ptr<Animation> anim, float time)
+{
+	scheduler.After(anim, time);
 }
 
 size_t Animator::GetActiveAnimationCount() const {

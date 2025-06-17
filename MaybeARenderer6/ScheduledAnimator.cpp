@@ -1,10 +1,16 @@
 #include "ScheduledAnimator.h"
 
-void ScheduledAnimator::Schedule(std::shared_ptr<Animation> anim, float time) {
+void ScheduledAnimator::At(std::shared_ptr<Animation> anim, float time) {
     auto it = schedule.begin();
     while (it != schedule.end() && it->time <= time)
         ++it;
     schedule.insert(it, { time, anim });
+}
+
+void ScheduledAnimator::After(std::shared_ptr<Animation> anim, float time)
+{
+	float targetTime = currentTime + time;
+	At(anim, targetTime);
 }
 
 const std::vector<std::shared_ptr<Animation>> ScheduledAnimator::CollectDueAnimations() {
@@ -24,5 +30,4 @@ void ScheduledAnimator::Tick(float deltaTime) {
 
 void ScheduledAnimator::Clear() {
     schedule.clear();
-    currentTime = 0.0f;
 }

@@ -20,7 +20,9 @@ private:
     float currentTime = 0.0f;
 
 public:
-    void Schedule(std::shared_ptr<Animation> anim, float time);
+    void At(std::shared_ptr<Animation> anim, float time);
+    void After(std::shared_ptr<Animation> anim, float time);
+
     const std::vector<std::shared_ptr<Animation>> CollectDueAnimations();
     void Tick(float deltaTime) override;
 

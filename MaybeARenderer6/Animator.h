@@ -28,7 +28,9 @@ public:
 
     void Add(std::shared_ptr<Animation> animation);
     void Tick(float deltaTime) override;
+
     void At(std::shared_ptr<Animation> anim, float time);
+	void After(std::shared_ptr<Animation> anim, float time);
 
     size_t GetActiveAnimationCount() const;
     void Clear();

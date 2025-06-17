@@ -68,11 +68,11 @@ After adding the moving points and lines feature, I was greeted with another sma
 - add Vector4 class. 	DONE
 - add Matrix4 class. 	DONE
  	
-Add the math needed for perspective projection, and then all that's left to do is: 
-- initialize the MatrixManager at the start. 	
-- insert the needed matrices in main. 		
-- apply all matrices to each point before drawing it.
-look into making MatrixManager all static if possible, since we need to call it everytime we "DrawPoints", and camera translation will change the needed matrices, so we can't really save a copy in each class that uses it. Or can we?
+	Add the math needed for perspective projection, and then all that's left to do is: 
+	- initialize the MatrixManager at the start. 	
+	- insert the needed matrices in main. 		
+	- apply all matrices to each point before drawing it.
+	look into making MatrixManager all static if possible, since we need to call it everytime we "DrawPoints", and camera translation will change the needed matrices, so we can't really save a copy in each class that uses it. Or can we?
 
 
 0 	Event System. look into making it not need function input, else we can use templates.
@@ -182,6 +182,19 @@ Main methods are:
 	- Add a reference to this class from Time class.
 	- Call Tick for the referenced tickingManager In Time::Update (will be changed to Tick in order to inherit from ITick)
 	
+
+0	Add Test class, this class will contain future tests, using functions: each test is a function, and so in the future we just define a function for the test, and call Test::NewTest();
+	pretty simple.
+
+
+1	Add .After(Animation anim, float t) method to Animator: this method should play the animation t seconds after it was called.
+	Changes to ScheduledAnimator:
+	- Add .After(Animation anim, float t) method, which just schedules a the animation to run at time = (currentTime + t).
+
+	Changes to Animator:
+	- Add .After(Animation anim, float t) method, which just calls scheduler.After(Animation anim, float t);
+
+
 
 
 

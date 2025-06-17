@@ -105,6 +105,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pCmdLine, 
 
 	animator->StartAnimations();
 
+    bool didTest = false;
 
     // Main loop
     MSG message;
@@ -112,7 +113,12 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR pCmdLine, 
 
         timeManager->Update();
 
-        
+        float elapsed = timeManager->ElapsedTime();
+
+		if (elapsed > 2 && !didTest) { // Prevent too fast updates
+			animator->After(std::make_shared<Lerp>(a, Point(550, 450), runAnimsFor), 0);
+            didTest = true;
+		}
         
         while (PeekMessage(&message, NULL, 0, 0, PM_REMOVE)) {
             TranslateMessage(&message);

@@ -132,7 +132,7 @@ Main methods are:
 
 
 
-0	Add .At() functionality: 
+1	Add .At() functionality: 
 	I want to allow Starting animations at a predetermined time, for example, I want to implement a data structure X that allows the following:
 	- X.At(Animation anim, float t) : calls anim at time = t.
 
@@ -140,7 +140,7 @@ Main methods are:
 	- insert(anim, t) : inserts anim to be called at time = t. 
 	- Update() : iterates through and calls animations that need to be called. 
 	Time complexity requirements:	
-	insert : O(1).
+	insert : O(1). Obviously can't, will allow O(n)
 	Update : O(k) where k is the amount of animations that we need to call.
 
 	current (first) idea:
@@ -155,10 +155,28 @@ Main methods are:
 
 	will have to look for better ideas in the future. 
 
+	I am going with the first idea : Linked list that holds Animations ordered by time.
+
+	DONE:
+	Added the .At() functionality with the following architecture:
+	- Added ScheduledAnimator class, this class will handle the .At() functionality.
+	- Added a reference to an object of type ScheduledAnimator in class Animator, now we just call animator.At() and it will call the internal scheduler.At(). I think this is better for following OOP concepts.
 
 
 
+0	Add ITick interface, this interface supports the following pure virtual methods:
+	- void Tick(float deltaTime);
+	this interface will be inherited from by all classes that need to update using deltaTime, I added the similar function Update() to all these classes but I want to change the name to Tick.
 
+
+0 	Add TickingManagaer class, this class should support the following functions:
+	- void Subscribe(ITick* sub);
+	- void Tick(float deltaTime);
+	
+	Changes to Time class:
+	- Add a reference to this class from Time class.
+	- Call Tick for the referenced tickingManager In Time::Update (will be changed to Tick in order to inherit from ITick)
+	
 
 
 

@@ -14,7 +14,6 @@ protected:
     float duration;
     float progress;
     bool isRunning;
-    std::thread animThread;
     float elapsedTime;
 
 public:

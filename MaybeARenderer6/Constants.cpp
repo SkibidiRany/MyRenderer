@@ -9,8 +9,8 @@ HWND rgb_window_handle;
 const float PI = 3.14159265f;
 
 // Drawing settings
-const bool DrawLength = true;
-const bool DrawCoords = true;
+const bool DrawLength = false;
+const bool DrawCoords = false;
 const bool ToDrawShape = true;
 const int drawingCapacity = 60; //currently used but not implemented in PointManager
 

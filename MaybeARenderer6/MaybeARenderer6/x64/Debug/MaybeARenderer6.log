@@ -32,6 +32,47 @@ C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\PointLineMana
       C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\PointManager.h(14,7):
       see declaration of 'PointManager'
   
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xutility(389,75): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'MaybeARenderer6.cpp')
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xutility(389,75):
+      the template instantiation context (the oldest one first) is
+          C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\MaybeARenderer6.cpp(73,20):
+          see reference to function template instantiation 'std::shared_ptr<Lerp> std::make_shared<Lerp,Point&,Point&,double&>(Point &,Point &,double &)' being compiled
+          C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\memory(2906,46):
+          see reference to function template instantiation 'std::_Ref_count_obj2<Lerp>::_Ref_count_obj2<Point&,Point&,double&>(Point &,Point &,double &)' being compiled
+          C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\memory(2095,18):
+          see reference to function template instantiation 'void std::_Construct_in_place<_Ty,Point&,Point&,double&>(_Ty &,Point &,Point &,double &) noexcept(false)' being compiled
+          with
+          [
+              _Ty=Lerp
+          ]
+          C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xutility(399,14):
+          see reference to function template instantiation '_Ty *std::construct_at<_Ty,Point&,Point&,double&>(_Ty *const ,Point &,Point &,double &) noexcept(<expr>)' being compiled
+          with
+          [
+              _Ty=Lerp
+          ]
+  
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xutility(403,82): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'MaybeARenderer6.cpp')
+  
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xutility(390,90): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'MaybeARenderer6.cpp')
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xutility(390,90):
+      the template instantiation context (the oldest one first) is
+          C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\memory(2095,18):
+          see reference to function template instantiation 'void std::_Construct_in_place<_Ty,Point&,Point&,double&>(_Ty &,Point &,Point &,double &) noexcept(false)' being compiled
+          with
+          [
+              _Ty=Lerp
+          ]
+          C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.34120\include\xutility(399,14):
+          see reference to function template instantiation '_Ty *std::construct_at<_Ty,Point&,Point&,double&>(_Ty *const ,Point &,Point &,double &) noexcept(false)' being compiled
+          with
+          [
+              _Ty=Lerp
+          ]
+  
+  ScheduledAnimator.cpp
   Generating Code...
-  LINK : C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\x64\Debug\MaybeARenderer6.exe not found or not built by the last incremental link; performing full link
   MaybeARenderer6.vcxproj -> C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\x64\Debug\MaybeARenderer6.exe

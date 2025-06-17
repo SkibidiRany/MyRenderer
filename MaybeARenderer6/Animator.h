@@ -7,14 +7,29 @@
 #include <memory>
 #include <functional>
 #include "Animation.h"
+#include "ScheduledAnimator.h"
+
+
+struct AnimationResources {
+    HDC dc = nullptr;
+    HBITMAP bmp = nullptr;
+    HBITMAP oldBmp = nullptr;
+    void* bits = nullptr;  // pointer to bitmap bits for clearing
+};
 
 class Animator {
 private:
     std::vector<std::shared_ptr<Animation>> animations;
+    std::unordered_map<std::shared_ptr<Animation>, AnimationResources> animationCache;
 
+	ScheduledAnimator& scheduler;
 public:
+    Animator(ScheduledAnimator& schedulerRef);
+
     void Add(std::shared_ptr<Animation> animation);
     void Update(float deltaTime);
+    void At(std::shared_ptr<Animation> anim, float time);
+
     size_t GetActiveAnimationCount() const;
     void Clear();
 

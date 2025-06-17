@@ -1,19 +1,39 @@
 #include "Animator.h"
 #include <algorithm>
-
 #include "Constants.h"
+#include <Windows.h>
+#include <memory>
+#include <vector>
+#include <iostream>
+
+Animator::Animator(ScheduledAnimator& schedulerRef)
+    : scheduler(schedulerRef) {}
 
 void Animator::Add(std::shared_ptr<Animation> animation) {
+    //// Prevent duplicate
+    //if (std::find(animations.begin(), animations.end(), animation) == animations.end()) {
+    //    animations.push_back(animation);
+    //}
+    
+	// Always add the animation, even if it is already present, because they might be added at a different time.
     animations.push_back(animation);
+
 }
 
 void Animator::Update(float deltaTime) {
-    // Update all running animations
+    auto dueAnims = scheduler.CollectDueAnimations();
+
+    for (auto& anim : dueAnims) {
+        anim->Start();
+        if (std::find(animations.begin(), animations.end(), anim) == animations.end()) {
+            animations.push_back(anim);
+        }
+    }
+
     for (auto& anim : animations) {
         anim->Update(deltaTime);
     }
 
-    // Remove finished animations
     animations.erase(
         std::remove_if(animations.begin(), animations.end(),
             [](const std::shared_ptr<Animation>& anim) {
@@ -21,6 +41,10 @@ void Animator::Update(float deltaTime) {
             }),
         animations.end()
     );
+}
+
+void Animator::At(std::shared_ptr<Animation> anim, float time) {
+    scheduler.Schedule(anim, time);
 }
 
 size_t Animator::GetActiveAnimationCount() const {
@@ -38,95 +62,64 @@ void Animator::Clear() {
 }
 
 HDC Animator::CallAnimations() {
-    // Create final composed HDC
     HDC screenDC = GetDC(0);
     HDC finalDC = CreateCompatibleDC(screenDC);
     HBITMAP finalBitmap = CreateCompatibleBitmap(screenDC, screenWidth, screenHeight);
     HBITMAP oldFinalBitmap = (HBITMAP)SelectObject(finalDC, finalBitmap);
     ReleaseDC(0, screenDC);
 
-    // Clear finalDC
     HBRUSH brush = CreateSolidBrush(RGB(0, 0, 0));
     RECT rect = { 0, 0, screenWidth, screenHeight };
     FillRect(finalDC, &rect, brush);
     DeleteObject(brush);
 
-    // Create thread-safe container for animation HDCs
-    std::vector<HDC> animDCs(animations.size(), nullptr);
-    std::vector<HBITMAP> animBitmaps(animations.size(), nullptr);
-    std::vector<HBITMAP> oldBitmaps(animations.size(), nullptr);
-    std::vector<std::thread> threads;
+    std::vector<std::shared_ptr<Animation>> processed;
 
-    for (size_t i = 0; i < animations.size(); ++i) {
-        if (!animations[i]->IsRunning()) continue;
+    for (const auto& anim : animations) {
+        if (!anim || !anim->IsRunning()) continue;
 
-        threads.emplace_back([&, i]() {
-            HDC screenDC = GetDC(0);
-            HDC animDC = CreateCompatibleDC(screenDC);
-            HBITMAP animBitmap = CreateCompatibleBitmap(screenDC, screenWidth, screenHeight);
-            HBITMAP oldBitmap = (HBITMAP)SelectObject(animDC, animBitmap);
-            ReleaseDC(0, screenDC);
-
-            // Clear animDC
-            HBRUSH b = CreateSolidBrush(RGB(0, 0, 0));
-            RECT r = { 0, 0, screenWidth, screenHeight };
-            FillRect(animDC, &r, b);
-            DeleteObject(b);
-
-            // Let the animation draw on its own surface
-            // Don't pass deltaTime here - animations should already be updated
-            animations[i]->DoAnimation(animDC, 0.0f);
-
-            animDCs[i] = animDC;
-            animBitmaps[i] = animBitmap;
-            oldBitmaps[i] = oldBitmap;
-            });
-    }
-
-    // Wait for all animation threads to finish
-    for (auto& t : threads) {
-        if (t.joinable()) t.join();
-    }
-
-    // Merge all animation HDCs into finalDC
-    for (size_t i = 0; i < animDCs.size(); ++i) {
-        if (animDCs[i]) {
-            TransparentBlt(
-                finalDC, 0, 0, screenWidth, screenHeight,
-                animDCs[i], 0, 0, screenWidth, screenHeight,
-                RGB(0, 0, 0)  // color treated as transparent
-            );
+        if (std::find(processed.begin(), processed.end(), anim) != processed.end()) {
+            continue;
         }
-    }
+        processed.push_back(anim);
 
-    // Clean up temporary HDCs and bitmaps
-    for (size_t i = 0; i < animDCs.size(); ++i) {
-        if (animDCs[i]) {
-            SelectObject(animDCs[i], oldBitmaps[i]);
-            DeleteObject(animBitmaps[i]);
-            DeleteDC(animDCs[i]);
-        }
+        HDC animDC = CreateCompatibleDC(finalDC);
+        HBITMAP animBitmap = CreateCompatibleBitmap(finalDC, screenWidth, screenHeight);
+        HBITMAP oldBitmap = (HBITMAP)SelectObject(animDC, animBitmap);
+
+        HBRUSH b = CreateSolidBrush(RGB(0, 0, 0));
+        RECT r = { 0, 0, screenWidth, screenHeight };
+        FillRect(animDC, &r, b);
+        DeleteObject(b);
+
+        anim->DoAnimation(animDC, 0.0f);
+
+        TransparentBlt(
+            finalDC, 0, 0, screenWidth, screenHeight,
+            animDC, 0, 0, screenWidth, screenHeight,
+            RGB(0, 0, 0)
+        );
+
+        SelectObject(animDC, oldBitmap);
+        DeleteObject(animBitmap);
+        DeleteDC(animDC);
     }
 
     return finalDC;
 }
 
-void Animator::StartAnimations()
-{
-	// Start all animations that are not running
-	for (auto& anim : animations) {
-		if (!anim->IsRunning()) {
-			anim->Start();
-		}
-	}
+void Animator::StartAnimations() {
+    for (auto& anim : animations) {
+        if (!anim->IsRunning()) {
+            anim->Start();
+        }
+    }
 }
 
-void Animator::StopAnimations()
-{
-	// Stop all running animations
-	for (auto& anim : animations) {
-		if (anim->IsRunning()) {
-			anim->Stop();
-		}
-	}
+void Animator::StopAnimations() {
+    for (auto& anim : animations) {
+        if (anim->IsRunning()) {
+            anim->Stop();
+        }
+    }
 }

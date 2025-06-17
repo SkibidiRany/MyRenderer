@@ -1,4 +1,33 @@
 ﻿  Animator.cpp
+  BaseFunctions.cpp
+  Constants.cpp
+  DeletionManager.cpp
+  DrawingFunctions.cpp
+  InputFields.cpp
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\InputFields.cpp(144,26): warning C4312: 'type cast': conversion from 'const int' to 'HMENU' of greater size
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\InputFields.cpp(176,25): warning C4312: 'type cast': conversion from 'const int' to 'HMENU' of greater size
+  InputFunctions.cpp
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\PointLineManager.h(5,33): warning C4584: 'PointLineManager': base-class 'IDrawEachFrame' is already a base-class of 'PointManager'
+  (compiling source file 'InputFunctions.cpp')
+      C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\MyClasses.h(97,11):
+      see declaration of 'IDrawEachFrame'
+      C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\PointManager.h(14,7):
+      see declaration of 'PointManager'
+  
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\PointLineManager.h(5,33): warning C4584: 'PointLineManager': base-class 'IFlushable' is already a base-class of 'PointManager'
+  (compiling source file 'InputFunctions.cpp')
+      C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\MyClasses.h(101,11):
+      see declaration of 'IFlushable'
+      C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\PointManager.h(14,7):
+      see declaration of 'PointManager'
+  
+  Lerp.cpp
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\Lerp.cpp(17,21): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\Lerp.cpp(18,21): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  LineManager.cpp
+  Matrix4.cpp
+  MatrixManager.cpp
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\MatrixManager.cpp(122,47): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
   MaybeARenderer6.cpp
 C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\Shapes.h(240,19): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
   (compiling source file 'MaybeARenderer6.cpp')
@@ -12,10 +41,10 @@ C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\Shapes.h(259,
 C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\Shapes.h(281,15): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
   (compiling source file 'MaybeARenderer6.cpp')
   
-C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\Shapes.h(447,36): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\Shapes.h(447,40): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
   (compiling source file 'MaybeARenderer6.cpp')
   
-C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\Shapes.h(448,34): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\Shapes.h(448,38): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
   (compiling source file 'MaybeARenderer6.cpp')
   
 C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\PointLineManager.h(5,33): warning C4584: 'PointLineManager': base-class 'IDrawEachFrame' is already a base-class of 'PointManager'
@@ -73,6 +102,29 @@ C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.41.3412
               _Ty=Lerp
           ]
   
+  MyClasses.cpp
+  PointLineManager.cpp
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\PointLineManager.h(5,33): warning C4584: 'PointLineManager': base-class 'IDrawEachFrame' is already a base-class of 'PointManager'
+  (compiling source file 'PointLineManager.cpp')
+      C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\MyClasses.h(97,11):
+      see declaration of 'IDrawEachFrame'
+      C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\PointManager.h(14,7):
+      see declaration of 'PointManager'
+  
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\PointLineManager.h(5,33): warning C4584: 'PointLineManager': base-class 'IFlushable' is already a base-class of 'PointManager'
+  (compiling source file 'PointLineManager.cpp')
+      C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\MyClasses.h(101,11):
+      see declaration of 'IFlushable'
+      C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\PointManager.h(14,7):
+      see declaration of 'PointManager'
+  
+  PointManager.cpp
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\PointManager.cpp(100,25): warning C4858: discarding return value: This member function returns a bool indicating whether the collection is empty and has no other effects. It is not useful to call this member function and discard the return value. This collection can be cleared by assigning an empty value to it.
   ScheduledAnimator.cpp
+  Vector4.cpp
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\Vector4.cpp(7,24): warning C4244: 'argument': conversion from 'const double' to 'int', possible loss of data
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\Vector4.cpp(7,21): warning C4244: 'argument': conversion from 'const double' to 'int', possible loss of data
+C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\Vector4.cpp(7,18): warning C4244: 'argument': conversion from 'const double' to 'int', possible loss of data
   Generating Code...
+  LINK : C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\x64\Debug\MaybeARenderer6.exe not found or not built by the last incremental link; performing full link
   MaybeARenderer6.vcxproj -> C:\Users\ranym\Desktop\GitHub FirstTest\MyRenderer\MaybeARenderer6\x64\Debug\MaybeARenderer6.exe

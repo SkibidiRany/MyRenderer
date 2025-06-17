@@ -103,6 +103,14 @@ interface IFlushable {
 };
 
 interface IDeletable {
-    virtual ~IDeletable() = default;
     virtual void Delete() = 0;
+    virtual ~IDeletable() = default;
 };
+
+interface ITick {
+public:
+    virtual void Tick(float deltaTime) = 0;
+    virtual ~ITick() = default;
+};
+
+

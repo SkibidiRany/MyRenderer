@@ -3,8 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{2002F5E6-F7C8-41D9-8F5E-33FC6AED41CB}|MaybeARenderer6.vcxproj|C:\\USERS\\RANYM\\DESKTOP\\GITHUB FIRSTTEST\\MYRENDERER\\MAYBEARENDERER6\\TIME.H||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{2002F5E6-F7C8-41D9-8F5E-33FC6AED41CB}|MaybeARenderer6.vcxproj|solutionrelative:TIME.H||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{2002F5E6-F7C8-41D9-8F5E-33FC6AED41CB}|MaybeARenderer6.vcxproj|C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\MyClasses.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{2002F5E6-F7C8-41D9-8F5E-33FC6AED41CB}|MaybeARenderer6.vcxproj|solutionrelative:MyClasses.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\Time.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Time.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2002F5E6-F7C8-41D9-8F5E-33FC6AED41CB}|MaybeARenderer6.vcxproj|C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\Time.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -75,12 +79,25 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "MyClasses.h",
+              "DocumentMoniker": "C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\MyClasses.h",
+              "RelativeDocumentMoniker": "MyClasses.h",
+              "ToolTip": "C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\MyClasses.h",
+              "RelativeToolTip": "MyClasses.h",
+              "ViewState": "AgIAAFQAAAAAAAAAAAAAAGoAAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-06-17T14:32:53.243Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "Time.h",
               "DocumentMoniker": "C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\Time.h",
               "RelativeDocumentMoniker": "Time.h",
               "ToolTip": "C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\Time.h",
               "RelativeToolTip": "Time.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAABBAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2025-06-17T14:23:21.486Z",
               "EditorCaption": ""
@@ -91,7 +108,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "MaybeARenderer6.cpp",
               "DocumentMoniker": "C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\MaybeARenderer6.cpp",
               "RelativeDocumentMoniker": "MaybeARenderer6.cpp",
@@ -99,12 +116,11 @@
               "RelativeToolTip": "MaybeARenderer6.cpp",
               "ViewState": "AgIAAC0AAAAAAAAAAADgvzoAAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-05-07T17:30:50.797Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-07T17:30:50.797Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "ScheduledAnimator.h",
               "DocumentMoniker": "C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\ScheduledAnimator.h",
               "RelativeDocumentMoniker": "ScheduledAnimator.h",
@@ -112,12 +128,11 @@
               "RelativeToolTip": "ScheduledAnimator.h",
               "ViewState": "AgIAAAgAAAAAAAAAAADgvxUAAABIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-06-17T11:06:04.92Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-17T11:06:04.92Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "ScheduledAnimator.cpp",
               "DocumentMoniker": "C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\ScheduledAnimator.cpp",
               "RelativeDocumentMoniker": "ScheduledAnimator.cpp",
@@ -125,12 +140,11 @@
               "RelativeToolTip": "ScheduledAnimator.cpp",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAABVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-06-17T11:06:49.959Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-17T11:06:49.959Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "Animation.h",
               "DocumentMoniker": "C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\Animation.h",
               "RelativeDocumentMoniker": "Animation.h",
@@ -138,12 +152,11 @@
               "RelativeToolTip": "Animation.h",
               "ViewState": "AgIAAAYAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-05-31T18:29:44.208Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-31T18:29:44.208Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Time.cpp",
               "DocumentMoniker": "C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\Time.cpp",
               "RelativeDocumentMoniker": "Time.cpp",
@@ -151,12 +164,11 @@
               "RelativeToolTip": "Time.cpp",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-05-31T18:21:49.438Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-31T18:21:49.438Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "Animation.cpp",
               "DocumentMoniker": "C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\Animation.cpp",
               "RelativeDocumentMoniker": "Animation.cpp",
@@ -164,12 +176,11 @@
               "RelativeToolTip": "Animation.cpp",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-05-31T18:29:53.32Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-31T18:29:53.32Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "Animator.h",
               "DocumentMoniker": "C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\Animator.h",
               "RelativeDocumentMoniker": "Animator.h",
@@ -177,12 +188,11 @@
               "RelativeToolTip": "Animator.h",
               "ViewState": "AgIAAA4AAAAAAAAAAADwvxMAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-05-31T18:30:37.772Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-31T18:30:37.772Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "Animator.cpp",
               "DocumentMoniker": "C:\\Users\\ranym\\Desktop\\GitHub FirstTest\\MyRenderer\\MaybeARenderer6\\Animator.cpp",
               "RelativeDocumentMoniker": "Animator.cpp",
@@ -190,8 +200,7 @@
               "RelativeToolTip": "Animator.cpp",
               "ViewState": "AgIAAAkAAAAAAAAAAAAiwBYAAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-05-31T18:31:27.354Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-31T18:31:27.354Z"
             }
           ]
         }
